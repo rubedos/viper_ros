@@ -1,0 +1,956 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+  
+  <!-- Licensed under the Apache 2.0 License -->
+  <link rel="stylesheet" type="text/css" href="_static/fonts/open-sans/stylesheet.css" />
+  <!-- Licensed under the SIL Open Font License -->
+  <link rel="stylesheet" type="text/css" href="_static/fonts/source-serif-pro/source-serif-pro.css" />
+  <link rel="stylesheet" type="text/css" href="_static/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="_static/css/bootstrap-theme.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>VIPER Apps &mdash; VIPER SDK 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/guzzle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="VIPER SDK 1.0.0 documentation" href="index.html" />
+    <link rel="next" title="VIPER ROS Messages" href="ros_msgs.html" />
+    <link rel="prev" title="VIPER Core" href="viper_core.html" />
+  
+   
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ros_msgs.html" title="VIPER ROS Messages"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="viper_core.html" title="VIPER Core"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="container-wrapper">
+
+      <div id="mobile-toggle">
+        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+      </div>
+  <div id="left-column">
+    <div class="sphinxsidebar">
+        <a href="
+    index.html" class="text-logo">VIPER SDK 1.0.0 documentation</a>
+        
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <h2>Table Of Contents</h2>
+  </div>
+  <div class="sidebar-toc">
+    
+    
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viper_core.html">VIPER Core</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">VIPER Apps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#followme">FollowMe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#obstacle-detector">Obstacle Detector</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ros_msgs.html">VIPER ROS Messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ros_api.html">VIPER ROS API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">VIPER Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+</ul>
+
+    
+  </div>
+</div>
+        
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <div id="main-search">
+      <form class="form-inline" action="search.html" method="GET" role="form">
+        <div class="input-group">
+          <input name="q" type="text" class="form-control" placeholder="Search...">
+        </div>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+        <div id="right-column">
+          
+          <div role="navigation" aria-label="breadcrumbs navigation">
+            <ol class="breadcrumb">
+              <li><a href="index.html">Docs</a></li>
+              
+              <li>VIPER Apps</li>
+            </ol>
+          </div>
+          
+          <div class="document clearer body">
+            
+  <div class="section" id="viper-apps">
+<h1>VIPER Apps<a class="headerlink" href="#viper-apps" title="Permalink to this headline">¶</a></h1>
+<p>VIPER has multiple applications available that deal with specific tasks and have to be ordered separately.</p>
+<div class="section" id="followme">
+<h2>FollowMe<a class="headerlink" href="#followme" title="Permalink to this headline">¶</a></h2>
+<p>FollowMe is a VIPER application that tracks bounding box of the given human between frames and provides distance to the target.</p>
+<p>Here we provide a simple GUI program (using <a class="reference external" href="https://wiki.qt.io/Qt_for_Beginners">QT</a>) that visualizes all detected humans in the left camera image. When one particular bounding box is
+selected by clicking on it, it is sent to the FollowMe App as a target and from that moment - being tracked. Distance to the target is
+also displayed. It can be used to tell the robot where the target is.</p>
+<div class="section" id="code-sample">
+<h3>Code sample<a class="headerlink" href="#code-sample" title="Permalink to this headline">¶</a></h3>
+<p>First you need to create a catkin workspace.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">source</span> /opt/ros/kinetic/setup.bash
+mkdir -p ~/catkin_ws/src
+<span class="nb">cd</span> ~/catkin_ws
+catkin init
+</pre></div>
+</div>
+<p>Then create a simple package using the following files.</p>
+<p><a class="reference download internal" href="_downloads/FollowMeWindow.h" download=""><code class="xref download docutils literal"><span class="pre">cvm_follow_me_sample/include/FollowMeWindow.h</span></code></a></p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cm">/*******************************************************************************</span>
+<span class="cm">* Copyright (c) 2018 by Rubedos</span>
+<span class="cm">* Kaunas, Lithuania, www.rubedos.com</span>
+<span class="cm">* All rights reserved.</span>
+<span class="cm">*******************************************************************************/</span>
+
+<span class="cp">#ifndef FOLLOW_ME_WINDOW_H</span>
+<span class="cp">#define FOLLOW_ME_WINDOW_H</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;QMainWindow&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;std_msgs/String.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sensor_msgs/Image.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;geometry_msgs/Point.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cvm_msgs/BoundingBoxes.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;message_filters/subscriber.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;dynamic_reconfigure/Config.h&gt;</span><span class="cp"></span>
+
+<span class="k">namespace</span> <span class="n">Ui</span>
+<span class="p">{</span>
+  <span class="c1">// Class generated from .ui file</span>
+  <span class="k">class</span> <span class="nc">FollowMeWindow</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// namespace Ui</span>
+
+<span class="k">namespace</span> <span class="n">cvm_follow_me_sample</span>
+<span class="p">{</span>
+
+<span class="k">class</span> <span class="nc">FollowMeWindow</span> <span class="o">:</span> <span class="k">public</span> <span class="n">QMainWindow</span>
+<span class="p">{</span>
+  <span class="n">Q_OBJECT</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="cm">/**</span>
+<span class="cm">   * @brief Constructor</span>
+<span class="cm">   * @param parent Parent widget</span>
+<span class="cm">   */</span>
+  <span class="k">explicit</span> <span class="n">FollowMeWindow</span><span class="p">(</span><span class="n">QWidget</span> <span class="o">*</span><span class="n">parent</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="cm">/**</span>
+<span class="cm">   * @brief Destructor</span>
+<span class="cm">   */</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">FollowMeWindow</span><span class="p">();</span>
+<span class="k">private</span> <span class="nl">Q_SLOTS</span><span class="p">:</span>
+  <span class="cm">/**</span>
+<span class="cm">   * @brief Method that is invoked when an even occurs in the given QObject</span>
+<span class="cm">   * @param watched Object that is being watched by the filter</span>
+<span class="cm">   * @param event Even that has occurred</span>
+<span class="cm">   * @return Event handling status</span>
+<span class="cm">   */</span>
+  <span class="kt">bool</span> <span class="n">eventFilter</span><span class="p">(</span><span class="n">QObject</span><span class="o">*</span> <span class="n">watched</span><span class="p">,</span> <span class="n">QEvent</span><span class="o">*</span> <span class="n">event</span><span class="p">);</span>
+  <span class="cm">/**</span>
+<span class="cm">   * @brief Method that is invoked when FollowMe status button is released</span>
+<span class="cm">   */</span>
+  <span class="kt">void</span> <span class="nf">enableReleased</span><span class="p">();</span>
+  <span class="cm">/**</span>
+<span class="cm">   * @brief Method that is invoked when drop time slider value is changed</span>
+<span class="cm">   * @param value Slider value</span>
+<span class="cm">   */</span>
+  <span class="kt">void</span> <span class="nf">dropTimeChanged</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
+  <span class="cm">/**</span>
+<span class="cm">   * @brief Method that is invoked when detection probability slider value is changed</span>
+<span class="cm">   * @param value Slider value</span>
+<span class="cm">   */</span>
+  <span class="kt">void</span> <span class="nf">detectionProbChanged</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
+  <span class="cm">/**</span>
+<span class="cm">   * @brief Method that is invoked when similarity threshold slider value is changed</span>
+<span class="cm">   * @param value Slider value</span>
+<span class="cm">   */</span>
+  <span class="kt">void</span> <span class="nf">similarityThresholdChanged</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
+  <span class="cm">/**</span>
+<span class="cm">   * @brief Method that is invoked when history queue slider value is changed</span>
+<span class="cm">   * @param value Slider value</span>
+<span class="cm">   */</span>
+  <span class="kt">void</span> <span class="nf">historyQueueChanged</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
+<span class="k">private</span><span class="o">:</span>
+  <span class="cm">/**</span>
+<span class="cm">   * @brief Method that is called when left image from camera is received. This method is respondible</span>
+<span class="cm">   * for displaying images and bounding boxes.</span>
+<span class="cm">   * @param image Left image message</span>
+<span class="cm">   */</span>
+  <span class="kt">void</span> <span class="n">leftimageCb</span><span class="p">(</span><span class="k">const</span> <span class="n">sensor_msgs</span><span class="o">::</span><span class="n">ImageConstPtr</span><span class="o">&amp;</span> <span class="n">image</span><span class="p">);</span>
+  <span class="cm">/**</span>
+<span class="cm">   * @brief Method that is called when FollowMe status from camera is received. This method is responsible for</span>
+<span class="cm">   * state managment of the sample app. Status and UI with it are changed based on the status received.</span>
+<span class="cm">   * @param status Status message</span>
+<span class="cm">   */</span>
+  <span class="kt">void</span> <span class="nf">statusCb</span><span class="p">(</span><span class="k">const</span> <span class="n">std_msgs</span><span class="o">::</span><span class="n">StringConstPtr</span><span class="o">&amp;</span> <span class="n">status</span><span class="p">);</span>
+  <span class="cm">/**</span>
+<span class="cm">   * @brief Method that is called when bounding boxes of humans detected by FollowMe are received</span>
+<span class="cm">   * @param boundingBoxes Vector of bounding boxes</span>
+<span class="cm">   */</span>
+  <span class="kt">void</span> <span class="nf">boundingBoxesCb</span><span class="p">(</span><span class="k">const</span> <span class="n">cvm_msgs</span><span class="o">::</span><span class="n">BoundingBoxesConstPtr</span><span class="o">&amp;</span> <span class="n">boundingBoxes</span><span class="p">);</span>
+  <span class="cm">/**</span>
+<span class="cm">   * @brief Method that is called when bounding box of target is received</span>
+<span class="cm">   * @param boundingBox Bounding box of target</span>
+<span class="cm">   */</span>
+  <span class="kt">void</span> <span class="nf">targetBoxCb</span><span class="p">(</span><span class="k">const</span> <span class="n">cvm_msgs</span><span class="o">::</span><span class="n">BoundingBoxConstPtr</span><span class="o">&amp;</span> <span class="n">boundingBox</span><span class="p">);</span>
+  <span class="cm">/**</span>
+<span class="cm">   * @brief Method that is called when position of the target is received</span>
+<span class="cm">   * @param point Position (x, y, z) of the target</span>
+<span class="cm">   */</span>
+  <span class="kt">void</span> <span class="nf">targetPositionCb</span><span class="p">(</span><span class="k">const</span> <span class="n">geometry_msgs</span><span class="o">::</span><span class="n">PointConstPtr</span><span class="o">&amp;</span> <span class="n">point</span><span class="p">);</span>
+  <span class="cm">/**</span>
+<span class="cm">   * @brief Method that changes visiblity of GUI which displays distance information</span>
+<span class="cm">   * @param status Status indicating to set visibility on or off</span>
+<span class="cm">   */</span>
+  <span class="kt">void</span> <span class="nf">enableInfoLabels</span><span class="p">(</span><span class="kt">bool</span> <span class="n">status</span><span class="p">);</span>
+  <span class="cm">/**</span>
+<span class="cm">   * @brief Method that changes value of given dynamic reconfigure double parameter</span>
+<span class="cm">   * @param name Name of dynamic reconfigure parameter that has type double</span>
+<span class="cm">   * @param value Value of the parameter</span>
+<span class="cm">   */</span>
+  <span class="kt">void</span> <span class="nf">changeDoubleParameter</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="kt">double</span> <span class="n">value</span><span class="p">);</span>
+  <span class="cm">/**</span>
+<span class="cm">   * @brief Method that changes value of given dynamic reconfigure int parameter</span>
+<span class="cm">   * @param name Name of dynamic reconfigure parameter that has type double</span>
+<span class="cm">   * @param value Value of the parameter</span>
+<span class="cm">   */</span>
+  <span class="kt">void</span> <span class="nf">changeIntParameter</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
+  <span class="cm">/**</span>
+<span class="cm">  /**</span>
+<span class="cm">   * @brief Method that is called when dynamic reconfigure parameters of FollowMe are updated</span>
+<span class="cm">   * @param config Config file containing all parameters</span>
+<span class="cm">   */</span>
+  <span class="kt">void</span> <span class="nf">parameterUpdates</span><span class="p">(</span><span class="k">const</span> <span class="n">dynamic_reconfigure</span><span class="o">::</span><span class="n">ConfigConstPtr</span><span class="o">&amp;</span> <span class="n">config</span><span class="p">);</span>
+  <span class="c1">// Pointer to a common object that contains all objects used in the app</span>
+  <span class="n">Ui</span><span class="o">::</span><span class="n">FollowMeWindow</span><span class="o">*</span> <span class="n">ui</span><span class="p">;</span>
+  <span class="c1">// Subscribers</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span> <span class="n">m_imageSub</span><span class="p">;</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span> <span class="n">m_statusSub</span><span class="p">;</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span> <span class="n">m_boundingBoxesSub</span><span class="p">;</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span> <span class="n">m_targetBoundingBoxSub</span><span class="p">;</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span> <span class="n">m_targetPositionSub</span><span class="p">;</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span> <span class="n">m_dynParametersSub</span><span class="p">;</span>
+  <span class="c1">// Publishers</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">Publisher</span> <span class="n">m_enablePub</span><span class="p">;</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">Publisher</span> <span class="n">m_setTargetPub</span><span class="p">;</span>
+  <span class="c1">// Cache of bounding boxes</span>
+  <span class="n">cvm_msgs</span><span class="o">::</span><span class="n">BoundingBoxesConstPtr</span> <span class="n">m_boundingBoxes</span><span class="p">;</span>
+  <span class="n">cvm_msgs</span><span class="o">::</span><span class="n">BoundingBoxConstPtr</span> <span class="n">m_targetBoundingBox</span><span class="p">;</span>
+  <span class="c1">// Image width and height</span>
+  <span class="kt">int</span> <span class="n">m_width</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">m_height</span><span class="p">;</span>
+  <span class="c1">// Members indicating status</span>
+  <span class="kt">bool</span> <span class="n">m_showingBoundingBoxes</span><span class="p">;</span>
+  <span class="kt">bool</span> <span class="n">m_trackingOn</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="p">}</span>  <span class="c1">// namespace cvm_follow_me_sample</span>
+
+<span class="cp">#endif  </span><span class="c1">// FOLLOW_ME_WINDOW_H</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" href="_downloads/FollowMeWindow.cpp" download=""><code class="xref download docutils literal"><span class="pre">cvm_follow_me_sample/src/FollowMeWindow.cpp</span></code></a></p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cm">/*******************************************************************************</span>
+<span class="cm">* Copyright (c) 2018 by Rubedos</span>
+<span class="cm">* Kaunas, Lithuania, www.rubedos.com</span>
+<span class="cm">* All rights reserved.</span>
+<span class="cm">*******************************************************************************/</span>
+
+<span class="cp">#include</span> <span class="cpf">&quot;FollowMeWindow.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;ui_FollowMeWindow.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;opencv2/core.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;opencv2/imgproc.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cv_bridge/cv_bridge.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;std_msgs/Bool.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;qevent.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;dynamic_reconfigure/DoubleParameter.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;dynamic_reconfigure/Reconfigure.h&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="n">cvm_follow_me_sample</span><span class="o">::</span><span class="n">FollowMeWindow</span><span class="p">;</span>
+
+<span class="n">FollowMeWindow</span><span class="o">::</span><span class="n">FollowMeWindow</span><span class="p">(</span><span class="n">QWidget</span><span class="o">*</span> <span class="n">parent</span><span class="p">)</span>
+  <span class="o">:</span> <span class="n">QMainWindow</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+  <span class="p">,</span> <span class="n">ui</span><span class="p">(</span><span class="k">new</span> <span class="n">Ui</span><span class="o">::</span><span class="n">FollowMeWindow</span><span class="p">())</span>
+  <span class="p">,</span> <span class="n">m_imageSub</span><span class="p">()</span>
+  <span class="p">,</span> <span class="n">m_statusSub</span><span class="p">()</span>
+  <span class="p">,</span> <span class="n">m_boundingBoxesSub</span><span class="p">()</span>
+  <span class="p">,</span> <span class="n">m_targetBoundingBoxSub</span><span class="p">()</span>
+  <span class="p">,</span> <span class="n">m_targetPositionSub</span><span class="p">()</span>
+  <span class="p">,</span> <span class="n">m_dynParametersSub</span><span class="p">()</span>
+  <span class="p">,</span> <span class="n">m_enablePub</span><span class="p">()</span>
+  <span class="p">,</span> <span class="n">m_setTargetPub</span><span class="p">()</span>
+  <span class="p">,</span> <span class="n">m_boundingBoxes</span><span class="p">()</span>
+  <span class="p">,</span> <span class="n">m_targetBoundingBox</span><span class="p">()</span>
+  <span class="p">,</span> <span class="n">m_width</span><span class="p">()</span>
+  <span class="p">,</span> <span class="n">m_height</span><span class="p">()</span>
+  <span class="p">,</span> <span class="n">m_showingBoundingBoxes</span><span class="p">()</span>
+  <span class="p">,</span> <span class="n">m_trackingOn</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">ui</span><span class="o">-&gt;</span><span class="n">setupUi</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="n">ui</span><span class="o">-&gt;</span><span class="n">display_image</span><span class="o">-&gt;</span><span class="n">installEventFilter</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="n">enableInfoLabels</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+
+  <span class="c1">// Connect event handlers</span>
+  <span class="n">connect</span><span class="p">(</span><span class="n">ui</span><span class="o">-&gt;</span><span class="n">enableFollowMeButton</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="n">released</span><span class="p">()),</span> <span class="k">this</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">enableReleased</span><span class="p">()));</span>
+  <span class="n">connect</span><span class="p">(</span><span class="n">ui</span><span class="o">-&gt;</span><span class="n">dropTimeSlider</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="n">sliderMoved</span><span class="p">(</span><span class="kt">int</span><span class="p">)),</span> <span class="k">this</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">dropTimeChanged</span><span class="p">(</span><span class="kt">int</span><span class="p">)));</span>
+  <span class="n">connect</span><span class="p">(</span><span class="n">ui</span><span class="o">-&gt;</span><span class="n">detectionProbSlider</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="n">sliderMoved</span><span class="p">(</span><span class="kt">int</span><span class="p">)),</span> <span class="k">this</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">detectionProbChanged</span><span class="p">(</span><span class="kt">int</span><span class="p">)));</span>
+  <span class="n">connect</span><span class="p">(</span><span class="n">ui</span><span class="o">-&gt;</span><span class="n">similarityThSlider</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="n">sliderMoved</span><span class="p">(</span><span class="kt">int</span><span class="p">)),</span> <span class="k">this</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">similarityThresholdChanged</span><span class="p">(</span><span class="kt">int</span><span class="p">)));</span>
+  <span class="n">connect</span><span class="p">(</span><span class="n">ui</span><span class="o">-&gt;</span><span class="n">historyQueSlider</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="n">sliderMoved</span><span class="p">(</span><span class="kt">int</span><span class="p">)),</span> <span class="k">this</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">historyQueueChanged</span><span class="p">(</span><span class="kt">int</span><span class="p">)));</span>
+
+  <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">n</span><span class="p">;</span>
+  <span class="c1">// Initialize subscribers</span>
+  <span class="n">m_imageSub</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">subscribe</span><span class="o">&lt;</span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">Image</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;left/image_rect&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">FollowMeWindow</span><span class="o">::</span><span class="n">leftimageCb</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+  <span class="n">m_statusSub</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">subscribe</span><span class="o">&lt;</span><span class="n">std_msgs</span><span class="o">::</span><span class="n">String</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;follow_me/status&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">FollowMeWindow</span><span class="o">::</span><span class="n">statusCb</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+  <span class="n">m_boundingBoxesSub</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">subscribe</span><span class="o">&lt;</span><span class="n">cvm_msgs</span><span class="o">::</span><span class="n">BoundingBoxes</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;follow_me/bounding_boxes&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">FollowMeWindow</span><span class="o">::</span><span class="n">boundingBoxesCb</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+  <span class="n">m_targetBoundingBoxSub</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">subscribe</span><span class="o">&lt;</span><span class="n">cvm_msgs</span><span class="o">::</span><span class="n">BoundingBox</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;follow_me/target_bounding_box&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">FollowMeWindow</span><span class="o">::</span><span class="n">targetBoxCb</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+  <span class="n">m_targetPositionSub</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">subscribe</span><span class="o">&lt;</span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">Point</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;follow_me/target_position&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">FollowMeWindow</span><span class="o">::</span><span class="n">targetPositionCb</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+  <span class="n">m_dynParametersSub</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">subscribe</span><span class="o">&lt;</span><span class="n">dynamic_reconfigure</span><span class="o">::</span><span class="n">Config</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;cvm_follow_me/parameter_updates&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="o">&amp;</span><span class="n">FollowMeWindow</span><span class="o">::</span><span class="n">parameterUpdates</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+  <span class="c1">// Initialize publishers</span>
+  <span class="n">m_enablePub</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">advertise</span><span class="o">&lt;</span><span class="n">std_msgs</span><span class="o">::</span><span class="n">Bool</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;follow_me/enable&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="n">m_setTargetPub</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">advertise</span><span class="o">&lt;</span><span class="n">cvm_msgs</span><span class="o">::</span><span class="n">BoundingBox</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;follow_me/set_target&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">FollowMeWindow</span><span class="o">::~</span><span class="n">FollowMeWindow</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">m_imageSub</span><span class="p">.</span><span class="n">shutdown</span><span class="p">();</span>
+  <span class="n">m_statusSub</span><span class="p">.</span><span class="n">shutdown</span><span class="p">();</span>
+  <span class="n">m_boundingBoxesSub</span><span class="p">.</span><span class="n">shutdown</span><span class="p">();</span>
+  <span class="n">m_targetBoundingBoxSub</span><span class="p">.</span><span class="n">shutdown</span><span class="p">();</span>
+  <span class="n">m_targetPositionSub</span><span class="p">.</span><span class="n">shutdown</span><span class="p">();</span>
+  <span class="n">m_dynParametersSub</span><span class="p">.</span><span class="n">shutdown</span><span class="p">();</span>
+
+  <span class="k">delete</span> <span class="n">ui</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="n">FollowMeWindow</span><span class="o">::</span><span class="n">eventFilter</span><span class="p">(</span><span class="n">QObject</span><span class="o">*</span> <span class="n">watched</span><span class="p">,</span> <span class="n">QEvent</span><span class="o">*</span> <span class="n">event</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">watched</span> <span class="o">!=</span> <span class="n">ui</span><span class="o">-&gt;</span><span class="n">display_image</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">event</span><span class="o">-&gt;</span><span class="n">type</span><span class="p">()</span> <span class="o">!=</span> <span class="n">QEvent</span><span class="o">::</span><span class="n">MouseButtonPress</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="c1">//</span>
+  <span class="c1">// Find the bounding box that has been clicked and send it to FollowMe as a target</span>
+  <span class="c1">//</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">m_showingBoundingBoxes</span> <span class="o">&amp;&amp;</span> <span class="n">m_boundingBoxes</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">const</span> <span class="n">QMouseEvent</span><span class="o">*</span> <span class="k">const</span> <span class="n">mouseEvent</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">QMouseEvent</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+    <span class="k">const</span> <span class="n">QPoint</span> <span class="n">point</span> <span class="o">=</span> <span class="n">mouseEvent</span><span class="o">-&gt;</span><span class="n">pos</span><span class="p">();</span>
+    <span class="c1">// Remap coordinates</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)((</span><span class="kt">float</span><span class="p">)</span><span class="n">point</span><span class="p">.</span><span class="n">x</span><span class="p">()</span> <span class="o">/</span> <span class="n">ui</span><span class="o">-&gt;</span><span class="n">display_image</span><span class="o">-&gt;</span><span class="n">width</span><span class="p">()</span> <span class="o">*</span> <span class="n">m_width</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)((</span><span class="kt">float</span><span class="p">)</span><span class="n">point</span><span class="p">.</span><span class="n">y</span><span class="p">()</span> <span class="o">/</span> <span class="n">ui</span><span class="o">-&gt;</span><span class="n">display_image</span><span class="o">-&gt;</span><span class="n">height</span><span class="p">()</span> <span class="o">*</span> <span class="n">m_height</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">cvm_msgs</span><span class="o">::</span><span class="n">BoundingBox</span> <span class="nl">box</span> <span class="p">:</span> <span class="n">m_boundingBoxes</span><span class="o">-&gt;</span><span class="n">boundingBoxes</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">box</span><span class="p">.</span><span class="n">xmin</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">box</span><span class="p">.</span><span class="n">xmax</span> <span class="o">&amp;&amp;</span>
+         <span class="n">y</span> <span class="o">&gt;</span> <span class="n">box</span><span class="p">.</span><span class="n">ymin</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">box</span><span class="p">.</span><span class="n">ymax</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="c1">// If user has clicked inside set target</span>
+        <span class="n">m_setTargetPub</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">box</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">FollowMeWindow</span><span class="o">::</span><span class="n">enableReleased</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">std_msgs</span><span class="o">::</span><span class="n">Bool</span> <span class="n">msg</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ui</span><span class="o">-&gt;</span><span class="n">enableFollowMeButton</span><span class="o">-&gt;</span><span class="n">text</span><span class="p">().</span><span class="n">contains</span><span class="p">(</span><span class="s">&quot;Enable&quot;</span><span class="p">))</span>
+  <span class="p">{</span>
+    <span class="n">msg</span><span class="p">.</span><span class="n">data</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+  <span class="p">{</span>
+    <span class="n">msg</span><span class="p">.</span><span class="n">data</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">m_enablePub</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">FollowMeWindow</span><span class="o">::</span><span class="n">dropTimeChanged</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">value</span> <span class="o">==</span> <span class="n">ui</span><span class="o">-&gt;</span><span class="n">dropTimeSlider</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">())</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">finalValue</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">value</span> <span class="o">/</span> <span class="mf">10.0f</span><span class="p">;</span>
+  <span class="n">ui</span><span class="o">-&gt;</span><span class="n">dropTimeLabel</span><span class="o">-&gt;</span><span class="n">setText</span><span class="p">(</span><span class="n">QString</span><span class="o">::</span><span class="n">number</span><span class="p">(</span><span class="n">finalValue</span><span class="p">,</span> <span class="sc">&#39;f&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">QString</span><span class="p">(</span><span class="s">&quot; s&quot;</span><span class="p">));</span>
+  <span class="c1">// Update UI</span>
+  <span class="n">update</span><span class="p">();</span>
+
+  <span class="n">changeDoubleParameter</span><span class="p">(</span><span class="s">&quot;drop_time&quot;</span><span class="p">,</span> <span class="n">finalValue</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">FollowMeWindow</span><span class="o">::</span><span class="n">detectionProbChanged</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">value</span> <span class="o">==</span> <span class="n">ui</span><span class="o">-&gt;</span><span class="n">detectionProbSlider</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">())</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">finalValue</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">value</span> <span class="o">/</span> <span class="mf">100.0f</span><span class="p">;</span>
+  <span class="n">ui</span><span class="o">-&gt;</span><span class="n">detectionProbLabel</span><span class="o">-&gt;</span><span class="n">setText</span><span class="p">(</span><span class="n">QString</span><span class="o">::</span><span class="n">number</span><span class="p">(</span><span class="n">finalValue</span><span class="p">,</span> <span class="sc">&#39;f&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+  <span class="c1">// Update UI</span>
+  <span class="n">update</span><span class="p">();</span>
+
+  <span class="n">changeDoubleParameter</span><span class="p">(</span><span class="s">&quot;detection_prob&quot;</span><span class="p">,</span> <span class="n">finalValue</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">FollowMeWindow</span><span class="o">::</span><span class="n">similarityThresholdChanged</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">value</span> <span class="o">==</span> <span class="n">ui</span><span class="o">-&gt;</span><span class="n">similarityThSlider</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">())</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">finalValue</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">value</span> <span class="o">/</span> <span class="mf">100.0f</span><span class="p">;</span>
+  <span class="n">ui</span><span class="o">-&gt;</span><span class="n">similarityThLabel</span><span class="o">-&gt;</span><span class="n">setText</span><span class="p">(</span><span class="n">QString</span><span class="o">::</span><span class="n">number</span><span class="p">(</span><span class="n">finalValue</span><span class="p">,</span> <span class="sc">&#39;f&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+  <span class="c1">// Update UI</span>
+  <span class="n">update</span><span class="p">();</span>
+
+  <span class="n">changeDoubleParameter</span><span class="p">(</span><span class="s">&quot;similarity_threshold&quot;</span><span class="p">,</span> <span class="n">finalValue</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">FollowMeWindow</span><span class="o">::</span><span class="n">historyQueueChanged</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">value</span> <span class="o">==</span> <span class="n">ui</span><span class="o">-&gt;</span><span class="n">historyQueSlider</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">())</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">finalValue</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+  <span class="n">ui</span><span class="o">-&gt;</span><span class="n">historyQueLabel</span><span class="o">-&gt;</span><span class="n">setText</span><span class="p">(</span><span class="n">QString</span><span class="o">::</span><span class="n">number</span><span class="p">(</span><span class="n">finalValue</span><span class="p">));</span>
+  <span class="c1">// Update UI</span>
+  <span class="n">update</span><span class="p">();</span>
+
+  <span class="n">changeIntParameter</span><span class="p">(</span><span class="s">&quot;history_queue&quot;</span><span class="p">,</span> <span class="n">finalValue</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+
+<span class="kt">void</span> <span class="n">FollowMeWindow</span><span class="o">::</span><span class="n">leftimageCb</span><span class="p">(</span><span class="k">const</span> <span class="n">sensor_msgs</span><span class="o">::</span><span class="n">ImageConstPtr</span><span class="o">&amp;</span> <span class="n">image</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">const</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">img</span> <span class="o">=</span> <span class="n">cv_bridge</span><span class="o">::</span><span class="n">toCvShare</span><span class="p">(</span><span class="n">image</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">image</span><span class="p">;</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">result</span> <span class="o">=</span> <span class="n">img</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span>
+  <span class="n">m_width</span> <span class="o">=</span> <span class="n">image</span><span class="o">-&gt;</span><span class="n">width</span><span class="p">;</span>
+  <span class="n">m_height</span> <span class="o">=</span> <span class="n">image</span><span class="o">-&gt;</span><span class="n">height</span><span class="p">;</span>
+  <span class="c1">//</span>
+  <span class="c1">// Draw bounding boxes of all detected humans in green</span>
+  <span class="c1">//</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">m_boundingBoxes</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">m_boundingBoxes</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span><span class="p">.</span><span class="n">toSec</span><span class="p">()</span> <span class="o">-</span> <span class="n">image</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span><span class="p">.</span><span class="n">toSec</span><span class="p">())</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">cvm_msgs</span><span class="o">::</span><span class="n">BoundingBox</span> <span class="nl">box</span> <span class="p">:</span> <span class="n">m_boundingBoxes</span><span class="o">-&gt;</span><span class="n">boundingBoxes</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="n">cv</span><span class="o">::</span><span class="n">Rect2d</span> <span class="n">roi</span><span class="p">(</span><span class="n">box</span><span class="p">.</span><span class="n">xmin</span><span class="p">,</span> <span class="n">box</span><span class="p">.</span><span class="n">ymin</span><span class="p">,</span> <span class="n">box</span><span class="p">.</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">box</span><span class="p">.</span><span class="n">xmin</span><span class="p">,</span> <span class="n">box</span><span class="p">.</span><span class="n">ymax</span> <span class="o">-</span> <span class="n">box</span><span class="p">.</span><span class="n">ymin</span><span class="p">);</span>
+        <span class="n">cv</span><span class="o">::</span><span class="n">rectangle</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">roi</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="n">m_showingBoundingBoxes</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+      <span class="n">m_showingBoundingBoxes</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="c1">//</span>
+  <span class="c1">// Draw the bounding box of human being tracked in red</span>
+  <span class="c1">//</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">m_trackingOn</span> <span class="o">&amp;&amp;</span> <span class="n">m_targetBoundingBox</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">m_targetBoundingBox</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span><span class="p">.</span><span class="n">toSec</span><span class="p">()</span> <span class="o">-</span> <span class="n">image</span><span class="o">-&gt;</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span><span class="p">.</span><span class="n">toSec</span><span class="p">())</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">cv</span><span class="o">::</span><span class="n">Rect2d</span> <span class="n">roi</span><span class="p">(</span><span class="n">m_targetBoundingBox</span><span class="o">-&gt;</span><span class="n">xmin</span><span class="p">,</span> <span class="n">m_targetBoundingBox</span><span class="o">-&gt;</span><span class="n">ymin</span><span class="p">,</span> <span class="n">m_targetBoundingBox</span><span class="o">-&gt;</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">m_targetBoundingBox</span><span class="o">-&gt;</span><span class="n">xmin</span><span class="p">,</span> <span class="n">m_targetBoundingBox</span><span class="o">-&gt;</span><span class="n">ymax</span> <span class="o">-</span> <span class="n">m_targetBoundingBox</span><span class="o">-&gt;</span><span class="n">ymin</span><span class="p">);</span>
+      <span class="n">cv</span><span class="o">::</span><span class="n">rectangle</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">roi</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="n">m_showingBoundingBoxes</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="c1">//</span>
+  <span class="c1">// Resize the image to fit the label</span>
+  <span class="c1">//</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">resize</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Size</span><span class="p">(</span><span class="n">ui</span><span class="o">-&gt;</span><span class="n">display_image</span><span class="o">-&gt;</span><span class="n">width</span><span class="p">(),</span> <span class="n">ui</span><span class="o">-&gt;</span><span class="n">display_image</span><span class="o">-&gt;</span><span class="n">height</span><span class="p">()));</span>
+  <span class="n">QImage</span> <span class="nf">imdisplay</span><span class="p">((</span><span class="n">uchar</span><span class="o">*</span><span class="p">)</span><span class="n">result</span><span class="p">.</span><span class="n">data</span><span class="p">,</span> <span class="n">result</span><span class="p">.</span><span class="n">cols</span><span class="p">,</span> <span class="n">result</span><span class="p">.</span><span class="n">rows</span><span class="p">,</span> <span class="n">result</span><span class="p">.</span><span class="n">step</span><span class="p">,</span> <span class="n">QImage</span><span class="o">::</span><span class="n">Format_RGB888</span><span class="p">);</span>
+  <span class="n">ui</span><span class="o">-&gt;</span><span class="n">display_image</span><span class="o">-&gt;</span><span class="n">setPixmap</span><span class="p">(</span><span class="n">QPixmap</span><span class="o">::</span><span class="n">fromImage</span><span class="p">(</span><span class="n">imdisplay</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">FollowMeWindow</span><span class="o">::</span><span class="n">statusCb</span><span class="p">(</span><span class="k">const</span> <span class="n">std_msgs</span><span class="o">::</span><span class="n">StringConstPtr</span><span class="o">&amp;</span> <span class="n">status</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ui</span><span class="o">-&gt;</span><span class="n">statusLabel</span><span class="o">-&gt;</span><span class="n">setText</span><span class="p">(</span><span class="n">QString</span><span class="o">::</span><span class="n">fromStdString</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="n">status</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">)));</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ui</span><span class="o">-&gt;</span><span class="n">statusLabel</span><span class="o">-&gt;</span><span class="n">text</span><span class="p">().</span><span class="n">contains</span><span class="p">(</span><span class="s">&quot;disabled&quot;</span><span class="p">))</span> <span class="c1">// If FollowMe is disabled</span>
+  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">ui</span><span class="o">-&gt;</span><span class="n">enableFollowMeButton</span><span class="o">-&gt;</span><span class="n">text</span><span class="p">().</span><span class="n">contains</span><span class="p">(</span><span class="s">&quot;Enable FollowMe&quot;</span><span class="p">))</span>
+      <span class="n">ui</span><span class="o">-&gt;</span><span class="n">enableFollowMeButton</span><span class="o">-&gt;</span><span class="n">setText</span><span class="p">(</span><span class="n">QString</span><span class="p">(</span><span class="s">&quot;Enable FollowMe&quot;</span><span class="p">));</span>
+    <span class="n">m_trackingOn</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="c1">// FollowMe is enabled</span>
+  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">ui</span><span class="o">-&gt;</span><span class="n">enableFollowMeButton</span><span class="o">-&gt;</span><span class="n">text</span><span class="p">().</span><span class="n">contains</span><span class="p">(</span><span class="s">&quot;Disable FollowMe&quot;</span><span class="p">))</span>
+      <span class="n">ui</span><span class="o">-&gt;</span><span class="n">enableFollowMeButton</span><span class="o">-&gt;</span><span class="n">setText</span><span class="p">(</span><span class="n">QString</span><span class="p">(</span><span class="s">&quot;Disable FollowMe&quot;</span><span class="p">));</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">ui</span><span class="o">-&gt;</span><span class="n">statusLabel</span><span class="o">-&gt;</span><span class="n">text</span><span class="p">().</span><span class="n">contains</span><span class="p">(</span><span class="s">&quot;Waiting for another target&quot;</span><span class="p">))</span> <span class="c1">// Enabled and waiting for target to track</span>
+    <span class="p">{</span>
+      <span class="n">m_trackingOn</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">ui</span><span class="o">-&gt;</span><span class="n">statusLabel</span><span class="o">-&gt;</span><span class="n">text</span><span class="p">().</span><span class="n">contains</span><span class="p">(</span><span class="s">&quot;Tracking target&quot;</span><span class="p">))</span> <span class="c1">// Target is being tracked</span>
+    <span class="p">{</span>
+      <span class="n">m_trackingOn</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="c1">//</span>
+  <span class="c1">// Change visibility of info labels based on tracking status</span>
+  <span class="c1">//</span>
+  <span class="n">enableInfoLabels</span><span class="p">(</span><span class="n">m_trackingOn</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">FollowMeWindow</span><span class="o">::</span><span class="n">boundingBoxesCb</span><span class="p">(</span><span class="k">const</span> <span class="n">cvm_msgs</span><span class="o">::</span><span class="n">BoundingBoxesConstPtr</span><span class="o">&amp;</span> <span class="n">boundingBoxes</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">m_boundingBoxes</span> <span class="o">=</span> <span class="n">boundingBoxes</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">FollowMeWindow</span><span class="o">::</span><span class="n">targetBoxCb</span><span class="p">(</span><span class="k">const</span> <span class="n">cvm_msgs</span><span class="o">::</span><span class="n">BoundingBoxConstPtr</span><span class="o">&amp;</span> <span class="n">bounding_box</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">m_targetBoundingBox</span> <span class="o">=</span> <span class="n">bounding_box</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">FollowMeWindow</span><span class="o">::</span><span class="n">targetPositionCb</span><span class="p">(</span><span class="k">const</span> <span class="n">geometry_msgs</span><span class="o">::</span><span class="n">PointConstPtr</span><span class="o">&amp;</span> <span class="n">point</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ui</span><span class="o">-&gt;</span><span class="n">xLabel</span><span class="o">-&gt;</span><span class="n">setText</span><span class="p">(</span><span class="n">QString</span><span class="p">(</span><span class="s">&quot;x: &quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">QString</span><span class="o">::</span><span class="n">number</span><span class="p">(</span><span class="n">point</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">,</span> <span class="sc">&#39;f&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+  <span class="n">ui</span><span class="o">-&gt;</span><span class="n">yLabel</span><span class="o">-&gt;</span><span class="n">setText</span><span class="p">(</span><span class="n">QString</span><span class="p">(</span><span class="s">&quot;y: &quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">QString</span><span class="o">::</span><span class="n">number</span><span class="p">(</span><span class="n">point</span><span class="o">-&gt;</span><span class="n">y</span><span class="p">,</span> <span class="sc">&#39;f&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+  <span class="n">ui</span><span class="o">-&gt;</span><span class="n">zLabel</span><span class="o">-&gt;</span><span class="n">setText</span><span class="p">(</span><span class="n">QString</span><span class="p">(</span><span class="s">&quot;z: &quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">QString</span><span class="o">::</span><span class="n">number</span><span class="p">(</span><span class="n">point</span><span class="o">-&gt;</span><span class="n">z</span><span class="p">,</span> <span class="sc">&#39;f&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">FollowMeWindow</span><span class="o">::</span><span class="n">enableInfoLabels</span><span class="p">(</span><span class="kt">bool</span> <span class="n">status</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// Set value only if changes are required</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ui</span><span class="o">-&gt;</span><span class="n">label_2</span><span class="o">-&gt;</span><span class="n">isVisible</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">status</span> <span class="o">||</span>
+     <span class="o">!</span><span class="n">ui</span><span class="o">-&gt;</span><span class="n">label_2</span><span class="o">-&gt;</span><span class="n">isVisible</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">status</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">ui</span><span class="o">-&gt;</span><span class="n">label_2</span><span class="o">-&gt;</span><span class="n">setVisible</span><span class="p">(</span><span class="n">status</span><span class="p">);</span>
+    <span class="n">ui</span><span class="o">-&gt;</span><span class="n">xLabel</span><span class="o">-&gt;</span><span class="n">setVisible</span><span class="p">(</span><span class="n">status</span><span class="p">);</span>
+    <span class="n">ui</span><span class="o">-&gt;</span><span class="n">yLabel</span><span class="o">-&gt;</span><span class="n">setVisible</span><span class="p">(</span><span class="n">status</span><span class="p">);</span>
+    <span class="n">ui</span><span class="o">-&gt;</span><span class="n">zLabel</span><span class="o">-&gt;</span><span class="n">setVisible</span><span class="p">(</span><span class="n">status</span><span class="p">);</span>
+    <span class="c1">// Update UI</span>
+    <span class="n">update</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">FollowMeWindow</span><span class="o">::</span><span class="n">changeDoubleParameter</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="kt">double</span> <span class="n">value</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">dynamic_reconfigure</span><span class="o">::</span><span class="n">DoubleParameter</span> <span class="n">parameter</span><span class="p">;</span>
+  <span class="n">parameter</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+  <span class="n">parameter</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+
+  <span class="n">dynamic_reconfigure</span><span class="o">::</span><span class="n">Config</span> <span class="n">config</span><span class="p">;</span>
+  <span class="n">config</span><span class="p">.</span><span class="n">doubles</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">parameter</span><span class="p">);</span>
+
+  <span class="n">dynamic_reconfigure</span><span class="o">::</span><span class="n">ReconfigureRequest</span> <span class="n">serverRequest</span><span class="p">;</span>
+  <span class="n">serverRequest</span><span class="p">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="p">;</span>
+
+  <span class="n">dynamic_reconfigure</span><span class="o">::</span><span class="n">ReconfigureResponse</span> <span class="n">serverResponse</span><span class="p">;</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">service</span><span class="o">::</span><span class="n">call</span><span class="p">(</span><span class="s">&quot;cvm_follow_me/set_parameters&quot;</span><span class="p">,</span> <span class="n">serverRequest</span><span class="p">,</span> <span class="n">serverResponse</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">FollowMeWindow</span><span class="o">::</span><span class="n">changeIntParameter</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">dynamic_reconfigure</span><span class="o">::</span><span class="n">IntParameter</span> <span class="n">parameter</span><span class="p">;</span>
+  <span class="n">parameter</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+  <span class="n">parameter</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+
+  <span class="n">dynamic_reconfigure</span><span class="o">::</span><span class="n">Config</span> <span class="n">config</span><span class="p">;</span>
+  <span class="n">config</span><span class="p">.</span><span class="n">ints</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">parameter</span><span class="p">);</span>
+
+  <span class="n">dynamic_reconfigure</span><span class="o">::</span><span class="n">ReconfigureRequest</span> <span class="n">serverRequest</span><span class="p">;</span>
+  <span class="n">serverRequest</span><span class="p">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="p">;</span>
+
+  <span class="n">dynamic_reconfigure</span><span class="o">::</span><span class="n">ReconfigureResponse</span> <span class="n">serverResponse</span><span class="p">;</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">service</span><span class="o">::</span><span class="n">call</span><span class="p">(</span><span class="s">&quot;cvm_follow_me/set_parameters&quot;</span><span class="p">,</span> <span class="n">serverRequest</span><span class="p">,</span> <span class="n">serverResponse</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">FollowMeWindow</span><span class="o">::</span><span class="n">parameterUpdates</span><span class="p">(</span><span class="k">const</span> <span class="n">dynamic_reconfigure</span><span class="o">::</span><span class="n">ConfigConstPtr</span><span class="o">&amp;</span> <span class="n">config</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">param</span> <span class="p">:</span> <span class="n">config</span><span class="o">-&gt;</span><span class="n">doubles</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">param</span><span class="p">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">&quot;drop_time&quot;</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="n">param</span><span class="p">.</span><span class="n">value</span> <span class="o">*</span> <span class="mi">10</span><span class="p">;</span>
+      <span class="n">ui</span><span class="o">-&gt;</span><span class="n">dropTimeLabel</span><span class="o">-&gt;</span><span class="n">setText</span><span class="p">(</span><span class="n">QString</span><span class="o">::</span><span class="n">number</span><span class="p">(</span><span class="n">param</span><span class="p">.</span><span class="n">value</span><span class="p">,</span> <span class="sc">&#39;f&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">QString</span><span class="p">(</span><span class="s">&quot; s&quot;</span><span class="p">));</span>
+      <span class="n">ui</span><span class="o">-&gt;</span><span class="n">dropTimeSlider</span><span class="o">-&gt;</span><span class="n">setValue</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+      <span class="c1">// Update UI</span>
+      <span class="n">update</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">param</span><span class="p">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">&quot;detection_prob&quot;</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="n">param</span><span class="p">.</span><span class="n">value</span> <span class="o">*</span> <span class="mi">100</span><span class="p">;</span>
+      <span class="n">ui</span><span class="o">-&gt;</span><span class="n">detectionProbLabel</span><span class="o">-&gt;</span><span class="n">setText</span><span class="p">(</span><span class="n">QString</span><span class="o">::</span><span class="n">number</span><span class="p">(</span><span class="n">param</span><span class="p">.</span><span class="n">value</span><span class="p">,</span> <span class="sc">&#39;f&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+      <span class="n">ui</span><span class="o">-&gt;</span><span class="n">detectionProbSlider</span><span class="o">-&gt;</span><span class="n">setValue</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+      <span class="c1">// Update UI</span>
+      <span class="n">update</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">param</span><span class="p">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">&quot;similarity_threshold&quot;</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="n">param</span><span class="p">.</span><span class="n">value</span> <span class="o">*</span> <span class="mi">100</span><span class="p">;</span>
+      <span class="n">ui</span><span class="o">-&gt;</span><span class="n">similarityThLabel</span><span class="o">-&gt;</span><span class="n">setText</span><span class="p">(</span><span class="n">QString</span><span class="o">::</span><span class="n">number</span><span class="p">(</span><span class="n">param</span><span class="p">.</span><span class="n">value</span><span class="p">,</span> <span class="sc">&#39;f&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+      <span class="n">ui</span><span class="o">-&gt;</span><span class="n">similarityThSlider</span><span class="o">-&gt;</span><span class="n">setValue</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+      <span class="c1">// Update UI</span>
+      <span class="n">update</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">param</span> <span class="p">:</span> <span class="n">config</span><span class="o">-&gt;</span><span class="n">ints</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">param</span><span class="p">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">&quot;history_queue&quot;</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="n">param</span><span class="p">.</span><span class="n">value</span><span class="p">;</span>
+        <span class="n">ui</span><span class="o">-&gt;</span><span class="n">historyQueLabel</span><span class="o">-&gt;</span><span class="n">setText</span><span class="p">(</span><span class="n">QString</span><span class="o">::</span><span class="n">number</span><span class="p">(</span><span class="n">param</span><span class="p">.</span><span class="n">value</span><span class="p">));</span>
+        <span class="n">ui</span><span class="o">-&gt;</span><span class="n">historyQueSlider</span><span class="o">-&gt;</span><span class="n">setValue</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+        <span class="c1">// Update UI</span>
+        <span class="n">update</span><span class="p">();</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" href="_downloads/main.cpp" download=""><code class="xref download docutils literal"><span class="pre">cvm_follow_me_sample/src/main.cpp</span></code></a></p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cm">/*******************************************************************************</span>
+<span class="cm">* Copyright (c) 2018 by Rubedos</span>
+<span class="cm">* Kaunas, Lithuania, www.rubedos.com</span>
+<span class="cm">* All rights reserved.</span>
+<span class="cm">*******************************************************************************/</span>
+
+<span class="cp">#include</span> <span class="cpf">&quot;FollowMeWindow.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;ros/spinner.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;QApplication&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="n">cvm_follow_me_sample</span><span class="o">::</span><span class="n">FollowMeWindow</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+  <span class="c1">// Initialize ROS</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">&quot;FollowMeSample&quot;</span><span class="p">);</span>
+
+  <span class="c1">// Start a spinner with 4 threads</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">AsyncSpinner</span> <span class="n">spinner</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+  <span class="n">spinner</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+
+  <span class="c1">// Init QT application</span>
+  <span class="n">QApplication</span> <span class="n">a</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
+  <span class="n">FollowMeWindow</span> <span class="n">w</span><span class="p">;</span>
+  <span class="n">w</span><span class="p">.</span><span class="n">show</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">exec</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" href="_downloads/package.xml_" download=""><code class="xref download docutils literal"><span class="pre">cvm_follow_me_sample/package.xml</span></code></a></p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;package</span> <span class="na">format=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;name&gt;</span>cvm_follow_me_sample<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;description&gt;</span>FollowMe sample application<span class="nt">&lt;/description&gt;</span>
+
+  <span class="nt">&lt;maintainer</span> <span class="na">email=</span><span class="s">&quot;arnas.ivanavicius@rubedos.com&quot;</span><span class="nt">&gt;</span>Arnas Ivanavicius<span class="nt">&lt;/maintainer&gt;</span>
+  <span class="nt">&lt;author</span> <span class="na">email=</span><span class="s">&quot;arnas.ivanavicius@rubedos.com&quot;</span><span class="nt">&gt;</span>Arnas Ivanavicius<span class="nt">&lt;/author&gt;</span>
+  <span class="nt">&lt;license&gt;</span>Proprietary<span class="nt">&lt;/license&gt;</span>
+  <span class="nt">&lt;url</span> <span class="na">type=</span><span class="s">&quot;website&quot;</span><span class="nt">&gt;</span>http://www.rubedos.com<span class="nt">&lt;/url&gt;</span>
+
+  <span class="nt">&lt;buildtool_depend&gt;</span>catkin<span class="nt">&lt;/buildtool_depend&gt;</span>
+  <span class="nt">&lt;buildtool_depend&gt;</span>qtbase5-dev<span class="nt">&lt;/buildtool_depend&gt;</span>
+  <span class="nt">&lt;exec_depend&gt;</span>cvm_base<span class="nt">&lt;/exec_depend&gt;</span>
+
+  <span class="nt">&lt;depend&gt;</span>roscpp<span class="nt">&lt;/depend&gt;</span>
+  <span class="nt">&lt;depend&gt;</span>std_msgs<span class="nt">&lt;/depend&gt;</span>
+  <span class="nt">&lt;depend&gt;</span>sensor_msgs<span class="nt">&lt;/depend&gt;</span>
+  <span class="nt">&lt;depend&gt;</span>geometry_msgs<span class="nt">&lt;/depend&gt;</span>
+  <span class="nt">&lt;depend&gt;</span>cvm_msgs<span class="nt">&lt;/depend&gt;</span>
+  <span class="nt">&lt;depend&gt;</span>cv_bridge<span class="nt">&lt;/depend&gt;</span>
+  <span class="nt">&lt;depend&gt;</span>message_filters<span class="nt">&lt;/depend&gt;</span>
+  <span class="nt">&lt;depend&gt;</span>dynamic_reconfigure<span class="nt">&lt;/depend&gt;</span>
+
+<span class="nt">&lt;/package&gt;</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" href="_downloads/CMakeLists.txt" download=""><code class="xref download docutils literal"><span class="pre">cvm_follow_me_sample/CMakeLists.txt</span></code></a></p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">3.5.1</span><span class="p">)</span>
+
+<span class="nb">project</span><span class="p">(</span><span class="s">cvm_follow_me_sample</span><span class="p">)</span>
+
+<span class="nb">add_compile_options</span><span class="p">(</span><span class="s">-std=c++14</span> <span class="s">-O3</span><span class="p">)</span>
+
+<span class="c"># Project variables</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">PROJECT_SRC</span>     <span class="o">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="o">}</span><span class="s">/src/FollowMeWindow.cpp</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">PROJECT_HDR</span>     <span class="o">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="o">}</span><span class="s">/include/FollowMeWindow.h</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">PROJECT_UI</span>      <span class="o">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="o">}</span><span class="s">/ui/FollowMeWindow.ui</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">PROJECT_BIN_SRC</span> <span class="o">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="o">}</span><span class="s">/src/main.cpp</span><span class="p">)</span>
+
+<span class="c"># Find includes in corresponding build directories</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_INCLUDE_CURRENT_DIR</span> <span class="s">ON</span><span class="p">)</span>
+
+<span class="c"># Find required packages</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">catkin</span> <span class="s">REQUIRED</span> <span class="s">COMPONENTS</span>
+  <span class="s">roscpp</span>
+  <span class="s">std_msgs</span>
+  <span class="s">sensor_msgs</span>
+  <span class="s">geometry_msgs</span>
+  <span class="s">cvm_msgs</span>
+  <span class="s">cv_bridge</span>
+  <span class="s">message_filters</span>
+  <span class="s">dynamic_reconfigure</span>
+<span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">Qt5</span> <span class="s">REQUIRED</span> 
+  <span class="s">Widgets</span> <span class="s">REQUIRED</span>
+<span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">OpenCV</span> <span class="s">REQUIRED</span><span class="p">)</span>
+
+<span class="c"># Manual MOC generation</span>
+<span class="nb">qt5_wrap_cpp</span><span class="p">(</span><span class="s">PROJECT_HDR_MOC</span> <span class="o">${</span><span class="nv">PROJECT_HDR</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">qt5_wrap_ui</span><span class="p">(</span><span class="s">PROJECT_UI_MOC</span>   <span class="o">${</span><span class="nv">PROJECT_UI</span><span class="o">}</span><span class="p">)</span>
+
+<span class="nb">catkin_package</span><span class="p">(</span>
+  <span class="s">LIBRARIES</span>
+<span class="p">)</span>
+
+<span class="nb">include_directories</span><span class="p">(</span>
+  <span class="s">include</span> 
+  <span class="o">${</span><span class="nv">OpenCV_INCLUDE_DIRS</span><span class="o">}</span> 
+  <span class="o">${</span><span class="nv">catkin_INCLUDE_DIRS</span><span class="o">}</span>
+<span class="p">)</span>
+
+<span class="nb">add_library</span><span class="p">(</span><span class="s">rubedo.robotics.</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span> <span class="s">SHARED</span>
+  <span class="o">${</span><span class="nv">PROJECT_SRC</span><span class="o">}</span>
+  <span class="o">${</span><span class="nv">PROJECT_HDR_MOC</span><span class="o">}</span>
+  <span class="o">${</span><span class="nv">PROJECT_UI_MOC</span><span class="o">}</span>
+<span class="p">)</span>
+
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">rubedo.robotics.</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
+  <span class="s">Qt5::Widgets</span> 
+  <span class="o">${</span><span class="nv">OpenCV_LIBRARIES</span><span class="o">}</span> 
+  <span class="o">${</span><span class="nv">catkin_LIBRARIES</span><span class="o">}</span>
+<span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span> <span class="o">${</span><span class="nv">PROJECT_BIN_SRC</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span> <span class="s">rubedo.robotics.</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">FILE</span> <span class="s2">&quot;${CMAKE_CURRENT_SOURCE_DIR}/code&quot;</span><span class="p">)</span>
+<span class="nb">if</span><span class="p">(</span><span class="s">NOT</span> <span class="s">EXISTS</span> <span class="s2">&quot;${FILE}&quot;</span><span class="p">)</span>
+  <span class="nb">execute_process</span><span class="p">(</span><span class="s">COMMAND</span> <span class="s">mkdir</span> <span class="s">-p</span> <span class="o">${</span><span class="nv">FILE</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">endif</span><span class="p">()</span>
+
+<span class="nb">install</span><span class="p">(</span><span class="s">DIRECTORY</span>
+  <span class="s">code</span>
+  <span class="s">DESTINATION</span> <span class="o">${</span><span class="nv">CATKIN_PACKAGE_SHARE_DESTINATION</span><span class="o">}</span>
+<span class="p">)</span>
+
+<span class="nb">install</span><span class="p">(</span><span class="s">DIRECTORY</span>
+  <span class="s">src</span>
+  <span class="s">include</span>
+  <span class="s">ui</span>
+  <span class="s">DESTINATION</span> <span class="o">${</span><span class="nv">CATKIN_PACKAGE_SHARE_DESTINATION</span><span class="o">}</span><span class="s">/code</span>
+<span class="p">)</span>
+
+<span class="nb">install</span><span class="p">(</span><span class="s">FILES</span>
+  <span class="s">CMakeLists.txt</span>
+  <span class="s">package.xml</span>
+  <span class="s">README.md</span>
+  <span class="s">DESTINATION</span> <span class="o">${</span><span class="nv">CATKIN_PACKAGE_SHARE_DESTINATION</span><span class="o">}</span><span class="s">/code</span>
+<span class="p">)</span>
+
+<span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span>
+  <span class="s">rubedo.robotics.</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
+  <span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
+  <span class="s">DESTINATION</span> <span class="o">${</span><span class="nv">CATKIN_PACKAGE_LIB_DESTINATION</span><span class="o">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" href="_downloads/FollowMeWindow.ui" download=""><code class="xref download docutils literal"><span class="pre">cvm_follow_me_sample/ui/FollowMeWindow.ui</span></code></a></p>
+<p>Build and run the sample:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> ~/catkin_ws
+catkin build cvm_follow_me_sample
+<span class="nb">source</span> devel/setup.bash
+<span class="nb">export</span> <span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://&lt;VIPER_IP&gt;:11311
+rosrun cvm_follow_me_sample cvm_follow_me_sample
+</pre></div>
+</div>
+<p>Enable the FollowMe app and click on the person you want to track. The person who is being tracked
+will be marked with a red bounding box.</p>
+</div>
+</div>
+<div class="section" id="obstacle-detector">
+<h2>Obstacle Detector<a class="headerlink" href="#obstacle-detector" title="Permalink to this headline">¶</a></h2>
+<p>Obstacle Detector is a VIPER application that imitates laser scan by processing point cloud produced by the camera.
+Output can be used as an input for a robot path planner.
+If laser scan is not visible you might need to play with <a class="reference external" href="configuration.html#obstacle-detector-app-configuration">Obstacle Detector configuration</a>, by providing relevant target frame and
+transform.</p>
+<div class="section" id="using-ros-tools">
+<h3>Using ROS Tools<a class="headerlink" href="#using-ros-tools" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://wiki.ros.org/rviz">rviz</a> and can be used to view output of the Object Detector App.</p>
+<blockquote>
+<div><ul class="simple">
+<li>run rviz [rosrun rviz rviz];</li>
+<li>Add display type in rviz [Add-&gt;LaserScan];</li>
+<li>Browse for the <code class="docutils literal"><span class="pre">laser_scan</span></code> topic;</li>
+<li>Make sure correct link is selected, e.g. <code class="docutils literal"><span class="pre">cvm_base_link</span></code>.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id1">
+<h3>Code sample<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>First you need to create a catkin workspace.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">source</span> /opt/ros/kinetic/setup.bash
+mkdir -p ~/catkin_ws/src
+<span class="nb">cd</span> ~/catkin_ws
+catkin init
+</pre></div>
+</div>
+<p>Then create a simple package using the following files.</p>
+<p><a class="reference download internal" href="_downloads/main1.cpp" download=""><code class="xref download docutils literal"><span class="pre">laserscan_streaming/main.cpp</span></code></a></p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sensor_msgs/LaserScan.h&gt;</span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="nf">laserScanCallback</span><span class="p">(</span><span class="k">const</span> <span class="n">sensor_msgs</span><span class="o">::</span><span class="n">LaserScanConstPtr</span><span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">size_t</span> <span class="n">size</span> <span class="o">=</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">ranges</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+  <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">&quot;Distance at %1.2f rads angle is %4.3f meters.&quot;</span><span class="p">,</span> 
+           <span class="n">msg</span><span class="o">-&gt;</span><span class="n">angle_min</span><span class="p">,</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">ranges</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+  <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">&quot;Distance at %1.2f rads angle is %4.3f meters.&quot;</span><span class="p">,</span> 
+           <span class="p">(</span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">angle_min</span> <span class="o">+</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">angle_max</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0f</span><span class="p">,</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">ranges</span><span class="p">[</span><span class="n">size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]);</span>
+  <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">&quot;Distance at %1.2f rads angle is %4.3f meters.&quot;</span><span class="p">,</span>
+            <span class="n">msg</span><span class="o">-&gt;</span><span class="n">angle_max</span><span class="p">,</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">ranges</span><span class="p">[</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]);</span> 
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">&quot;laserscan_streaming&quot;</span><span class="p">);</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">nh</span><span class="p">;</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span> <span class="n">sub</span> <span class="o">=</span> <span class="n">nh</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s">&quot;laser_scan&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">laserScanCallback</span><span class="p">);</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">spin</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" href="_downloads/CMakeLists1.txt" download=""><code class="xref download docutils literal"><span class="pre">laserscan_streaming/CMakeLists.txt</span></code></a></p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">3.5.1</span><span class="p">)</span>
+
+<span class="nb">project</span><span class="p">(</span><span class="s">laserscan_streaming</span><span class="p">)</span>
+
+<span class="nb">add_compile_options</span><span class="p">(</span><span class="s">-std=c++14</span> <span class="s">-O3</span><span class="p">)</span>
+
+<span class="c"># Find required packages</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">catkin</span> <span class="s">REQUIRED</span> <span class="s">COMPONENTS</span>
+  <span class="s">roscpp</span>
+  <span class="s">std_msgs</span>
+  <span class="s">sensor_msgs</span>
+<span class="p">)</span>
+
+<span class="nb">find_package</span><span class="p">(</span><span class="s">OpenCV</span> <span class="s">REQUIRED</span><span class="p">)</span>
+
+<span class="nb">catkin_package</span><span class="p">(</span>
+  <span class="s">LIBRARIES</span>
+<span class="p">)</span>
+
+<span class="nb">include_directories</span><span class="p">(</span>
+  <span class="s">include</span>
+  <span class="o">${</span><span class="nv">catkin_INCLUDE_DIRS</span><span class="o">}</span>
+<span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">laserscan_streaming</span> <span class="s">main.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">laserscan_streaming</span> <span class="o">${</span><span class="nv">catkin_LIBRARIES</span><span class="o">}</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" href="_downloads/package.xml" download=""><code class="xref download docutils literal"><span class="pre">laserscan_streaming/package.xml</span></code></a></p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;package</span> <span class="na">format=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;name&gt;</span>laserscan_streaming<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;description&gt;</span>Simple laserscan streaming application<span class="nt">&lt;/description&gt;</span>
+
+  <span class="nt">&lt;maintainer</span> <span class="na">email=</span><span class="s">&quot;arnas.ivanavicius@rubedos.com&quot;</span><span class="nt">&gt;</span>Arnas Ivanavicius<span class="nt">&lt;/maintainer&gt;</span>
+  <span class="nt">&lt;author</span> <span class="na">email=</span><span class="s">&quot;arnas.ivanavicius@rubedos.com&quot;</span><span class="nt">&gt;</span>Arnas Ivanavicius<span class="nt">&lt;/author&gt;</span>
+  <span class="nt">&lt;license&gt;</span>Proprietary<span class="nt">&lt;/license&gt;</span>
+  <span class="nt">&lt;url</span> <span class="na">type=</span><span class="s">&quot;website&quot;</span><span class="nt">&gt;</span>http://www.rubedos.com<span class="nt">&lt;/url&gt;</span>
+
+  <span class="nt">&lt;buildtool_depend&gt;</span>catkin<span class="nt">&lt;/buildtool_depend&gt;</span>
+
+  <span class="nt">&lt;depend&gt;</span>roscpp<span class="nt">&lt;/depend&gt;</span>
+  <span class="nt">&lt;depend&gt;</span>sensor_msgs<span class="nt">&lt;/depend&gt;</span>
+<span class="nt">&lt;/package&gt;</span>
+</pre></div>
+</div>
+<p>Build and run the sample:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> ~/catkin_ws
+catkin build laserscan_streaming
+<span class="nb">source</span> devel/setup.bash
+<span class="nb">export</span> <span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://&lt;VIPER_IP&gt;:11311
+rosrun laserscan_streaming laserscan_streaming
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+            
+  <div class="footer-relations">
+    
+      <div class="pull-left">
+        <a class="btn btn-default" href="viper_core.html" title="previous chapter (use the left arrow)">VIPER Core</a>
+      </div>
+    
+      <div class="pull-right">
+        <a class="btn btn-default" href="ros_msgs.html" title="next chapter (use the right arrow)">VIPER ROS Messages</a>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ros_msgs.html" title="VIPER ROS Messages"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="viper_core.html" title="VIPER Core"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+<script type="text/javascript">
+  $("#mobile-toggle a").click(function () {
+    $("#left-column").toggle();
+  });
+</script>
+<script type="text/javascript" src="_static/js/bootstrap.js"></script>
+  <div class="footer">
+    &copy; Copyright 2019, Rubedos. Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  </body>
+</html>

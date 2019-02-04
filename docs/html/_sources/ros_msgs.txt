@@ -1,0 +1,17 @@
+.. Copyright 2019 Rubedos
+
+===============================
+VIPER ROS Messages
+===============================
+
+Custom ROS messages that come with SDK.
+
+cvm_msgs/BoundingBox
+=========================
+
+.. literalinclude:: cvm_msgs/BoundingBox.msg
+
+cvm_msgs/BoundingBoxes
+=========================
+
+.. literalinclude:: cvm_msgs/BoundingBoxes.msg

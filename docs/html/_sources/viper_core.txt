@@ -1,0 +1,209 @@
+.. Copyright 2019 Rubedos
+
+===============================
+VIPER Core
+===============================
+
+VIPER Core is the base functionality that comes with each instance. `ROS API`_ is used to communicate with the device.
+
+VIPER Core consists of the following features.
+
+RGB image streaming
+===============================
+VIPER has a set of two cameras. Images come in several formats:
+
+- Uncalibrated separate left and right images;
+- Uncalibrated combined left and right images;
+- Calibrated separate left and right images;
+- Calibrated combined left and right images.
+
+Using ROS Tools
+------------------
+
+`rviz`_ and `rqt`_ can be used to view images.
+
+.. code-block:: bash
+
+    rosrun image_view image_view image:=/image_raw
+
+Code sample
+------------------
+
+The following sample will allow you to stream images from your VIPER and display
+them using `OpenCV`_ library.
+
+First you need to create a catkin workspace.
+
+.. code-block:: bash
+
+    source /opt/ros/kinetic/setup.bash
+    mkdir -p ~/catkin_ws/src
+    cd ~/catkin_ws
+    catkin init
+
+Then create a simple package using the following files.
+
+:download:`image_streaming/main.cpp <samples/image_streaming/main.cpp>`
+
+.. literalinclude:: samples/image_streaming/main.cpp
+    :language: cpp
+
+:download:`image_streaming/CMakeLists.txt <samples/image_streaming/CMakeLists.txt>`
+
+.. literalinclude:: samples/image_streaming/CMakeLists.txt
+   :language: cmake
+
+:download:`image_streaming/package.xml <samples/image_streaming/package.xml>`
+
+.. literalinclude:: samples/image_streaming/package.xml
+   :language: xml
+
+Build and run the sample:
+
+.. code-block:: bash
+
+    cd ~/catkin_ws
+    catkin build image_streaming
+    source devel/setup.bash
+    export ROS_MASTER_URI=http://<VIPER_IP>:11311
+    rosrun image_streaming image_streaming
+
+You should see ``image_raw`` topic being published to the ``Image view`` window.
+Please refer to `ROS API`_ to see the full list of topics.
+
+Disparity map streaming
+===============================
+
+`Disparity image`_ is an image that contains a shift value for each pixel in the left `rectified image`_
+with respect to the right `rectified image`_ of the same scene, while both images have been taken
+taken at the same time.
+
+Using ROS Tools
+------------------
+
+`image_view`_ package can be used to view disparity images.
+
+.. code-block:: bash
+
+    rosrun image_view disparity_view image:=/disparity
+
+Code sample
+------------------
+
+The following sample will allow you to stream disparity map from your VIPER.
+It converts disparity image which is float type to grayscale image using `OpenCV`_ library.
+
+First you need to create a catkin workspace.
+
+.. code-block:: bash
+
+    source /opt/ros/kinetic/setup.bash
+    mkdir -p ~/catkin_ws/src
+    cd ~/catkin_ws
+    catkin init
+
+Then create a simple package using the following files.
+
+:download:`disparity_streaming/main.cpp <samples/disparity_streaming/main.cpp>`
+
+.. literalinclude:: samples/disparity_streaming/main.cpp
+    :language: cpp
+
+:download:`disparity_streaming/CMakeLists.txt <samples/disparity_streaming/CMakeLists.txt>`
+
+.. literalinclude:: samples/disparity_streaming/CMakeLists.txt
+   :language: cmake
+
+:download:`disparity_streaming/package.xml <samples/disparity_streaming/package.xml>`
+
+.. literalinclude:: samples/disparity_streaming/package.xml
+   :language: xml
+
+Build and run the sample:
+
+.. code-block:: bash
+
+    cd ~/catkin_ws
+    catkin build disparity_streaming
+    source devel/setup.bash
+    export ROS_MASTER_URI=http://<VIPER_IP>:11311
+    rosrun disparity_streaming disparity_streaming
+
+You should see ``disparity`` topic being published to the ``Disparity view`` window.
+
+
+Point cloud streaming
+===============================
+
+`Point cloud`_ is a 3D data structure that contains x, y, z coordinates (in meters) for each pixel in
+left rectified image, and describes a 3D scene.
+
+Using ROS Tools
+------------------
+
+`rviz`_ can be used to view point clouds.
+
+  - run rviz [rosrun rviz rviz];
+
+  - Add display type in rviz [Add->PointCloud2];
+
+  - Browse for the ``points2`` topic;
+
+  - Make sure correct link is selected, e.g. ``cvm_base_link``.
+
+Code sample
+------------------
+
+The following sample will allow you to stream point clouds from your VIPER.
+It uses `PCL`_ library to visualize point clouds received from VIPER.
+
+First you need to create a catkin workspace.
+
+.. code-block:: bash
+
+    source /opt/ros/kinetic/setup.bash
+    mkdir -p ~/catkin_ws/src
+    cd ~/catkin_ws
+    catkin init
+
+Then create a simple package using the following files.
+
+:download:`pointcloud_streaming/main.cpp <samples/pointcloud_streaming/main.cpp>`
+
+.. literalinclude:: samples/pointcloud_streaming/main.cpp
+    :language: cpp
+
+:download:`pointcloud_streaming/CMakeLists.txt <samples/pointcloud_streaming/CMakeLists.txt>`
+
+.. literalinclude:: samples/pointcloud_streaming/CMakeLists.txt
+   :language: cmake
+
+:download:`pointcloud_streaming/package.xml <samples/pointcloud_streaming/package.xml>`
+
+.. literalinclude:: samples/pointcloud_streaming/package.xml
+   :language: xml
+
+Build and run the sample:
+
+.. code-block:: bash
+
+    cd ~/catkin_ws
+    catkin build pointcloud_streaming
+    source devel/setup.bash
+    export ROS_MASTER_URI=http://<VIPER_IP>:11311
+    rosrun pointcloud_streaming pointcloud_streaming
+
+You should see ``points2`` topic being published to the ``PointCloud view`` window.
+Please refer to `PCL documentation`_ in order to get familiar with point cloud processing.
+
+
+.. _ROS API: ros_api.html
+.. _rviz: http://wiki.ros.org/rviz
+.. _rqt: http://wiki.ros.org/rqt
+.. _image_view: http://wiki.ros.org/image_view
+.. _Disparity image: https://en.wikipedia.org/wiki/Binocular_disparity
+.. _rectified image: https://en.wikipedia.org/wiki/Image_rectification
+.. _Point cloud: https://en.wikipedia.org/wiki/Point_cloud
+.. _OpenCV: https://opencv.org/
+.. _PCL: http://pointclouds.org/
+.. _PCL documentation: http://pointclouds.org/documentation/

@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+  
+  <!-- Licensed under the Apache 2.0 License -->
+  <link rel="stylesheet" type="text/css" href="_static/fonts/open-sans/stylesheet.css" />
+  <!-- Licensed under the SIL Open Font License -->
+  <link rel="stylesheet" type="text/css" href="_static/fonts/source-serif-pro/source-serif-pro.css" />
+  <link rel="stylesheet" type="text/css" href="_static/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="_static/css/bootstrap-theme.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>VIPER ROS API &mdash; VIPER SDK 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/guzzle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="VIPER SDK 1.0.0 documentation" href="index.html" />
+    <link rel="next" title="VIPER Configuration" href="configuration.html" />
+    <link rel="prev" title="VIPER ROS Messages" href="ros_msgs.html" />
+  
+   
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="configuration.html" title="VIPER Configuration"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ros_msgs.html" title="VIPER ROS Messages"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="container-wrapper">
+
+      <div id="mobile-toggle">
+        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+      </div>
+  <div id="left-column">
+    <div class="sphinxsidebar">
+        <a href="
+    index.html" class="text-logo">VIPER SDK 1.0.0 documentation</a>
+        
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <h2>Table Of Contents</h2>
+  </div>
+  <div class="sidebar-toc">
+    
+    
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viper_core.html">VIPER Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viper_apps.html">VIPER Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ros_msgs.html">VIPER ROS Messages</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">VIPER ROS API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#viper-core">VIPER Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#followme-app">FollowMe App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#obstacle-detector-app">Obstacle Detector App</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">VIPER Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+</ul>
+
+    
+  </div>
+</div>
+        
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <div id="main-search">
+      <form class="form-inline" action="search.html" method="GET" role="form">
+        <div class="input-group">
+          <input name="q" type="text" class="form-control" placeholder="Search...">
+        </div>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+        <div id="right-column">
+          
+          <div role="navigation" aria-label="breadcrumbs navigation">
+            <ol class="breadcrumb">
+              <li><a href="index.html">Docs</a></li>
+              
+              <li>VIPER ROS API</li>
+            </ol>
+          </div>
+          
+          <div class="document clearer body">
+            
+  <div class="section" id="viper-ros-api">
+<h1>VIPER ROS API<a class="headerlink" href="#viper-ros-api" title="Permalink to this headline">¶</a></h1>
+<p>VIPER is based on <a class="reference external" href="http://wiki.ros.org/">ROS</a>, therefore it has ROS API that is described by various
+input and output topics.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">All topics are provided without a namespace. When you are using your VIPER, please take its namespace into account.</p>
+</div>
+<p><strong>VIPER architecture</strong></p>
+<a class="reference internal image-reference" href="_images/viper_ros_architecture.png"><img alt="_images/viper_ros_architecture.png" src="_images/viper_ros_architecture.png" style="width: 100%;" /></a>
+<div class="section" id="viper-core">
+<h2>VIPER Core<a class="headerlink" href="#viper-core" title="Permalink to this headline">¶</a></h2>
+<p>The following topics are available on every VIPER.</p>
+<div class="section" id="published-topics">
+<h3>Published Topics<a class="headerlink" href="#published-topics" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>left/image_raw (<a class="reference external" href="http://docs.ros.org/api/sensor_msgs/html/msg/Image.html">sensor_msgs/Image</a>)</dt>
+<dd>Left image of the camera. It comes in <a class="reference external" href="http://docs.ros.org/kinetic/api/sensor_msgs/html/namespacesensor__msgs_1_1image__encodings.html#ab6e2cec975df0a802ca02ce56674b279">sensor_msgs::image_encodings::RGB8</a> format.</dd>
+<dt>right/image_raw (<a class="reference external" href="http://docs.ros.org/api/sensor_msgs/html/msg/Image.html">sensor_msgs/Image</a>)</dt>
+<dd>Right image of the camera. It comes in <a class="reference external" href="http://docs.ros.org/kinetic/api/sensor_msgs/html/namespacesensor__msgs_1_1image__encodings.html#ab6e2cec975df0a802ca02ce56674b279">sensor_msgs::image_encodings::RGB8</a> format.</dd>
+<dt>image_raw (<a class="reference external" href="http://docs.ros.org/api/sensor_msgs/html/msg/Image.html">sensor_msgs/Image</a>)</dt>
+<dd>Image that contains both left and right images. It comes in <a class="reference external" href="http://docs.ros.org/kinetic/api/sensor_msgs/html/namespacesensor__msgs_1_1image__encodings.html#ab6e2cec975df0a802ca02ce56674b279">sensor_msgs::image_encodings::RGB8</a> format.</dd>
+<dt>left/camera_info (<a class="reference external" href="http://docs.ros.org/api/sensor_msgs/html/msg/CameraInfo.html">sensor_msgs/CameraInfo</a>)</dt>
+<dd>Camera calibration parameters for left camera.</dd>
+<dt>right/camera_info (<a class="reference external" href="http://docs.ros.org/api/sensor_msgs/html/msg/CameraInfo.html">sensor_msgs/CameraInfo</a>)</dt>
+<dd>Camera calibration parameters for right camera.</dd>
+<dt>left/image_rect (<a class="reference external" href="http://docs.ros.org/api/sensor_msgs/html/msg/Image.html">sensor_msgs/Image</a>)</dt>
+<dd>Left <a class="reference external" href="https://en.wikipedia.org/wiki/Image_rectification">rectified image</a> of the camera. It comes in <a class="reference external" href="http://docs.ros.org/kinetic/api/sensor_msgs/html/namespacesensor__msgs_1_1image__encodings.html#ab6e2cec975df0a802ca02ce56674b279">sensor_msgs::image_encodings::RGB8</a> format.</dd>
+<dt>right/image_rect (<a class="reference external" href="http://docs.ros.org/api/sensor_msgs/html/msg/Image.html">sensor_msgs/Image</a>)</dt>
+<dd>Right <a class="reference external" href="https://en.wikipedia.org/wiki/Image_rectification">rectified image</a> of the camera. It comes in <a class="reference external" href="http://docs.ros.org/kinetic/api/sensor_msgs/html/namespacesensor__msgs_1_1image__encodings.html#ab6e2cec975df0a802ca02ce56674b279">sensor_msgs::image_encodings::RGB8</a> format.</dd>
+<dt>stereo/image_rect (<a class="reference external" href="http://docs.ros.org/api/sensor_msgs/html/msg/Image.html">sensor_msgs/Image</a>)</dt>
+<dd>Image that contains both left and right rectified images. It comes in <a class="reference external" href="http://docs.ros.org/kinetic/api/sensor_msgs/html/namespacesensor__msgs_1_1image__encodings.html#ab6e2cec975df0a802ca02ce56674b279">sensor_msgs::image_encodings::RGB8</a> format.</dd>
+<dt>disparity (<a class="reference external" href="http://docs.ros.org/api/stereo_msgs/html/msg/DisparityImage.html">stereo_msgs/DisparityImage</a>)</dt>
+<dd><a class="reference external" href="https://en.wikipedia.org/wiki/Binocular_disparity">Disparity image</a> is an image that contains a shift value for each pixel in the left <a class="reference external" href="https://en.wikipedia.org/wiki/Image_rectification">rectified image</a>
+with respect to the right <a class="reference external" href="https://en.wikipedia.org/wiki/Image_rectification">rectified image</a> of the same scene, while both images have been
+taken at the same time.
+Image data come in <a class="reference external" href="http://docs.ros.org/jade/api/sensor_msgs/html/namespacesensor__msgs_1_1image__encodings.html#a145a2e0a5dced3390eee173a7be37d90">sensor_msgs::image_encodings::TYPE_32FC1</a> format.</dd>
+<dt>points2 (<a class="reference external" href="http://docs.ros.org/api/sensor_msgs/html/msg/PointCloud2.html">sensor_msgs/PointCloud2</a>)</dt>
+<dd><a class="reference external" href="https://en.wikipedia.org/wiki/Point_cloud">Point cloud</a> is a 3D data structure that contains x, y, z coordinates (in meters) for each pixel in
+left rectified image, and describes a 3D scene.</dd>
+</dl>
+</div>
+<div class="section" id="subscribed-topics">
+<h3>Subscribed Topics<a class="headerlink" href="#subscribed-topics" title="Permalink to this headline">¶</a></h3>
+<p>No external topics are required.</p>
+</div>
+<div class="section" id="services">
+<h3>Services<a class="headerlink" href="#services" title="Permalink to this headline">¶</a></h3>
+<p>No services are available for the user.</p>
+</div>
+<div class="section" id="provided-tf-transforms">
+<h3>Provided tf Transforms<a class="headerlink" href="#provided-tf-transforms" title="Permalink to this headline">¶</a></h3>
+<p>Internal VIPER transforms, that describe the geometry of our stereo camera.</p>
+<a class="reference internal image-reference" href="_images/tf_diagram.png"><img alt="_images/tf_diagram.png" src="_images/tf_diagram.png" style="width: 100%;" /></a>
+</div>
+<div class="section" id="required-tf-transforms">
+<h3>Required tf Transforms<a class="headerlink" href="#required-tf-transforms" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/tf_diagram2.png"><img alt="_images/tf_diagram2.png" src="_images/tf_diagram2.png" style="width: 100%;" /></a>
+<p>Transform from a robot base to the camera base is necessary when VIPER is used together with a robot.
+It is configurable via <a class="reference external" href="configuration.html#cvm-description">cvm_description</a> dynamic parameters.</p>
+</div>
+</div>
+<div class="section" id="followme-app">
+<h2>FollowMe App<a class="headerlink" href="#followme-app" title="Permalink to this headline">¶</a></h2>
+<p>FollowMe is a VIPER application that tracks bounding box of the given human between frames
+and provides distance to the target.</p>
+<div class="section" id="id1">
+<h3>Published Topics<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>follow_me/status (<a class="reference external" href="http://docs.ros.org/api/std_msgs/html/msg/String.html">std_msgs/String</a>)</dt>
+<dd><p class="first">If subscribed to, FollowMe status will be published continually. The following are possible:</p>
+<ul class="last simple">
+<li>FollowMe is disabled;</li>
+<li>Waiting for another target;</li>
+<li>Tracking target;</li>
+<li>Tracker lost the target: x s time out.</li>
+</ul>
+</dd>
+<dt>follow_me/bounding_boxes (<a class="reference external" href="ros_msgs.html#cvm-msgs-boundingboxes">cvm_msgs/BoundingBoxes</a>)</dt>
+<dd>Publishes bounding boxes of all humans visible in the current left rectified image <code class="docutils literal"><span class="pre">left/image_rect</span></code>,
+if FollowMe is enabled.</dd>
+<dt>follow_me/target_bounding_box (<a class="reference external" href="ros_msgs.html#cvm-msgs-boundingbox">cvm_msgs/BoundingBox</a>)</dt>
+<dd>If FollowMe is enabled and the target has been set, publishes current bounding box of the target being tracked.</dd>
+<dt>follow_me/target_position (<a class="reference external" href="http://docs.ros.org/api/geometry_msgs/html/msg/Point.html">geometry_msgs/Point</a>)</dt>
+<dd>If FollowMe is enabled and the target has been set,
+published position x, y, z (in meters) to the human being tracked with respect to the left camera.</dd>
+</dl>
+</div>
+<div class="section" id="id2">
+<h3>Subscribed Topics<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>follow_me/enable (<a class="reference external" href="http://docs.ros.org/api/std_msgs/html/msg/Bool.html">std_msgs/Bool</a>)</dt>
+<dd>If <code class="docutils literal"><span class="pre">true</span></code> is published to this topic, FollowMe will be enabled, otherwise it will be disabled.</dd>
+<dt>follow_me/set_target (<a class="reference external" href="ros_msgs.html#cvm-msgs-boundingbox">cvm_msgs/BoundingBox</a>)</dt>
+<dd>Bounding box selected from <code class="docutils literal"><span class="pre">follow_me/bounding_boxes</span></code>. If FollowMe is enabled,
+the app will start tracking the selected human.</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="obstacle-detector-app">
+<h2>Obstacle Detector App<a class="headerlink" href="#obstacle-detector-app" title="Permalink to this headline">¶</a></h2>
+<p>Obstacle Detector is a VIPER application that imitates laser scan by processing point cloud produced by the camera.
+Output can be used as an input for a robot path planner.</p>
+<div class="section" id="id3">
+<h3>Published Topics<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>laser_scan (<a class="reference external" href="http://docs.ros.org/api/sensor_msgs/html/msg/LaserScan.html">sensor_msgs/LaserScan</a>)</dt>
+<dd>Single scan constructed from point cloud using given <a class="reference external" href="configuration.html#obstacle-detector-app-configuration">Obstacle Detector configuration</a>.</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+          </div>
+            
+  <div class="footer-relations">
+    
+      <div class="pull-left">
+        <a class="btn btn-default" href="ros_msgs.html" title="previous chapter (use the left arrow)">VIPER ROS Messages</a>
+      </div>
+    
+      <div class="pull-right">
+        <a class="btn btn-default" href="configuration.html" title="next chapter (use the right arrow)">VIPER Configuration</a>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="configuration.html" title="VIPER Configuration"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ros_msgs.html" title="VIPER ROS Messages"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+<script type="text/javascript">
+  $("#mobile-toggle a").click(function () {
+    $("#left-column").toggle();
+  });
+</script>
+<script type="text/javascript" src="_static/js/bootstrap.js"></script>
+  <div class="footer">
+    &copy; Copyright 2019, Rubedos. Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  </body>
+</html>

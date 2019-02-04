@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+  
+  <!-- Licensed under the Apache 2.0 License -->
+  <link rel="stylesheet" type="text/css" href="_static/fonts/open-sans/stylesheet.css" />
+  <!-- Licensed under the SIL Open Font License -->
+  <link rel="stylesheet" type="text/css" href="_static/fonts/source-serif-pro/source-serif-pro.css" />
+  <link rel="stylesheet" type="text/css" href="_static/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="_static/css/bootstrap-theme.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>Frequently asked questions &mdash; VIPER SDK 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/guzzle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="VIPER SDK 1.0.0 documentation" href="index.html" />
+    <link rel="prev" title="VIPER Configuration" href="configuration.html" />
+  
+   
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="configuration.html" title="VIPER Configuration"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="container-wrapper">
+
+      <div id="mobile-toggle">
+        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+      </div>
+  <div id="left-column">
+    <div class="sphinxsidebar">
+        <a href="
+    index.html" class="text-logo">VIPER SDK 1.0.0 documentation</a>
+        
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <h2>Table Of Contents</h2>
+  </div>
+  <div class="sidebar-toc">
+    
+    
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viper_core.html">VIPER Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viper_apps.html">VIPER Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ros_msgs.html">VIPER ROS Messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ros_api.html">VIPER ROS API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">VIPER Configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Frequently asked questions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#how-do-i-fix-the-unable-to-communicate-with-master-error">How do I fix the &#8220;unable to communicate with master!&#8221; error?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-do-i-find-viper-ip-address">How do I find VIPER IP address?</a></li>
+</ul>
+</li>
+</ul>
+
+    
+  </div>
+</div>
+        
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <div id="main-search">
+      <form class="form-inline" action="search.html" method="GET" role="form">
+        <div class="input-group">
+          <input name="q" type="text" class="form-control" placeholder="Search...">
+        </div>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+        <div id="right-column">
+          
+          <div role="navigation" aria-label="breadcrumbs navigation">
+            <ol class="breadcrumb">
+              <li><a href="index.html">Docs</a></li>
+              
+              <li>Frequently asked questions</li>
+            </ol>
+          </div>
+          
+          <div class="document clearer body">
+            
+  <div class="section" id="frequently-asked-questions">
+<h1>Frequently asked questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="how-do-i-fix-the-unable-to-communicate-with-master-error">
+<h2>How do I fix the &#8220;unable to communicate with master!&#8221; error?<a class="headerlink" href="#how-do-i-fix-the-unable-to-communicate-with-master-error" title="Permalink to this headline">¶</a></h2>
+<p>Solution:</p>
+<p>Is your VIPER running and active? If no, please turn it on.</p>
+<p>Is your <code class="docutils literal"><span class="pre">ROS_MASTER_URI</span></code> set correctly? If no, please set the <code class="docutils literal"><span class="pre">ROS_MASTER_URI</span></code> to the location of your VIPER.</p>
+<p>Can you contact the address specified in the <code class="docutils literal"><span class="pre">ROS_MASTER_URI</span></code>?</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">echo</span> $ROS_MASTER_URI
+http://&lt;VIPER_IP&gt;:11311
+ping &lt;VIPER_IP&gt;
+ping: unknown host &lt;VIPER_IP&gt;
+</pre></div>
+</div>
+<p>If you get the &#8220;unknown host&#8221; error, please check your network settings or change the <code class="docutils literal"><span class="pre">ROS_MASTER_URI</span></code> to a resolvable address.</p>
+</div>
+<div class="section" id="how-do-i-find-viper-ip-address">
+<h2>How do I find VIPER IP address?<a class="headerlink" href="#how-do-i-find-viper-ip-address" title="Permalink to this headline">¶</a></h2>
+<p>Please refer to  <a class="reference external" href="getting_started.html#viper-discovery">VIPER Discovery</a>.</p>
+</div>
+</div>
+
+
+          </div>
+            
+  <div class="footer-relations">
+    
+      <div class="pull-left">
+        <a class="btn btn-default" href="configuration.html" title="previous chapter (use the left arrow)">VIPER Configuration</a>
+      </div>
+    
+    </div>
+    <div class="clearer"></div>
+  
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="configuration.html" title="VIPER Configuration"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+<script type="text/javascript">
+  $("#mobile-toggle a").click(function () {
+    $("#left-column").toggle();
+  });
+</script>
+<script type="text/javascript" src="_static/js/bootstrap.js"></script>
+  <div class="footer">
+    &copy; Copyright 2019, Rubedos. Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  </body>
+</html>

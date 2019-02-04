@@ -1,0 +1,41 @@
+.. Copyright 2019 Rubedos
+
+===============================
+Getting started
+===============================
+In order to get VIPER output on your machine VIPER SDK has to be installed.
+
+.. note:: This guide is meant for Ubuntu users.
+
+Rubedo's repository
+===============================
+Add the repository and update:
+
+.. code-block:: bash
+
+    sudo add-apt-repository "deb [arch=amd64] http://apt2.rubedos.com xenial-cvm depend-stable"
+    sudo add-apt-repository "deb [arch=amd64] http://apt2.rubedos.com xenial-cvm release"
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 85125AF6E523A16F
+    sudo apt update
+
+VIPER SDK and ROS Installation
+===============================
+It is required to have ROS installed (`ROS installation guide`_) on your workstation to proceed with VIPER CVM SDK installation.
+
+.. code-block:: bash
+
+    sudo apt install cvm-sdk-master
+
+VIPER Discovery
+===============================
+VIPER can be found on the network by running VIPER Discovery client script:
+
+.. code-block:: bash
+
+    python viperdiscovery.py
+
+.. note:: After ``cvm-sdk-master`` is installed, ``viperdiscovery.py`` script can be found in ``/opt/rubedo/cvm/``.
+
+Once you know your VIPER IP, you can evaluate VIPER functionality.
+
+.. _ROS installation guide: http://wiki.ros.org/kinetic/Installation/Ubuntu

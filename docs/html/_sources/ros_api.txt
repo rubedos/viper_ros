@@ -1,0 +1,156 @@
+.. Copyright 2019 Rubedos
+
+===============================
+VIPER ROS API
+===============================
+
+VIPER is based on `ROS`_, therefore it has ROS API that is described by various
+input and output topics.
+
+.. note:: All topics are provided without a namespace. When you are using your VIPER, please take its namespace into account.
+
+**VIPER architecture**
+
+.. image:: images/viper_ros_architecture.png
+   :width: 100%
+
+VIPER Core
+=================
+
+The following topics are available on every VIPER.
+
+Published Topics
+----------------
+
+left/image_raw (`sensor_msgs/Image`_)
+  Left image of the camera. It comes in `sensor_msgs::image_encodings::RGB8`_ format.
+
+right/image_raw (`sensor_msgs/Image`_)
+  Right image of the camera. It comes in `sensor_msgs::image_encodings::RGB8`_ format.
+
+image_raw (`sensor_msgs/Image`_)
+  Image that contains both left and right images. It comes in `sensor_msgs::image_encodings::RGB8`_ format.
+
+left/camera_info (`sensor_msgs/CameraInfo`_)
+  Camera calibration parameters for left camera.
+
+right/camera_info (`sensor_msgs/CameraInfo`_)
+  Camera calibration parameters for right camera.
+
+left/image_rect (`sensor_msgs/Image`_)
+  Left `rectified image`_ of the camera. It comes in `sensor_msgs::image_encodings::RGB8`_ format.
+
+right/image_rect (`sensor_msgs/Image`_)
+    Right `rectified image`_ of the camera. It comes in `sensor_msgs::image_encodings::RGB8`_ format.
+
+stereo/image_rect (`sensor_msgs/Image`_)
+  Image that contains both left and right rectified images. It comes in `sensor_msgs::image_encodings::RGB8`_ format.
+
+disparity (`stereo_msgs/DisparityImage`_)
+  `Disparity image`_ is an image that contains a shift value for each pixel in the left `rectified image`_
+  with respect to the right `rectified image`_ of the same scene, while both images have been
+  taken at the same time.
+  Image data come in `sensor_msgs::image_encodings::TYPE_32FC1`_ format.
+
+points2 (`sensor_msgs/PointCloud2`_)
+  `Point cloud`_ is a 3D data structure that contains x, y, z coordinates (in meters) for each pixel in
+  left rectified image, and describes a 3D scene.
+
+
+Subscribed Topics
+-----------------
+
+No external topics are required.
+
+Services
+--------
+
+No services are available for the user.
+
+Provided tf Transforms
+----------------------
+
+Internal VIPER transforms, that describe the geometry of our stereo camera.
+
+.. image:: images/tf_diagram.png
+   :width: 100%
+
+Required tf Transforms
+----------------------
+
+.. image:: images/tf_diagram2.png
+   :width: 100%
+
+Transform from a robot base to the camera base is necessary when VIPER is used together with a robot.
+It is configurable via `cvm_description`_ dynamic parameters.
+
+
+FollowMe App
+===================
+
+FollowMe is a VIPER application that tracks bounding box of the given human between frames
+and provides distance to the target.
+
+Published Topics
+----------------
+
+follow_me/status (`std_msgs/String`_)
+  If subscribed to, FollowMe status will be published continually. The following are possible:
+
+  - FollowMe is disabled;
+  - Waiting for another target;
+  - Tracking target;
+  - Tracker lost the target: x s time out.
+
+follow_me/bounding_boxes (`cvm_msgs/BoundingBoxes`_)
+  Publishes bounding boxes of all humans visible in the current left rectified image ``left/image_rect``,
+  if FollowMe is enabled.
+
+follow_me/target_bounding_box (`cvm_msgs/BoundingBox`_)
+  If FollowMe is enabled and the target has been set, publishes current bounding box of the target being tracked.
+
+follow_me/target_position (`geometry_msgs/Point`_)
+  If FollowMe is enabled and the target has been set,
+  published position x, y, z (in meters) to the human being tracked with respect to the left camera.
+
+Subscribed Topics
+-----------------
+
+follow_me/enable (`std_msgs/Bool`_)
+  If ``true`` is published to this topic, FollowMe will be enabled, otherwise it will be disabled.
+
+follow_me/set_target (`cvm_msgs/BoundingBox`_)
+  Bounding box selected from ``follow_me/bounding_boxes``. If FollowMe is enabled,
+  the app will start tracking the selected human.
+
+
+Obstacle Detector App
+========================
+
+Obstacle Detector is a VIPER application that imitates laser scan by processing point cloud produced by the camera.
+Output can be used as an input for a robot path planner.
+
+Published Topics
+----------------
+
+laser_scan (`sensor_msgs/LaserScan`_)
+  Single scan constructed from point cloud using given `Obstacle Detector configuration`_.
+
+  .. _ROS: http://wiki.ros.org/
+  .. _std_msgs/Bool: http://docs.ros.org/api/std_msgs/html/msg/Bool.html
+  .. _std_msgs/String: http://docs.ros.org/api/std_msgs/html/msg/String.html
+  .. _geometry_msgs/Point: http://docs.ros.org/api/geometry_msgs/html/msg/Point.html
+  .. _sensor_msgs/Image: http://docs.ros.org/api/sensor_msgs/html/msg/Image.html
+  .. _sensor_msgs/CameraInfo: http://docs.ros.org/api/sensor_msgs/html/msg/CameraInfo.html
+  .. _sensor_msgs/PointCloud2: http://docs.ros.org/api/sensor_msgs/html/msg/PointCloud2.html
+  .. _sensor_msgs/LaserScan: http://docs.ros.org/api/sensor_msgs/html/msg/LaserScan.html
+  .. _sensor_msgs::image_encodings::RGB8: http://docs.ros.org/kinetic/api/sensor_msgs/html/namespacesensor__msgs_1_1image__encodings.html#ab6e2cec975df0a802ca02ce56674b279
+  .. _rectified image: https://en.wikipedia.org/wiki/Image_rectification
+  .. _stereo_msgs/DisparityImage: http://docs.ros.org/api/stereo_msgs/html/msg/DisparityImage.html
+  .. _Disparity image: https://en.wikipedia.org/wiki/Binocular_disparity
+  .. _sensor_msgs::image_encodings::TYPE_32FC1: http://docs.ros.org/jade/api/sensor_msgs/html/namespacesensor__msgs_1_1image__encodings.html#a145a2e0a5dced3390eee173a7be37d90
+  .. _Point cloud: https://en.wikipedia.org/wiki/Point_cloud
+  .. _cvm_msgs/BoundingBox: ros_msgs.html#cvm-msgs-boundingbox
+  .. _cvm_msgs/BoundingBoxes: ros_msgs.html#cvm-msgs-boundingboxes
+  .. _cvm_description: configuration.html#cvm-description
+  .. _Obstacle Detector configuration: configuration.html#obstacle-detector-app-configuration

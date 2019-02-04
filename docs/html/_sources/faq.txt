@@ -1,0 +1,32 @@
+.. Copyright 2019 Rubedos
+
+==========================
+Frequently asked questions
+==========================
+
+
+How do I fix the "unable to communicate with master!" error?
+---------------------------------------------------------------
+
+Solution:
+
+Is your VIPER running and active? If no, please turn it on.
+
+Is your ``ROS_MASTER_URI`` set correctly? If no, please set the ``ROS_MASTER_URI`` to the location of your VIPER.
+
+Can you contact the address specified in the ``ROS_MASTER_URI``?
+
+.. code-block:: bash
+
+   echo $ROS_MASTER_URI
+   http://<VIPER_IP>:11311
+   ping <VIPER_IP>
+   ping: unknown host <VIPER_IP>
+
+If you get the "unknown host" error, please check your network settings or change the ``ROS_MASTER_URI`` to a resolvable address.
+
+How do I find VIPER IP address?
+---------------------------------------------------------------
+Please refer to  `VIPER Discovery`_.
+
+.. _VIPER Discovery: getting_started.html#viper-discovery

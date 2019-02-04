@@ -1,0 +1,134 @@
+.. Copyright 2019 Rubedos
+
+===============================
+VIPER Apps
+===============================
+
+VIPER has multiple applications available that deal with specific tasks and have to be ordered separately.
+
+FollowMe
+===================
+
+FollowMe is a VIPER application that tracks bounding box of the given human between frames and provides distance to the target.
+
+Here we provide a simple GUI program (using `QT`_) that visualizes all detected humans in the left camera image. When one particular bounding box is
+selected by clicking on it, it is sent to the FollowMe App as a target and from that moment - being tracked. Distance to the target is
+also displayed. It can be used to tell the robot where the target is.
+
+Code sample
+------------------
+
+First you need to create a catkin workspace.
+
+.. code-block:: bash
+
+    source /opt/ros/kinetic/setup.bash
+    mkdir -p ~/catkin_ws/src
+    cd ~/catkin_ws
+    catkin init
+
+Then create a simple package using the following files.
+
+:download:`cvm_follow_me_sample/include/FollowMeWindow.h <samples/cvm_follow_me_sample/include/FollowMeWindow.h>`
+
+.. literalinclude:: samples/cvm_follow_me_sample/include/FollowMeWindow.h
+    :language: cpp
+
+:download:`cvm_follow_me_sample/src/FollowMeWindow.cpp <samples/cvm_follow_me_sample/src/FollowMeWindow.cpp>`
+
+.. literalinclude:: samples/cvm_follow_me_sample/src/FollowMeWindow.cpp
+    :language: cpp
+
+:download:`cvm_follow_me_sample/src/main.cpp <samples/cvm_follow_me_sample/src/main.cpp>`
+
+.. literalinclude:: samples/cvm_follow_me_sample/src/main.cpp
+    :language: cpp
+
+:download:`cvm_follow_me_sample/package.xml <samples/cvm_follow_me_sample/package.xml_>`
+
+.. literalinclude:: samples/cvm_follow_me_sample/package.xml_
+    :language: xml
+
+:download:`cvm_follow_me_sample/CMakeLists.txt <samples/cvm_follow_me_sample/CMakeLists.txt>`
+
+.. literalinclude:: samples/cvm_follow_me_sample/CMakeLists.txt
+    :language: cmake
+
+:download:`cvm_follow_me_sample/ui/FollowMeWindow.ui <samples/cvm_follow_me_sample/ui/FollowMeWindow.ui>`
+
+Build and run the sample:
+
+.. code-block:: bash
+
+    cd ~/catkin_ws
+    catkin build cvm_follow_me_sample
+    source devel/setup.bash
+    export ROS_MASTER_URI=http://<VIPER_IP>:11311
+    rosrun cvm_follow_me_sample cvm_follow_me_sample
+
+Enable the FollowMe app and click on the person you want to track. The person who is being tracked
+will be marked with a red bounding box.
+
+Obstacle Detector
+===================
+
+Obstacle Detector is a VIPER application that imitates laser scan by processing point cloud produced by the camera.
+Output can be used as an input for a robot path planner.
+If laser scan is not visible you might need to play with `Obstacle Detector configuration`_, by providing relevant target frame and
+transform.
+
+Using ROS Tools
+------------------
+
+`rviz`_ and can be used to view output of the Object Detector App.
+
+  - run rviz [rosrun rviz rviz];
+
+  - Add display type in rviz [Add->LaserScan];
+
+  - Browse for the ``laser_scan`` topic;
+
+  - Make sure correct link is selected, e.g. ``cvm_base_link``.
+
+Code sample
+------------------
+First you need to create a catkin workspace.
+
+.. code-block:: bash
+
+    source /opt/ros/kinetic/setup.bash
+    mkdir -p ~/catkin_ws/src
+    cd ~/catkin_ws
+    catkin init
+
+Then create a simple package using the following files.
+
+:download:`laserscan_streaming/main.cpp <samples/laserscan_streaming/main.cpp>`
+
+.. literalinclude:: samples/laserscan_streaming/main.cpp
+    :language: cpp
+
+:download:`laserscan_streaming/CMakeLists.txt <samples/laserscan_streaming/CMakeLists.txt>`
+
+.. literalinclude:: samples/laserscan_streaming/CMakeLists.txt
+   :language: cmake
+
+:download:`laserscan_streaming/package.xml <samples/laserscan_streaming/package.xml>`
+
+.. literalinclude:: samples/laserscan_streaming/package.xml
+   :language: xml
+
+Build and run the sample:
+
+.. code-block:: bash
+
+    cd ~/catkin_ws
+    catkin build laserscan_streaming
+    source devel/setup.bash
+    export ROS_MASTER_URI=http://<VIPER_IP>:11311
+    rosrun laserscan_streaming laserscan_streaming
+
+
+.. _QT: https://wiki.qt.io/Qt_for_Beginners
+.. _rviz: http://wiki.ros.org/rviz
+.. _Obstacle Detector configuration: configuration.html#obstacle-detector-app-configuration

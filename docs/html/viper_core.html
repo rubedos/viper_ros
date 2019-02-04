@@ -1,0 +1,579 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+  
+  <!-- Licensed under the Apache 2.0 License -->
+  <link rel="stylesheet" type="text/css" href="_static/fonts/open-sans/stylesheet.css" />
+  <!-- Licensed under the SIL Open Font License -->
+  <link rel="stylesheet" type="text/css" href="_static/fonts/source-serif-pro/source-serif-pro.css" />
+  <link rel="stylesheet" type="text/css" href="_static/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="_static/css/bootstrap-theme.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>VIPER Core &mdash; VIPER SDK 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/guzzle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="VIPER SDK 1.0.0 documentation" href="index.html" />
+    <link rel="next" title="VIPER Apps" href="viper_apps.html" />
+    <link rel="prev" title="Getting started" href="getting_started.html" />
+  
+   
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="viper_apps.html" title="VIPER Apps"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="getting_started.html" title="Getting started"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="container-wrapper">
+
+      <div id="mobile-toggle">
+        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+      </div>
+  <div id="left-column">
+    <div class="sphinxsidebar">
+        <a href="
+    index.html" class="text-logo">VIPER SDK 1.0.0 documentation</a>
+        
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <h2>Table Of Contents</h2>
+  </div>
+  <div class="sidebar-toc">
+    
+    
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">VIPER Core</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#rgb-image-streaming">RGB image streaming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#disparity-map-streaming">Disparity map streaming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#point-cloud-streaming">Point cloud streaming</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="viper_apps.html">VIPER Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ros_msgs.html">VIPER ROS Messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ros_api.html">VIPER ROS API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">VIPER Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+</ul>
+
+    
+  </div>
+</div>
+        
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <div id="main-search">
+      <form class="form-inline" action="search.html" method="GET" role="form">
+        <div class="input-group">
+          <input name="q" type="text" class="form-control" placeholder="Search...">
+        </div>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+        <div id="right-column">
+          
+          <div role="navigation" aria-label="breadcrumbs navigation">
+            <ol class="breadcrumb">
+              <li><a href="index.html">Docs</a></li>
+              
+              <li>VIPER Core</li>
+            </ol>
+          </div>
+          
+          <div class="document clearer body">
+            
+  <div class="section" id="viper-core">
+<h1>VIPER Core<a class="headerlink" href="#viper-core" title="Permalink to this headline">¶</a></h1>
+<p>VIPER Core is the base functionality that comes with each instance. <a class="reference external" href="ros_api.html">ROS API</a> is used to communicate with the device.</p>
+<p>VIPER Core consists of the following features.</p>
+<div class="section" id="rgb-image-streaming">
+<h2>RGB image streaming<a class="headerlink" href="#rgb-image-streaming" title="Permalink to this headline">¶</a></h2>
+<p>VIPER has a set of two cameras. Images come in several formats:</p>
+<ul class="simple">
+<li>Uncalibrated separate left and right images;</li>
+<li>Uncalibrated combined left and right images;</li>
+<li>Calibrated separate left and right images;</li>
+<li>Calibrated combined left and right images.</li>
+</ul>
+<div class="section" id="using-ros-tools">
+<h3>Using ROS Tools<a class="headerlink" href="#using-ros-tools" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://wiki.ros.org/rviz">rviz</a> and <a class="reference external" href="http://wiki.ros.org/rqt">rqt</a> can be used to view images.</p>
+<div class="highlight-bash"><div class="highlight"><pre>rosrun image_view image_view image:<span class="o">=</span>/image_raw
+</pre></div>
+</div>
+</div>
+<div class="section" id="code-sample">
+<h3>Code sample<a class="headerlink" href="#code-sample" title="Permalink to this headline">¶</a></h3>
+<p>The following sample will allow you to stream images from your VIPER and display
+them using <a class="reference external" href="https://opencv.org/">OpenCV</a> library.</p>
+<p>First you need to create a catkin workspace.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">source</span> /opt/ros/kinetic/setup.bash
+mkdir -p ~/catkin_ws/src
+<span class="nb">cd</span> ~/catkin_ws
+catkin init
+</pre></div>
+</div>
+<p>Then create a simple package using the following files.</p>
+<p><a class="reference download internal" href="_downloads/main2.cpp" download=""><code class="xref download docutils literal"><span class="pre">image_streaming/main.cpp</span></code></a></p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;image_transport/image_transport.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;opencv2/highgui/highgui.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cv_bridge/cv_bridge.h&gt;</span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="nf">imageCallback</span><span class="p">(</span><span class="k">const</span> <span class="n">sensor_msgs</span><span class="o">::</span><span class="n">ImageConstPtr</span><span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">try</span>
+  <span class="p">{</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">imshow</span><span class="p">(</span><span class="s">&quot;Image view&quot;</span><span class="p">,</span> <span class="n">cv_bridge</span><span class="o">::</span><span class="n">toCvShare</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="s">&quot;rgb8&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">image</span><span class="p">);</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">cv_bridge</span><span class="o">::</span><span class="n">Exception</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">ROS_ERROR</span><span class="p">(</span><span class="s">&quot;Could not convert from &#39;%s&#39; to &#39;rgb8&#39;.&quot;</span><span class="p">,</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">encoding</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">&quot;image_streaming&quot;</span><span class="p">);</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">nh</span><span class="p">;</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">namedWindow</span><span class="p">(</span><span class="s">&quot;Image view&quot;</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">startWindowThread</span><span class="p">();</span>
+  <span class="n">image_transport</span><span class="o">::</span><span class="n">ImageTransport</span> <span class="n">it</span><span class="p">(</span><span class="n">nh</span><span class="p">);</span>
+  <span class="n">image_transport</span><span class="o">::</span><span class="n">Subscriber</span> <span class="n">sub</span> <span class="o">=</span> <span class="n">it</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s">&quot;image_raw&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">imageCallback</span><span class="p">);</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">spin</span><span class="p">();</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">destroyWindow</span><span class="p">(</span><span class="s">&quot;Image view&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" href="_downloads/CMakeLists2.txt" download=""><code class="xref download docutils literal"><span class="pre">image_streaming/CMakeLists.txt</span></code></a></p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">3.5.1</span><span class="p">)</span>
+
+<span class="nb">project</span><span class="p">(</span><span class="s">image_streaming</span><span class="p">)</span>
+
+<span class="nb">add_compile_options</span><span class="p">(</span><span class="s">-std=c++14</span> <span class="s">-O3</span><span class="p">)</span>
+
+<span class="c"># Find required packages</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">catkin</span> <span class="s">REQUIRED</span> <span class="s">COMPONENTS</span>
+  <span class="s">roscpp</span>
+  <span class="s">std_msgs</span>
+  <span class="s">sensor_msgs</span>
+  <span class="s">cv_bridge</span>
+  <span class="s">image_transport</span>
+<span class="p">)</span>
+
+<span class="nb">find_package</span><span class="p">(</span><span class="s">OpenCV</span> <span class="s">REQUIRED</span><span class="p">)</span>
+
+<span class="nb">catkin_package</span><span class="p">(</span>
+  <span class="s">LIBRARIES</span>
+<span class="p">)</span>
+
+<span class="nb">include_directories</span><span class="p">(</span>
+  <span class="s">include</span> 
+  <span class="o">${</span><span class="nv">OpenCV_INCLUDE_DIRS</span><span class="o">}</span> 
+  <span class="o">${</span><span class="nv">catkin_INCLUDE_DIRS</span><span class="o">}</span>
+<span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">image_streaming</span> <span class="s">main.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">image_streaming</span> <span class="o">${</span><span class="nv">OpenCV_LIBRARIES</span><span class="o">}</span> <span class="o">${</span><span class="nv">catkin_LIBRARIES</span><span class="o">}</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" href="_downloads/package1.xml" download=""><code class="xref download docutils literal"><span class="pre">image_streaming/package.xml</span></code></a></p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;package</span> <span class="na">format=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;name&gt;</span>image_streaming<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;description&gt;</span>Sample image streaming application<span class="nt">&lt;/description&gt;</span>
+
+  <span class="nt">&lt;maintainer</span> <span class="na">email=</span><span class="s">&quot;arnas.ivanavicius@rubedos.com&quot;</span><span class="nt">&gt;</span>Arnas Ivanavicius<span class="nt">&lt;/maintainer&gt;</span>
+  <span class="nt">&lt;author</span> <span class="na">email=</span><span class="s">&quot;arnas.ivanavicius@rubedos.com&quot;</span><span class="nt">&gt;</span>Arnas Ivanavicius<span class="nt">&lt;/author&gt;</span>
+  <span class="nt">&lt;license&gt;</span>Proprietary<span class="nt">&lt;/license&gt;</span>
+  <span class="nt">&lt;url</span> <span class="na">type=</span><span class="s">&quot;website&quot;</span><span class="nt">&gt;</span>http://www.rubedos.com<span class="nt">&lt;/url&gt;</span>
+
+  <span class="nt">&lt;buildtool_depend&gt;</span>catkin<span class="nt">&lt;/buildtool_depend&gt;</span>
+
+  <span class="nt">&lt;depend&gt;</span>roscpp<span class="nt">&lt;/depend&gt;</span>
+  <span class="nt">&lt;depend&gt;</span>sensor_msgs<span class="nt">&lt;/depend&gt;</span>
+  <span class="nt">&lt;depend&gt;</span>cv_bridge<span class="nt">&lt;/depend&gt;</span>
+  <span class="nt">&lt;depend&gt;</span>image_transport<span class="nt">&lt;/depend&gt;</span>
+<span class="nt">&lt;/package&gt;</span>
+</pre></div>
+</div>
+<p>Build and run the sample:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> ~/catkin_ws
+catkin build image_streaming
+<span class="nb">source</span> devel/setup.bash
+<span class="nb">export</span> <span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://&lt;VIPER_IP&gt;:11311
+rosrun image_streaming image_streaming
+</pre></div>
+</div>
+<p>You should see <code class="docutils literal"><span class="pre">image_raw</span></code> topic being published to the <code class="docutils literal"><span class="pre">Image</span> <span class="pre">view</span></code> window.
+Please refer to <a class="reference external" href="ros_api.html">ROS API</a> to see the full list of topics.</p>
+</div>
+</div>
+<div class="section" id="disparity-map-streaming">
+<h2>Disparity map streaming<a class="headerlink" href="#disparity-map-streaming" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Binocular_disparity">Disparity image</a> is an image that contains a shift value for each pixel in the left <a class="reference external" href="https://en.wikipedia.org/wiki/Image_rectification">rectified image</a>
+with respect to the right <a class="reference external" href="https://en.wikipedia.org/wiki/Image_rectification">rectified image</a> of the same scene, while both images have been taken
+taken at the same time.</p>
+<div class="section" id="id1">
+<h3>Using ROS Tools<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://wiki.ros.org/image_view">image_view</a> package can be used to view disparity images.</p>
+<div class="highlight-bash"><div class="highlight"><pre>rosrun image_view disparity_view image:<span class="o">=</span>/disparity
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Code sample<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>The following sample will allow you to stream disparity map from your VIPER.
+It converts disparity image which is float type to grayscale image using <a class="reference external" href="https://opencv.org/">OpenCV</a> library.</p>
+<p>First you need to create a catkin workspace.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">source</span> /opt/ros/kinetic/setup.bash
+mkdir -p ~/catkin_ws/src
+<span class="nb">cd</span> ~/catkin_ws
+catkin init
+</pre></div>
+</div>
+<p>Then create a simple package using the following files.</p>
+<p><a class="reference download internal" href="_downloads/main3.cpp" download=""><code class="xref download docutils literal"><span class="pre">disparity_streaming/main.cpp</span></code></a></p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;opencv2/highgui/highgui.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cv_bridge/cv_bridge.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stereo_msgs/DisparityImage.h&gt;</span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="nf">disparityImageCallback</span><span class="p">(</span><span class="k">const</span> <span class="n">stereo_msgs</span><span class="o">::</span><span class="n">DisparityImageConstPtr</span><span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// Extracting disparity image</span>
+  <span class="k">const</span> <span class="n">sensor_msgs</span><span class="o">::</span><span class="n">Image</span><span class="o">&amp;</span> <span class="n">dimage</span> <span class="o">=</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">image</span><span class="p">;</span>
+  <span class="k">const</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat_</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">dmat</span><span class="p">(</span><span class="n">dimage</span><span class="p">.</span><span class="n">height</span><span class="p">,</span> <span class="n">dimage</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">dimage</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dimage</span><span class="p">.</span><span class="n">step</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">disp_u</span><span class="p">(</span><span class="n">dmat</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="c1">// Converts disparity to uint8</span>
+  <span class="n">dmat</span><span class="p">.</span><span class="n">convertTo</span><span class="p">(</span><span class="n">disp_u</span><span class="p">,</span> <span class="n">disp_u</span><span class="p">.</span><span class="n">type</span><span class="p">());</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">imshow</span><span class="p">(</span><span class="s">&quot;Disparity view&quot;</span><span class="p">,</span> <span class="n">disp_u</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">&quot;disparity_streaming&quot;</span><span class="p">);</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">nh</span><span class="p">;</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">namedWindow</span><span class="p">(</span><span class="s">&quot;Disparity view&quot;</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">startWindowThread</span><span class="p">();</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span> <span class="n">sub</span> <span class="o">=</span> <span class="n">nh</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s">&quot;disparity&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">disparityImageCallback</span><span class="p">);</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">spin</span><span class="p">();</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">destroyWindow</span><span class="p">(</span><span class="s">&quot;Disparity view&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" href="_downloads/CMakeLists3.txt" download=""><code class="xref download docutils literal"><span class="pre">disparity_streaming/CMakeLists.txt</span></code></a></p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">3.5.1</span><span class="p">)</span>
+
+<span class="nb">project</span><span class="p">(</span><span class="s">disparity_streaming</span><span class="p">)</span>
+
+<span class="nb">add_compile_options</span><span class="p">(</span><span class="s">-std=c++14</span> <span class="s">-O3</span><span class="p">)</span>
+
+<span class="c"># Find required packages</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">catkin</span> <span class="s">REQUIRED</span> <span class="s">COMPONENTS</span>
+  <span class="s">roscpp</span>
+  <span class="s">std_msgs</span>
+  <span class="s">sensor_msgs</span>
+  <span class="s">cv_bridge</span>
+  <span class="s">stereo_msgs</span>
+<span class="p">)</span>
+
+<span class="nb">find_package</span><span class="p">(</span><span class="s">OpenCV</span> <span class="s">REQUIRED</span><span class="p">)</span>
+
+<span class="nb">catkin_package</span><span class="p">(</span>
+  <span class="s">LIBRARIES</span>
+<span class="p">)</span>
+
+<span class="nb">include_directories</span><span class="p">(</span>
+  <span class="s">include</span>
+  <span class="o">${</span><span class="nv">OpenCV_INCLUDE_DIRS</span><span class="o">}</span>
+  <span class="o">${</span><span class="nv">catkin_INCLUDE_DIRS</span><span class="o">}</span>
+<span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">disparity_streaming</span> <span class="s">main.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">disparity_streaming</span> <span class="o">${</span><span class="nv">OpenCV_LIBRARIES</span><span class="o">}</span> <span class="o">${</span><span class="nv">catkin_LIBRARIES</span><span class="o">}</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" href="_downloads/package2.xml" download=""><code class="xref download docutils literal"><span class="pre">disparity_streaming/package.xml</span></code></a></p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;package</span> <span class="na">format=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;name&gt;</span>disparity_streaming<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;description&gt;</span>Simple disparity streaming application<span class="nt">&lt;/description&gt;</span>
+
+  <span class="nt">&lt;maintainer</span> <span class="na">email=</span><span class="s">&quot;arnas.ivanavicius@rubedos.com&quot;</span><span class="nt">&gt;</span>Arnas Ivanavicius<span class="nt">&lt;/maintainer&gt;</span>
+  <span class="nt">&lt;author</span> <span class="na">email=</span><span class="s">&quot;arnas.ivanavicius@rubedos.com&quot;</span><span class="nt">&gt;</span>Arnas Ivanavicius<span class="nt">&lt;/author&gt;</span>
+  <span class="nt">&lt;license&gt;</span>Proprietary<span class="nt">&lt;/license&gt;</span>
+  <span class="nt">&lt;url</span> <span class="na">type=</span><span class="s">&quot;website&quot;</span><span class="nt">&gt;</span>http://www.rubedos.com<span class="nt">&lt;/url&gt;</span>
+
+  <span class="nt">&lt;buildtool_depend&gt;</span>catkin<span class="nt">&lt;/buildtool_depend&gt;</span>
+
+  <span class="nt">&lt;depend&gt;</span>roscpp<span class="nt">&lt;/depend&gt;</span>
+  <span class="nt">&lt;depend&gt;</span>sensor_msgs<span class="nt">&lt;/depend&gt;</span>
+  <span class="nt">&lt;depend&gt;</span>stereo_msgs<span class="nt">&lt;/depend&gt;</span>
+  <span class="nt">&lt;depend&gt;</span>cv_bridge<span class="nt">&lt;/depend&gt;</span>
+<span class="nt">&lt;/package&gt;</span>
+</pre></div>
+</div>
+<p>Build and run the sample:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> ~/catkin_ws
+catkin build disparity_streaming
+<span class="nb">source</span> devel/setup.bash
+<span class="nb">export</span> <span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://&lt;VIPER_IP&gt;:11311
+rosrun disparity_streaming disparity_streaming
+</pre></div>
+</div>
+<p>You should see <code class="docutils literal"><span class="pre">disparity</span></code> topic being published to the <code class="docutils literal"><span class="pre">Disparity</span> <span class="pre">view</span></code> window.</p>
+</div>
+</div>
+<div class="section" id="point-cloud-streaming">
+<h2>Point cloud streaming<a class="headerlink" href="#point-cloud-streaming" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Point_cloud">Point cloud</a> is a 3D data structure that contains x, y, z coordinates (in meters) for each pixel in
+left rectified image, and describes a 3D scene.</p>
+<div class="section" id="id3">
+<h3>Using ROS Tools<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://wiki.ros.org/rviz">rviz</a> can be used to view point clouds.</p>
+<blockquote>
+<div><ul class="simple">
+<li>run rviz [rosrun rviz rviz];</li>
+<li>Add display type in rviz [Add-&gt;PointCloud2];</li>
+<li>Browse for the <code class="docutils literal"><span class="pre">points2</span></code> topic;</li>
+<li>Make sure correct link is selected, e.g. <code class="docutils literal"><span class="pre">cvm_base_link</span></code>.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id4">
+<h3>Code sample<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>The following sample will allow you to stream point clouds from your VIPER.
+It uses <a class="reference external" href="http://pointclouds.org/">PCL</a> library to visualize point clouds received from VIPER.</p>
+<p>First you need to create a catkin workspace.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">source</span> /opt/ros/kinetic/setup.bash
+mkdir -p ~/catkin_ws/src
+<span class="nb">cd</span> ~/catkin_ws
+catkin init
+</pre></div>
+</div>
+<p>Then create a simple package using the following files.</p>
+<p><a class="reference download internal" href="_downloads/main4.cpp" download=""><code class="xref download docutils literal"><span class="pre">pointcloud_streaming/main.cpp</span></code></a></p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sensor_msgs/PointCloud2.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;pcl/point_cloud.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;pcl/point_types.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;pcl_conversions/pcl_conversions.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;pcl/visualization/cloud_viewer.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;pcl/filters/passthrough.h&gt;</span><span class="cp"></span>
+
+<span class="k">typedef</span> <span class="n">pcl</span><span class="o">::</span><span class="n">PointXYZRGB</span> <span class="n">PointType</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">PointCloudProcessor</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">PointCloudProcessor</span><span class="p">()</span>
+        <span class="o">:</span> <span class="n">m_viewer</span><span class="p">()</span>
+        <span class="p">,</span> <span class="n">m_buffer</span><span class="p">()</span>
+        <span class="p">,</span> <span class="n">m_mutex</span><span class="p">()</span>
+        <span class="p">,</span> <span class="n">m_cloudSubscriber</span><span class="p">()</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+
+  <span class="kt">void</span> <span class="n">setViewer</span><span class="p">(</span><span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">visualization</span><span class="o">::</span><span class="n">CloudViewer</span><span class="o">&gt;&amp;</span> <span class="n">viewer</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">m_viewer</span> <span class="o">=</span> <span class="n">viewer</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kt">void</span> <span class="n">subscribeTo</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">topicName</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">nh</span><span class="p">;</span>
+    <span class="n">m_cloudSubscriber</span> <span class="o">=</span> <span class="n">nh</span><span class="p">.</span><span class="n">subscribe</span><span class="o">&lt;</span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">PointCloud2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">topicName</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">PointCloudProcessor</span><span class="o">::</span><span class="n">cloudCallback</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="n">_1</span><span class="p">));</span>
+  <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+
+    <span class="kt">void</span> <span class="n">cloudCallback</span><span class="p">(</span><span class="k">const</span> <span class="n">sensor_msgs</span><span class="o">::</span><span class="n">PointCloud2ConstPtr</span><span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">PointType</span><span class="o">&gt;::</span><span class="n">Ptr</span> <span class="n">pclCloud</span><span class="p">(</span><span class="k">new</span> <span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">PointType</span><span class="o">&gt;</span><span class="p">);</span>
+      <span class="n">pcl</span><span class="o">::</span><span class="n">fromROSMsg</span><span class="p">(</span><span class="o">*</span><span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">pclCloud</span><span class="p">);</span>
+
+      <span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">PointType</span><span class="o">&gt;::</span><span class="n">Ptr</span> <span class="n">filtered</span><span class="p">(</span><span class="k">new</span> <span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">PointType</span><span class="o">&gt;</span><span class="p">());</span>
+
+      <span class="n">pcl</span><span class="o">::</span><span class="n">PassThrough</span><span class="o">&lt;</span><span class="n">PointType</span><span class="o">&gt;</span> <span class="n">pass</span><span class="p">;</span>
+      <span class="n">pass</span><span class="p">.</span><span class="n">setInputCloud</span><span class="p">(</span><span class="n">pclCloud</span><span class="p">);</span>
+      <span class="n">pass</span><span class="p">.</span><span class="n">setFilterFieldName</span> <span class="p">(</span><span class="s">&quot;z&quot;</span><span class="p">);</span>
+      <span class="n">pass</span><span class="p">.</span><span class="n">setFilterLimits</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>  <span class="c1">// (min,max)</span>
+      <span class="n">pass</span><span class="p">.</span><span class="n">filter</span><span class="p">(</span><span class="o">*</span><span class="n">filtered</span><span class="p">);</span>
+
+      <span class="n">m_viewer</span><span class="o">-&gt;</span><span class="n">showCloud</span><span class="p">(</span><span class="n">filtered</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">visualization</span><span class="o">::</span><span class="n">CloudViewer</span><span class="o">&gt;</span> <span class="n">m_viewer</span><span class="p">;</span>
+    <span class="n">pcl</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">&lt;</span><span class="n">PointType</span><span class="o">&gt;::</span><span class="n">ConstPtr</span> <span class="n">m_buffer</span><span class="p">;</span>
+    <span class="n">boost</span><span class="o">::</span><span class="n">mutex</span> <span class="n">m_mutex</span><span class="p">;</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span> <span class="n">m_cloudSubscriber</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">&quot;pointcloud_streaming&quot;</span><span class="p">);</span>
+  <span class="n">PointCloudProcessor</span> <span class="n">v</span><span class="p">;</span>
+
+  <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">pcl</span><span class="o">::</span><span class="n">visualization</span><span class="o">::</span><span class="n">CloudViewer</span><span class="o">&gt;</span> <span class="n">viewer</span><span class="p">(</span><span class="k">new</span> <span class="n">pcl</span><span class="o">::</span><span class="n">visualization</span><span class="o">::</span><span class="n">CloudViewer</span><span class="p">(</span><span class="s">&quot;PointCloud view&quot;</span><span class="p">));</span>
+  <span class="n">v</span><span class="p">.</span><span class="n">setViewer</span><span class="p">(</span><span class="n">viewer</span><span class="p">);</span>
+  <span class="n">v</span><span class="p">.</span><span class="n">subscribeTo</span><span class="p">(</span><span class="s">&quot;points2&quot;</span><span class="p">);</span>
+
+  <span class="n">ros</span><span class="o">::</span><span class="n">spin</span><span class="p">();</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" href="_downloads/CMakeLists4.txt" download=""><code class="xref download docutils literal"><span class="pre">pointcloud_streaming/CMakeLists.txt</span></code></a></p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">3.5.1</span><span class="p">)</span>
+
+<span class="nb">project</span><span class="p">(</span><span class="s">pointcloud_streaming</span><span class="p">)</span>
+
+<span class="nb">add_compile_options</span><span class="p">(</span><span class="s">-std=c++14</span> <span class="s">-O3</span><span class="p">)</span>
+
+<span class="c"># Find required packages</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">catkin</span> <span class="s">REQUIRED</span> <span class="s">COMPONENTS</span>
+  <span class="s">roscpp</span>
+  <span class="s">sensor_msgs</span>
+  <span class="s">pcl_ros</span>
+  <span class="s">pcl_conversions</span>
+<span class="p">)</span>
+
+<span class="c">#find_package(PCL 1.8 REQUIRED)</span>
+
+<span class="nb">add_definitions</span><span class="p">(</span><span class="o">${</span><span class="nv">PCL_DEFINITIONS</span><span class="o">}</span><span class="p">)</span>
+
+
+<span class="nb">catkin_package</span><span class="p">(</span>
+  <span class="s">LIBRARIES</span>
+<span class="p">)</span>
+
+<span class="nb">include_directories</span><span class="p">(</span>
+  <span class="s">include</span>
+  <span class="o">${</span><span class="nv">catkin_INCLUDE_DIRS</span><span class="o">}</span>
+  <span class="o">${</span><span class="nv">PCL_INCLUDE_DIRS</span><span class="o">}</span>
+<span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">pointcloud_streaming</span> <span class="s">main.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">pointcloud_streaming</span> <span class="o">${</span><span class="nv">catkin_LIBRARIES</span><span class="o">}</span> <span class="o">${</span><span class="nv">PCL_LIBRARIES</span><span class="o">}</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" href="_downloads/package3.xml" download=""><code class="xref download docutils literal"><span class="pre">pointcloud_streaming/package.xml</span></code></a></p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;package</span> <span class="na">format=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;name&gt;</span>pointcloud_streaming<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;description&gt;</span>Simple point cloud streaming application<span class="nt">&lt;/description&gt;</span>
+
+  <span class="nt">&lt;maintainer</span> <span class="na">email=</span><span class="s">&quot;arnas.ivanavicius@rubedos.com&quot;</span><span class="nt">&gt;</span>Arnas Ivanavicius<span class="nt">&lt;/maintainer&gt;</span>
+  <span class="nt">&lt;author</span> <span class="na">email=</span><span class="s">&quot;arnas.ivanavicius@rubedos.com&quot;</span><span class="nt">&gt;</span>Arnas Ivanavicius<span class="nt">&lt;/author&gt;</span>
+  <span class="nt">&lt;license&gt;</span>Proprietary<span class="nt">&lt;/license&gt;</span>
+  <span class="nt">&lt;url</span> <span class="na">type=</span><span class="s">&quot;website&quot;</span><span class="nt">&gt;</span>http://www.rubedos.com<span class="nt">&lt;/url&gt;</span>
+
+  <span class="nt">&lt;buildtool_depend&gt;</span>catkin<span class="nt">&lt;/buildtool_depend&gt;</span>
+
+  <span class="nt">&lt;depend&gt;</span>roscpp<span class="nt">&lt;/depend&gt;</span>
+  <span class="nt">&lt;depend&gt;</span>sensor_msgs<span class="nt">&lt;/depend&gt;</span>
+  <span class="nt">&lt;depend&gt;</span>pcl_ros<span class="nt">&lt;/depend&gt;</span>
+  <span class="nt">&lt;depend&gt;</span>pcl_conversions<span class="nt">&lt;/depend&gt;</span>
+<span class="nt">&lt;/package&gt;</span>
+</pre></div>
+</div>
+<p>Build and run the sample:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> ~/catkin_ws
+catkin build pointcloud_streaming
+<span class="nb">source</span> devel/setup.bash
+<span class="nb">export</span> <span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://&lt;VIPER_IP&gt;:11311
+rosrun pointcloud_streaming pointcloud_streaming
+</pre></div>
+</div>
+<p>You should see <code class="docutils literal"><span class="pre">points2</span></code> topic being published to the <code class="docutils literal"><span class="pre">PointCloud</span> <span class="pre">view</span></code> window.
+Please refer to <a class="reference external" href="http://pointclouds.org/documentation/">PCL documentation</a> in order to get familiar with point cloud processing.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+            
+  <div class="footer-relations">
+    
+      <div class="pull-left">
+        <a class="btn btn-default" href="getting_started.html" title="previous chapter (use the left arrow)">Getting started</a>
+      </div>
+    
+      <div class="pull-right">
+        <a class="btn btn-default" href="viper_apps.html" title="next chapter (use the right arrow)">VIPER Apps</a>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="viper_apps.html" title="VIPER Apps"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="getting_started.html" title="Getting started"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+<script type="text/javascript">
+  $("#mobile-toggle a").click(function () {
+    $("#left-column").toggle();
+  });
+</script>
+<script type="text/javascript" src="_static/js/bootstrap.js"></script>
+  <div class="footer">
+    &copy; Copyright 2019, Rubedos. Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  </body>
+</html>
