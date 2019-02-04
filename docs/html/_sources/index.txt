@@ -8,7 +8,7 @@ VIPER SDK Docummentation
 more affordable environmental perception is needed. VIPER (TM) enables intelligent
 automation with the turn-key set of hardware and AI software.
 
-.. image:: images/top-foto-viper-760-2.jpg
+.. image:: images/image1.png
    :width: 100%
 
 .. toctree::
