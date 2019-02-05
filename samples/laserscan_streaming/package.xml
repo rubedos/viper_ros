@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>laserscan_streaming</name>
+  <version>1.0.0</version>
+  <description>Simple laserscan streaming application</description>
+
+  <maintainer email="arnas.ivanavicius@rubedos.com">Arnas Ivanavicius</maintainer>
+  <author email="arnas.ivanavicius@rubedos.com">Arnas Ivanavicius</author>
+  <license>Proprietary</license>
+  <url type="website">http://www.rubedos.com</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>roscpp</depend>
+  <depend>sensor_msgs</depend>
+</package>
