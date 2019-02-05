@@ -81,7 +81,7 @@ Required tf Transforms
 .. image:: images/tf_diagram2.png
    :width: 100%
 
-Transform from a robot base to the camera base is necessary when VIPER is used together with a robot.
+Transform from a robot to the camera base is necessary when VIPER is used together with a robot.
 It is configurable via `cvm_description`_ dynamic parameters.
 
 

@@ -1,13 +1,13 @@
 .. Copyright 2019 Rubedos
 
 ===============================
-Getting started
+Getting Started
 ===============================
 In order to get VIPER output on your machine VIPER SDK has to be installed.
 
 .. note:: This guide is meant for Ubuntu users.
 
-Rubedo's repository
+Rubedo's Repository
 ===============================
 Add the repository and update:
 

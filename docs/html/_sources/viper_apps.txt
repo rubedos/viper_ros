@@ -15,7 +15,7 @@ Here we provide a simple GUI program (using `QT`_) that visualizes all detected 
 selected by clicking on it, it is sent to the FollowMe App as a target and from that moment - being tracked. Distance to the target is
 also displayed. It can be used to tell the robot where the target is.
 
-Code sample
+Code Sample
 ------------------
 
 First you need to create a catkin workspace.
@@ -64,10 +64,13 @@ Build and run the sample:
     catkin build cvm_follow_me_sample
     source devel/setup.bash
     export ROS_MASTER_URI=http://<VIPER_IP>:11311
+    export ROS_IP=<HOST_IP>
     rosrun cvm_follow_me_sample cvm_follow_me_sample
 
 Enable the FollowMe app and click on the person you want to track. The person who is being tracked
 will be marked with a red bounding box.
+
+.. note:: Make sure the ``ROS_IP`` you set is the IP of the host machine that is connected to your VIPER, otherwise you will not be able to enable the FollowMe App while using the sample above. For more information about networking please refer to `ROS Network Setup`_.
 
 Obstacle Detector
 ===================
@@ -90,7 +93,7 @@ Using ROS Tools
 
   - Make sure correct link is selected, e.g. ``cvm_base_link``.
 
-Code sample
+Code Sample
 ------------------
 First you need to create a catkin workspace.
 
@@ -128,7 +131,7 @@ Build and run the sample:
     export ROS_MASTER_URI=http://<VIPER_IP>:11311
     rosrun laserscan_streaming laserscan_streaming
 
-
 .. _QT: https://wiki.qt.io/Qt_for_Beginners
 .. _rviz: http://wiki.ros.org/rviz
 .. _Obstacle Detector configuration: configuration.html#obstacle-detector-app-configuration
+.. _ROS Network Setup: http://wiki.ros.org/ROS/NetworkSetup

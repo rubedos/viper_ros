@@ -138,7 +138,7 @@ max_range
 use_inf
   If disabled, report infinite range (no obstacle) as ``range_max`` + 1. Otherwise report infinite range as ``+inf``. ``False`` is default.
 
-VIPER Web panel
+VIPER Web Panel
 =========================================
 
 When you are connected to the same network as VIPER, you should be able to access
@@ -182,7 +182,7 @@ Version update, depending on internet connection speed, can take up to 30 minute
 
 
 ----------------------------------------
-Robot config
+Robot Config
 ----------------------------------------
 
 In this section Robot configuration parameters can be adjusted.
@@ -228,7 +228,7 @@ After your license request is fulfilled, you should receive license files (one f
 
 
 ----------------------------------------
-System actions
+System Actions
 ----------------------------------------
 
 Available system actions:
@@ -242,7 +242,7 @@ Available system actions:
 
 
 ----------------------------------------
-Network config
+Network Config
 ----------------------------------------
 
 In network configuration section you can adjust network parameters to match your network setup.
@@ -265,14 +265,14 @@ After you enter values, click **Submit**, then you will see extra confirmation s
 
 
 ----------------------------------------
-System time
+System Time
 ----------------------------------------
 
 In this section VIPER system time is shown. Reload page to get the most current information.
 
 
 ----------------------------------------
-System info
+System Info
 ----------------------------------------
 
 In this section various VIPER system information is shown. Reload page to get the most current information.
