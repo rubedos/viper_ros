@@ -18,13 +18,13 @@ cd ~/catkin_ws
 catkin build
 ```
 
-Run the sample app:
+Run a sample app:
 
 ```bash
 source ~/catkin_ws/devel/setup.bash
 export ROS_MASTER_URI=http://<VIPER_IP>:11311
 export ROS_IP=<HOST_IP>
 
-rosrun cvm_follow_me cvm_follow_me
+rosrun cvm_follow_me_sample cvm_follow_me_sample
 
 ```
