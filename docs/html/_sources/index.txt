@@ -1,7 +1,7 @@
 .. Copyright 2019 Rubedos
 
 ============================
-VIPER SDK Docummentation
+VIPER SDK Documentation
 ============================
 
 `VIPER`_ is a bolt on set of 'Eyes' equipped with AI enhanced 'Brain' when better,
