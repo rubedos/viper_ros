@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>cvm_follow_aruco_sample</name>
+  <version>1.0.0</version>
+  <description>FollowAruco sample application</description>
+
+  <maintainer email="arnas.ivanavicius@rubedos.com">Arnas Ivanavicius</maintainer>
+  <author email="arnas.ivanavicius@rubedos.com">Arnas Ivanavicius</author>
+  <license>Proprietary</license>
+  <url type="website">http://www.rubedos.com</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend>qtbase5-dev</buildtool_depend>
+  <exec_depend>cvm_base</exec_depend>
+
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>cv_bridge</depend>
+  <depend>message_filters</depend>
+  <depend>dynamic_reconfigure</depend>
+
+</package>
