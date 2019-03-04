@@ -15,7 +15,8 @@
   <link rel="stylesheet" type="text/css" href="_static/css/bootstrap-theme.min.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-    <title>VIPER Configuration &mdash; VIPER SDK 1.0.0.1998 documentation</title>
+    <title>VIPER Configuration &mdash; VIPER SDK 1.0.0.2186
+ documentation</title>
     
     <link rel="stylesheet" href="_static/guzzle.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -23,7 +24,8 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.0.0.1998',
+        VERSION:     '1.0.0.2186
+',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -32,8 +34,9 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="VIPER SDK 1.0.0.1998 documentation" href="index.html" />
-    <link rel="next" title="Frequently asked questions" href="faq.html" />
+    <link rel="top" title="VIPER SDK 1.0.0.2186
+ documentation" href="index.html" />
+    <link rel="next" title="Frequently Asked Questions" href="faq.html" />
     <link rel="prev" title="VIPER ROS API" href="ros_api.html" />
   
    
@@ -47,12 +50,13 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="faq.html" title="Frequently asked questions"
+          <a href="faq.html" title="Frequently Asked Questions"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="ros_api.html" title="VIPER ROS API"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0.1998 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0.2186
+ documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="container-wrapper">
@@ -63,7 +67,8 @@
   <div id="left-column">
     <div class="sphinxsidebar">
         <a href="
-    index.html" class="text-logo">VIPER SDK 1.0.0.1998 documentation</a>
+    index.html" class="text-logo">VIPER SDK 1.0.0.2186
+ documentation</a>
         
 <div class="sidebar-block">
   <div class="sidebar-wrapper">
@@ -73,17 +78,17 @@
     
     
       <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="viper_core.html">VIPER Core</a></li>
 <li class="toctree-l1"><a class="reference internal" href="viper_apps.html">VIPER Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ros_msgs.html">VIPER ROS Messages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ros_api.html">VIPER ROS API</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">VIPER Configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#ros-dynamic-reconfigure">ROS dynamic reconfigure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#viper-web-panel">VIPER Web panel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ros-dynamic-reconfigure">ROS Dynamic Reconfigure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#viper-web-panel">VIPER Web Panel</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
 </ul>
 
     
@@ -125,30 +130,49 @@
 <li>VIPER Web panel.</li>
 </ul>
 <div class="section" id="ros-dynamic-reconfigure">
-<h2>ROS dynamic reconfigure<a class="headerlink" href="#ros-dynamic-reconfigure" title="Permalink to this headline">¶</a></h2>
+<h2>ROS Dynamic Reconfigure<a class="headerlink" href="#ros-dynamic-reconfigure" title="Permalink to this headline">¶</a></h2>
 <p>Since VIPER is based on ROS, all the nodes are configurable via <a class="reference external" href="http://wiki.ros.org/dynamic_reconfigure">dynamic_reconfigure</a>.
 All parameters can be accessed via <a class="reference external" href="http://wiki.ros.org/rqt">rqt</a> dynamic reconfigure plugin.</p>
 <div class="section" id="viper-core-configuration">
 <h3>VIPER Core Configuration<a class="headerlink" href="#viper-core-configuration" title="Permalink to this headline">¶</a></h3>
 <p>VIPER Core has the following nodes and parameters.</p>
-<div class="section" id="cvm-description">
-<h4>cvm_description<a class="headerlink" href="#cvm-description" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="cvm-description-parent-link">
+<h4>cvm_description/parent_link<a class="headerlink" href="#cvm-description-parent-link" title="Permalink to this headline">¶</a></h4>
 <p>When the camera is attached to a robot it might be necessary to take it into account by describing the setup.</p>
 <dl class="docutils">
 <dt>parent_link</dt>
 <dd>Robot link to which camera is attached. If empty, transform is not published. Empty is default.</dd>
 <dt>rotation_r</dt>
-<dd>Roll relative to the parent link&#8217;s reference frame in radians. Default: 0.0. Range: [-3.14; 3.14].</dd>
+<dd>Roll relative to the parent link&#8217;s reference frame in degrees. Default: 0.0. Range: [-180.0; 180.0].</dd>
 <dt>rotation_p</dt>
-<dd>Pitch relative to the parent link&#8217;s reference frame in radians. Default: 0.0. Range: [-3.14; 3.14].</dd>
+<dd>Pitch relative to the parent link&#8217;s reference frame in degrees. Default: 0.0. Range: [-180.0; 180.0].</dd>
 <dt>rotation_y</dt>
-<dd>Yaw relative to the parent link&#8217;s reference frame in radians. Default: 0.0. Range: [-3.14; 3.14].</dd>
+<dd>Yaw relative to the parent link&#8217;s reference frame in degrees. Default: 0.0. Range: [-180.0; 180.0].</dd>
 <dt>position_x</dt>
-<dd>X translation relative to the parent link&#8217;s reference frame in meters. Default: 0.0. Range: [-10.0; 10.0].</dd>
+<dd>X translation relative to the parent link&#8217;s reference frame in meters. Default: 0.0. Range: [-100.0; 100.0].</dd>
 <dt>position_y</dt>
-<dd>Y translation relative to the parent link&#8217;s reference frame in meters. Default: 0.0. Range: [-10.0; 10.0].</dd>
+<dd>Y translation relative to the parent link&#8217;s reference frame in meters. Default: 0.0. Range: [-100.0; 100.0].</dd>
 <dt>position_z</dt>
-<dd>Z translation relative to the parent link&#8217;s reference frame in meters. Default: 0.0. Range: [-10.0; 10.0].</dd>
+<dd>Z translation relative to the parent link&#8217;s reference frame in meters. Default: 0.0. Range: [-100.0; 100.0].</dd>
+</dl>
+</div>
+<div class="section" id="cvm-description-cvm-ground-link">
+<h4>cvm_description/cvm_ground_link<a class="headerlink" href="#cvm-description-cvm-ground-link" title="Permalink to this headline">¶</a></h4>
+<p>The ground is described relatively to VIPER&#8217;s center (<code class="docutils literal"><span class="pre">cvm_base_link</span></code>), using the following parameters. The transform can be used by the Obstacle Detector App
+to adjust the detection of obstacles when the ground is not parallel to, or is located at VIPER&#8217;s center.</p>
+<dl class="docutils">
+<dt>rotation_r</dt>
+<dd>Roll relative to the cvm base link&#8217;s reference frame in degrees. Default: 0.0. Range: [-180.0; 180.0].</dd>
+<dt>rotation_p</dt>
+<dd>Pitch relative to the cvm base link&#8217;s reference frame in degrees. Default: 0.0. Range: [-180.0; 180.0].</dd>
+<dt>rotation_y</dt>
+<dd>Yaw relative to the cvm base link&#8217;s reference frame in degrees. Default: 0.0. Range: [-180.0; 180.0].</dd>
+<dt>position_x</dt>
+<dd>X translation relative to the cvm base link&#8217;s reference frame in meters. Default: 0.0. Range: [-100.0; 100.0].</dd>
+<dt>position_y</dt>
+<dd>Y translation relative to the cvm base link&#8217;s reference frame in meters. Default: 0.0. Range: [-100.0; 100.0].</dd>
+<dt>position_z</dt>
+<dd>Z translation relative to the cvm base link&#8217;s reference frame in meters. Default: 0.0. Range: [-100.0; 100.0].</dd>
 </dl>
 </div>
 <div class="section" id="cvm-v4l2-camera">
@@ -187,6 +211,18 @@ All parameters can be accessed via <a class="reference external" href="http://wi
 <dd>Queue size for storing visual data. If 0 then visual data is not compared. Default: 15. Range: [0; 100].</dd>
 </dl>
 </div>
+</div>
+<div class="section" id="followaruco-app-configuration">
+<h3>FollowAruco App Configuration<a class="headerlink" href="#followaruco-app-configuration" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="cvm-follow-aruco">
+<h4>cvm_follow_aruco<a class="headerlink" href="#cvm-follow-aruco" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
+<dt>marker_size</dt>
+<dd>Size of the Aruco marker in meters. Default: 0.15. Range: [0.0; 2.0].</dd>
+<dt>marker_id</dt>
+<dd>ID of the <a class="reference external" href="http://chev.me/arucogen/">marker</a> that will be considered as a target. Default: 4. Range: [0; 1000].</dd>
+</dl>
+</div>
 <div class="section" id="cvm-follow-me-cvm-object-detector">
 <h4>cvm_follow_me/cvm_object_detector<a class="headerlink" href="#cvm-follow-me-cvm-object-detector" title="Permalink to this headline">¶</a></h4>
 <dl class="docutils">
@@ -206,20 +242,20 @@ Camera rotation types:</p>
 <h4>cvm_laserscan<a class="headerlink" href="#cvm-laserscan" title="Permalink to this headline">¶</a></h4>
 <dl class="docutils">
 <dt>target_frame</dt>
-<dd>If provided, transforms the pointcloud into this frame before converting to a laser scan. If the target frame is set to the robot base link or another part that is parallel to the ground, laser scan will also be parallel to the ground.
-Empty is default.</dd>
+<dd>If provided, transforms the point cloud into this frame before converting to a laser scan. If the target frame is set to the <code class="docutils literal"><span class="pre">cvm_ground_link</span></code> or another part that is parallel to the ground, laser scan will also be parallel to the ground.
+Empty is default, which means that by default laser scans are produced in <code class="docutils literal"><span class="pre">left_camera_link</span></code>.</dd>
 <dt>min_height</dt>
-<dd>The minimum height to sample in the point cloud in meters. Default: -1.0. Range: [-10.0; 10.0].</dd>
+<dd>The minimum height to sample in the point cloud in meters. Default: -1.0. Range: [-100.0; 100.0].</dd>
 <dt>max_height</dt>
-<dd>The maximum height to sample in the point cloud in meters. Default: 1.0. Range: [-10.0; 10.0].</dd>
+<dd>The maximum height to sample in the point cloud in meters. Default: 1.0. Range: [-100.0; 100.0].</dd>
 <dt>min_angle</dt>
-<dd>The minimum scan angle in radians. Default: -0.77. Range: [-3.14; 3.14].</dd>
+<dd>The minimum scan angle in degrees. Default: -30.0. Range: [-180.0; 180.0].</dd>
 <dt>max_angle</dt>
-<dd>The maximum scan angle in radians. Default: 0.77. Range: [-3.14; 3.14].</dd>
+<dd>The maximum scan angle in degrees. Default: 30.0. Range: [-180.0; 180.0].</dd>
 <dt>angle_increment</dt>
-<dd>Resolution of laser scan in radians per ray. Default: 0.01. Range: [-3.14; 3.14].</dd>
+<dd>Resolution of laser scan in degrees per ray. Default: 0.6. Range: [-180.0; 180.0].</dd>
 <dt>scan_time</dt>
-<dd>The scan rate in seconds. Default: 0.33. Range: [0.0; 1.0].</dd>
+<dd>The rate at which laser scan is produced in seconds. This information does not change the output of the Obstacle Detector App. Some navigation planners take it into account. Default: 0.1. Range: [0.0; 1.0].</dd>
 <dt>min_range</dt>
 <dd>The minimum ranges to return in meters. Default: 1.0. Range: [0.0; 50.0].</dd>
 <dt>max_range</dt>
@@ -231,7 +267,7 @@ Empty is default.</dd>
 </div>
 </div>
 <div class="section" id="viper-web-panel">
-<h2>VIPER Web panel<a class="headerlink" href="#viper-web-panel" title="Permalink to this headline">¶</a></h2>
+<h2>VIPER Web Panel<a class="headerlink" href="#viper-web-panel" title="Permalink to this headline">¶</a></h2>
 <p>When you are connected to the same network as VIPER, you should be able to access
 VIPER Web panel by opening a browser and entering IP address of your VIPER.</p>
 <div class="section" id="overview">
@@ -239,7 +275,7 @@ VIPER Web panel by opening a browser and entering IP address of your VIPER.</p>
 <p>In the picture below you can see what sections are available in VIPER web panel.</p>
 <p>The following sections are available:</p>
 <ul class="simple">
-<li>CVM Versions</li>
+<li>CVM Version</li>
 <li>Robot config</li>
 <li>Applications</li>
 <li>System actions</li>
@@ -259,14 +295,21 @@ VIPER Web panel by opening a browser and entering IP address of your VIPER.</p>
 <p>If VIPER is connected to the internet, it verifies if there is any newer version of CVM software.
 If newer CVM version is available - update action will be presented to the user.</p>
 <img alt="_images/web_panel_1-versions-800.png" src="_images/web_panel_1-versions-800.png" />
-<p>Version update, depending on internet connection speed, can take up to 30 minutes. Reload page after some time to verify if update has completed.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Version update, depending on internet connection speed, can take up to 30 minutes. Reload page after some time to verify if update has completed.</p>
+</div>
 </div>
 <div class="section" id="robot-config">
-<h3>Robot config<a class="headerlink" href="#robot-config" title="Permalink to this headline">¶</a></h3>
+<h3>Robot Config<a class="headerlink" href="#robot-config" title="Permalink to this headline">¶</a></h3>
 <p>In this section Robot configuration parameters can be adjusted.
 This section is collapsed by default - mouse click on the heading and section will expand.</p>
 <img alt="_images/web_panel_2-robot_config-800.png" src="_images/web_panel_2-robot_config-800.png" />
-<p>If VIPER is being used on the robot, these parameters should be adjusted acordingly.</p>
+<p>If VIPER is being used on the robot, these parameters should be adjusted accordingly.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Viper prefix should contain value without spaces in the middle, also it cannot start with number.</p>
+</div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">If any value changes in this section - applications should be restarted i.e. deactivate and activate every application that you use.</p>
@@ -290,22 +333,23 @@ This section is collapsed by default - mouse click on the heading and section wi
 </div>
 <img alt="_images/web_panel_3-apps-800.png" src="_images/web_panel_3-apps-800.png" />
 <p>In the picture below you can see what information and actions are available for license handling.</p>
-<p>When you have new VIPER then most likely applications (some or all) will have no license installed. In this case, you have to send license request to the email address <a class="reference external" href="mailto:'licensing&#37;&#52;&#48;rubedos&#46;com">'licensing<span>&#64;</span>rubedos<span>&#46;</span>com</a>&#8216;. In the body of license request email you have to include VIPER information (as shown in the picture - copy and paste from the web panel). Also, in the license request you have to include information about yourself and your organization.</p>
+<p>When you have new VIPER then most likely applications (some or all) will have no license installed. In this case, you have to send license request to the email address <a class="reference external" href="mailto:licensing&#37;&#52;&#48;rubedos&#46;com">licensing<span>&#64;</span>rubedos<span>&#46;</span>com</a> . In the body of license request email you have to include VIPER information (as shown in the picture - copy and paste from the web panel). Also, in the license request you have to include information about yourself and your organization.</p>
 <img alt="_images/web_panel_3-apps-1-licenses-800.png" src="_images/web_panel_3-apps-1-licenses-800.png" />
-<p>After your license request is fulfilled, you should receive license files (one file or multiple files). Then you should upload these files into VIPER web panel by pressing <strong>install license</strong> then <strong>Choose file</strong>. After you execute this action, page will reload and application module license status will be updated.</p>
+<p>After your license request is fulfilled, you will receive license files (one file or multiple files). Then you should upload these files into VIPER web panel by pressing <strong>install license</strong> then <strong>Choose file</strong>. After you execute this action, page will reload and application module license status will be updated.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">At any time do not forget to reload page to get the most current information about application status!</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If you are using robot setup i.e. camera is mounted on some kind of robot with its own computer running with ROS, and you activate application with external ROS, VIPER periodically (every 2 minutes) will check if external ROS is <em>alive</em>, and, if it is alive i.e. responding, then VIPER activates application (which previously was activated with external ROS). If VIPER detects that external ROS is not responding, then it deactivates application until next check is performed. Also, you can deactivate or activate application at any time by yourself.</p>
+<p class="last">If you are using robot setup i.e. camera is mounted on some kind of robot with its own computer running with ROS, and you activate application with external ROS, VIPER periodically (every 2 minutes) will check if external ROS is <em>alive</em>, and, if it is alive i.e. responding, then VIPER activates application (which previously was activated with external ROS). If VIPER detects that external ROS is not responding, then it deactivates application until next check is performed. Also, you can manually deactivate or activate application at any time by yourself.</p>
 </div>
 </div>
 <div class="section" id="system-actions">
-<h3>System actions<a class="headerlink" href="#system-actions" title="Permalink to this headline">¶</a></h3>
+<h3>System Actions<a class="headerlink" href="#system-actions" title="Permalink to this headline">¶</a></h3>
 <p>Available system actions:</p>
 <ul class="simple">
+<li>Reset nodes: reset all nodes to its factorey default parameter values</li>
 <li>Shutdown</li>
 <li>Reboot</li>
 </ul>
@@ -316,7 +360,7 @@ This section is collapsed by default - mouse click on the heading and section wi
 <img alt="_images/web_panel_4-system-actions-800.png" src="_images/web_panel_4-system-actions-800.png" />
 </div>
 <div class="section" id="network-config">
-<h3>Network config<a class="headerlink" href="#network-config" title="Permalink to this headline">¶</a></h3>
+<h3>Network Config<a class="headerlink" href="#network-config" title="Permalink to this headline">¶</a></h3>
 <p>In network configuration section you can adjust network parameters to match your network setup.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
@@ -337,11 +381,11 @@ This section is collapsed by default - mouse click on the heading and section wi
 </div>
 </div>
 <div class="section" id="system-time">
-<h3>System time<a class="headerlink" href="#system-time" title="Permalink to this headline">¶</a></h3>
+<h3>System Time<a class="headerlink" href="#system-time" title="Permalink to this headline">¶</a></h3>
 <p>In this section VIPER system time is shown. Reload page to get the most current information.</p>
 </div>
 <div class="section" id="system-info">
-<h3>System info<a class="headerlink" href="#system-info" title="Permalink to this headline">¶</a></h3>
+<h3>System Info<a class="headerlink" href="#system-info" title="Permalink to this headline">¶</a></h3>
 <p>In this section various VIPER system information is shown. Reload page to get the most current information.</p>
 </div>
 </div>
@@ -357,7 +401,7 @@ This section is collapsed by default - mouse click on the heading and section wi
       </div>
     
       <div class="pull-right">
-        <a class="btn btn-default" href="faq.html" title="next chapter (use the right arrow)">Frequently asked questions</a>
+        <a class="btn btn-default" href="faq.html" title="next chapter (use the right arrow)">Frequently Asked Questions</a>
       </div>
     </div>
     <div class="clearer"></div>
@@ -372,12 +416,13 @@ This section is collapsed by default - mouse click on the heading and section wi
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="faq.html" title="Frequently asked questions"
+          <a href="faq.html" title="Frequently Asked Questions"
              >next</a> |</li>
         <li class="right" >
           <a href="ros_api.html" title="VIPER ROS API"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0.1998 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0.2186
+ documentation</a> &raquo;</li> 
       </ul>
     </div>
 <script type="text/javascript">

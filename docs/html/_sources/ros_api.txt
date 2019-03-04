@@ -75,13 +75,15 @@ Internal VIPER transforms, that describe the geometry of our stereo camera.
 .. image:: images/tf_diagram.png
    :width: 100%
 
+``cvm_ground_link`` link is used to describe the ground when it is different from VIPER's center. When this link is configured and set as a target frame for the Obstacle Detector App, the application detects obstacles that are parallel to the ground.
+
 Required tf Transforms
 ----------------------
 
 .. image:: images/tf_diagram2.png
    :width: 100%
 
-Transform from a robot base to the camera base is necessary when VIPER is used together with a robot.
+Transform from a robot to the camera base is necessary when VIPER is used together with a robot.
 It is configurable via `cvm_description`_ dynamic parameters.
 
 
@@ -109,9 +111,9 @@ follow_me/bounding_boxes (`cvm_msgs/BoundingBoxes`_)
 follow_me/target_bounding_box (`cvm_msgs/BoundingBox`_)
   If FollowMe is enabled and the target has been set, publishes current bounding box of the target being tracked.
 
-follow_me/target_position (`geometry_msgs/Point`_)
+follow_me/target_position (`geometry_msgs/PointStamped`_)
   If FollowMe is enabled and the target has been set,
-  published position x, y, z (in meters) to the human being tracked with respect to the left camera.
+  publishes position x, y, z (in meters) to the human being tracked with respect to the left camera optical frame.
 
 Subscribed Topics
 -----------------
@@ -122,6 +124,34 @@ follow_me/enable (`std_msgs/Bool`_)
 follow_me/set_target (`cvm_msgs/BoundingBox`_)
   Bounding box selected from ``follow_me/bounding_boxes``. If FollowMe is enabled,
   the app will start tracking the selected human.
+
+FollowAruco App
+===================
+
+FollowAruco is a VIPER application that tracks `Aruco markers`_ and provides distance to the target with a selected ID.
+
+Published Topics
+----------------
+
+follow_aruco/status (`std_msgs/String`_)
+  If subscribed to, FollowAruco status will be published continually. The following are possible:
+
+  - FollowAruco is disabled;
+  - Tracking marker nr. x.
+
+follow_aruco/target_position (`geometry_msgs/PointStamped`_)
+  If FollowAruco is enabled,
+  publishes position x, y, z (in meters) to the marker being tracked with respect to the left camera optical frame.
+
+follow_aruco/detection_image (`sensor_msgs/Image`_)
+  If FollowAruco is enabled, publishes left rectified image with all detected Aruco markers. The target is marked by a red bounding box,
+  others are marked by a green bounding box.
+
+Subscribed Topics
+-----------------
+
+follow_aruco/enable (`std_msgs/Bool`_)
+  If ``true`` is published to this topic, FollowAruco will be enabled, otherwise it will be disabled.
 
 
 Obstacle Detector App
@@ -139,7 +169,6 @@ laser_scan (`sensor_msgs/LaserScan`_)
   .. _ROS: http://wiki.ros.org/
   .. _std_msgs/Bool: http://docs.ros.org/api/std_msgs/html/msg/Bool.html
   .. _std_msgs/String: http://docs.ros.org/api/std_msgs/html/msg/String.html
-  .. _geometry_msgs/Point: http://docs.ros.org/api/geometry_msgs/html/msg/Point.html
   .. _sensor_msgs/Image: http://docs.ros.org/api/sensor_msgs/html/msg/Image.html
   .. _sensor_msgs/CameraInfo: http://docs.ros.org/api/sensor_msgs/html/msg/CameraInfo.html
   .. _sensor_msgs/PointCloud2: http://docs.ros.org/api/sensor_msgs/html/msg/PointCloud2.html
@@ -152,5 +181,7 @@ laser_scan (`sensor_msgs/LaserScan`_)
   .. _Point cloud: https://en.wikipedia.org/wiki/Point_cloud
   .. _cvm_msgs/BoundingBox: ros_msgs.html#cvm-msgs-boundingbox
   .. _cvm_msgs/BoundingBoxes: ros_msgs.html#cvm-msgs-boundingboxes
-  .. _cvm_description: configuration.html#cvm-description
+  .. _cvm_description: configuration.html#cvm-description/parent_link
   .. _Obstacle Detector configuration: configuration.html#obstacle-detector-app-configuration
+  .. _Aruco markers: http://chev.me/arucogen/
+  .. _geometry_msgs/PointStamped: http://docs.ros.org/api/geometry_msgs/html/msg/PointStamped.html

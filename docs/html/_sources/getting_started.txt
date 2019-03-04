@@ -1,13 +1,13 @@
 .. Copyright 2019 Rubedos
 
 ===============================
-Getting started
+Getting Started
 ===============================
 In order to get VIPER output on your machine VIPER SDK has to be installed.
 
 .. note:: This guide is meant for Ubuntu users.
 
-Rubedo's repository
+Rubedo's Repository
 ===============================
 Add the repository and update:
 
@@ -38,4 +38,7 @@ VIPER can be found on the network by running VIPER Discovery client script:
 
 Once you know your VIPER IP, you can evaluate VIPER functionality.
 
+.. note:: Each VIPER instance comes with the default prefix ``DEFAULT``. When you are using your VIPER, please take its namespace into account. Read more about `VIPER prefix configuration`_.
+
 .. _ROS installation guide: http://wiki.ros.org/kinetic/Installation/Ubuntu
+.. _VIPER prefix configuration: configuration.html#robot-config

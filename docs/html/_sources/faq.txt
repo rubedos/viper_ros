@@ -1,7 +1,7 @@
 .. Copyright 2019 Rubedos
 
 ==========================
-Frequently asked questions
+Frequently Asked Questions
 ==========================
 
 

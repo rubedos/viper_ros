@@ -18,12 +18,11 @@ cd ~/catkin_ws
 catkin build
 ```
 
-Run the samples:
+Run a sample:
 
 ```bash
 source ~/catkin_ws/devel/setup.bash
 export ROS_MASTER_URI=http://<VIPER_IP>:11311
-
 rosrun image_streaming image_streaming
 
 ```

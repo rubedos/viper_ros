@@ -8,7 +8,9 @@ VIPER Core is the base functionality that comes with each instance. `ROS API`_ i
 
 VIPER Core consists of the following features.
 
-RGB image streaming
+.. note:: All topics are provided without a namespace. When you are using your VIPER, please take its namespace into account.
+
+RGB Image Streaming
 ===============================
 VIPER has a set of two cameras. Images come in several formats:
 
@@ -26,7 +28,7 @@ Using ROS Tools
 
     rosrun image_view image_view image:=/image_raw
 
-Code sample
+Code Sample
 ------------------
 
 The following sample will allow you to stream images from your VIPER and display
@@ -71,7 +73,7 @@ Build and run the sample:
 You should see ``image_raw`` topic being published to the ``Image view`` window.
 Please refer to `ROS API`_ to see the full list of topics.
 
-Disparity map streaming
+Disparity Map Streaming
 ===============================
 
 `Disparity image`_ is an image that contains a shift value for each pixel in the left `rectified image`_
@@ -87,7 +89,7 @@ Using ROS Tools
 
     rosrun image_view disparity_view image:=/disparity
 
-Code sample
+Code Sample
 ------------------
 
 The following sample will allow you to stream disparity map from your VIPER.
@@ -132,7 +134,7 @@ Build and run the sample:
 You should see ``disparity`` topic being published to the ``Disparity view`` window.
 
 
-Point cloud streaming
+Point Cloud Streaming
 ===============================
 
 `Point cloud`_ is a 3D data structure that contains x, y, z coordinates (in meters) for each pixel in
@@ -151,7 +153,7 @@ Using ROS Tools
 
   - Make sure correct link is selected, e.g. ``cvm_base_link``.
 
-Code sample
+Code Sample
 ------------------
 
 The following sample will allow you to stream point clouds from your VIPER.

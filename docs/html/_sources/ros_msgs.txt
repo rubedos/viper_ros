@@ -15,3 +15,8 @@ cvm_msgs/BoundingBoxes
 =========================
 
 .. literalinclude:: cvm_msgs/BoundingBoxes.msg
+
+cvm_msgs/StereoImage
+=========================
+
+.. literalinclude:: cvm_msgs/StereoImage.msg

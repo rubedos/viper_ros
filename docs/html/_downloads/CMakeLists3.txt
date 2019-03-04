@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5.1)
 
-project(disparity_streaming)
+project(image_streaming)
 
 add_compile_options(-std=c++14 -O3)
 
@@ -10,7 +10,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   sensor_msgs
   cv_bridge
-  stereo_msgs
+  image_transport
 )
 
 find_package(OpenCV REQUIRED)
@@ -20,10 +20,10 @@ catkin_package(
 )
 
 include_directories(
-  include
-  ${OpenCV_INCLUDE_DIRS}
+  include 
+  ${OpenCV_INCLUDE_DIRS} 
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(disparity_streaming main.cpp)
-target_link_libraries(disparity_streaming ${OpenCV_LIBRARIES} ${catkin_LIBRARIES})
+add_executable(image_streaming main.cpp)
+target_link_libraries(image_streaming ${OpenCV_LIBRARIES} ${catkin_LIBRARIES})

@@ -1,21 +1,19 @@
 cmake_minimum_required(VERSION 3.5.1)
 
-project(pointcloud_streaming)
+project(disparity_streaming)
 
 add_compile_options(-std=c++14 -O3)
 
 # Find required packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
+  std_msgs
   sensor_msgs
-  pcl_ros
-  pcl_conversions
+  cv_bridge
+  stereo_msgs
 )
 
-#find_package(PCL 1.8 REQUIRED)
-
-add_definitions(${PCL_DEFINITIONS})
-
+find_package(OpenCV REQUIRED)
 
 catkin_package(
   LIBRARIES
@@ -23,9 +21,9 @@ catkin_package(
 
 include_directories(
   include
+  ${OpenCV_INCLUDE_DIRS}
   ${catkin_INCLUDE_DIRS}
-  ${PCL_INCLUDE_DIRS}
 )
 
-add_executable(pointcloud_streaming main.cpp)
-target_link_libraries(pointcloud_streaming ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+add_executable(disparity_streaming main.cpp)
+target_link_libraries(disparity_streaming ${OpenCV_LIBRARIES} ${catkin_LIBRARIES})

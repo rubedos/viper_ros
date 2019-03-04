@@ -1,29 +1,21 @@
 #include <ros/ros.h>
-#include <image_transport/image_transport.h>
-#include <opencv2/highgui/highgui.hpp>
-#include <cv_bridge/cv_bridge.h>
+#include <sensor_msgs/LaserScan.h>
 
-void imageCallback(const sensor_msgs::ImageConstPtr& msg)
+void laserScanCallback(const sensor_msgs::LaserScanConstPtr& msg)
 {
-  try
-  {
-    cv::imshow("Image view", cv_bridge::toCvShare(msg, "rgb8")->image);
-    cv::waitKey(30);
-  }
-  catch (cv_bridge::Exception& e)
-  {
-    ROS_ERROR("Could not convert from '%s' to 'rgb8'.", msg->encoding.c_str());
-  }
+  size_t size = msg->ranges.size();
+  ROS_INFO("Distance at %1.2f rads angle is %4.3f meters.", 
+           msg->angle_min, msg->ranges[0]);
+  ROS_INFO("Distance at %1.2f rads angle is %4.3f meters.", 
+           (msg->angle_min + msg->angle_max) / 2.0f, msg->ranges[size / 2]);
+  ROS_INFO("Distance at %1.2f rads angle is %4.3f meters.",
+            msg->angle_max, msg->ranges[size - 1]); 
 }
 
 int main(int argc, char** argv)
 {
-  ros::init(argc, argv, "image_streaming");
+  ros::init(argc, argv, "laserscan_streaming");
   ros::NodeHandle nh;
-  cv::namedWindow("Image view");
-  cv::startWindowThread();
-  image_transport::ImageTransport it(nh);
-  image_transport::Subscriber sub = it.subscribe("image_raw", 1, imageCallback);
+  ros::Subscriber sub = nh.subscribe("laser_scan", 1, laserScanCallback);
   ros::spin();
-  cv::destroyWindow("Image view");
 }

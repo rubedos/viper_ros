@@ -33,6 +33,7 @@ FollowMeWindow::FollowMeWindow(QWidget* parent)
   , m_height()
   , m_showingBoundingBoxes()
   , m_trackingOn()
+  , m_prefix()
 {
   ui->setupUi(this);
   ui->display_image->installEventFilter(this);
@@ -44,18 +45,23 @@ FollowMeWindow::FollowMeWindow(QWidget* parent)
   connect(ui->detectionProbSlider, SIGNAL(sliderMoved(int)), this, SLOT(detectionProbChanged(int)));
   connect(ui->similarityThSlider, SIGNAL(sliderMoved(int)), this, SLOT(similarityThresholdChanged(int)));
   connect(ui->historyQueSlider, SIGNAL(sliderMoved(int)), this, SLOT(historyQueueChanged(int)));
+}
 
+void FollowMeWindow::init(const std::string& prefix)
+{
+  m_prefix = prefix;
+  // Initialize subscribers
   ros::NodeHandle n;
   // Initialize subscribers
-  m_imageSub = n.subscribe<sensor_msgs::Image>("left/image_rect", 1, &FollowMeWindow::leftimageCb, this);
-  m_statusSub = n.subscribe<std_msgs::String>("follow_me/status", 1, &FollowMeWindow::statusCb, this);
-  m_boundingBoxesSub = n.subscribe<cvm_msgs::BoundingBoxes>("follow_me/bounding_boxes", 1, &FollowMeWindow::boundingBoxesCb, this);
-  m_targetBoundingBoxSub = n.subscribe<cvm_msgs::BoundingBox>("follow_me/target_bounding_box", 1, &FollowMeWindow::targetBoxCb, this);
-  m_targetPositionSub = n.subscribe<geometry_msgs::Point>("follow_me/target_position", 1, &FollowMeWindow::targetPositionCb, this);
-  m_dynParametersSub = n.subscribe<dynamic_reconfigure::Config>("cvm_follow_me/parameter_updates", 1,&FollowMeWindow::parameterUpdates, this);
+  m_imageSub = n.subscribe<sensor_msgs::Image>(m_prefix + "/left/image_rect", 1, &FollowMeWindow::leftimageCb, this);
+  m_statusSub = n.subscribe<std_msgs::String>(m_prefix + "/follow_me/status", 1, &FollowMeWindow::statusCb, this);
+  m_boundingBoxesSub = n.subscribe<cvm_msgs::BoundingBoxes>(m_prefix + "/follow_me/bounding_boxes", 1, &FollowMeWindow::boundingBoxesCb, this);
+  m_targetBoundingBoxSub = n.subscribe<cvm_msgs::BoundingBox>(m_prefix + "/follow_me/target_bounding_box", 1, &FollowMeWindow::targetBoxCb, this);
+  m_targetPositionSub = n.subscribe<geometry_msgs::PointStamped>(m_prefix + "/follow_me/target_position", 1, &FollowMeWindow::targetPositionCb, this);
+  m_dynParametersSub = n.subscribe<dynamic_reconfigure::Config>(m_prefix + "/cvm_follow_me/parameter_updates", 1,&FollowMeWindow::parameterUpdates, this);
   // Initialize publishers
-  m_enablePub = n.advertise<std_msgs::Bool>("follow_me/enable", 1);
-  m_setTargetPub = n.advertise<cvm_msgs::BoundingBox>("follow_me/set_target", 1);
+  m_enablePub = n.advertise<std_msgs::Bool>(m_prefix + "/follow_me/enable", 1);
+  m_setTargetPub = n.advertise<cvm_msgs::BoundingBox>(m_prefix + "/follow_me/set_target", 1);
 }
 
 FollowMeWindow::~FollowMeWindow()
@@ -247,11 +253,11 @@ void FollowMeWindow::targetBoxCb(const cvm_msgs::BoundingBoxConstPtr& bounding_b
   m_targetBoundingBox = bounding_box;
 }
 
-void FollowMeWindow::targetPositionCb(const geometry_msgs::PointConstPtr& point)
+void FollowMeWindow::targetPositionCb(const geometry_msgs::PointStampedConstPtr& point)
 {
-  ui->xLabel->setText(QString("x: ") + QString::number(point->x, 'f', 2));
-  ui->yLabel->setText(QString("y: ") + QString::number(point->y, 'f', 2));
-  ui->zLabel->setText(QString("z: ") + QString::number(point->z, 'f', 2));
+  ui->xLabel->setText(QString("x: ") + QString::number(point->point.x, 'f', 2));
+  ui->yLabel->setText(QString("y: ") + QString::number(point->point.y, 'f', 2));
+  ui->zLabel->setText(QString("z: ") + QString::number(point->point.z, 'f', 2));
 }
 
 void FollowMeWindow::enableInfoLabels(bool status)
@@ -282,7 +288,7 @@ void FollowMeWindow::changeDoubleParameter(const std::string& name, double value
   serverRequest.config = config;
 
   dynamic_reconfigure::ReconfigureResponse serverResponse;
-  ros::service::call("cvm_follow_me/set_parameters", serverRequest, serverResponse);
+  ros::service::call(m_prefix + "/cvm_follow_me/set_parameters", serverRequest, serverResponse);
 }
 
 void FollowMeWindow::changeIntParameter(const std::string& name, int value)
@@ -298,7 +304,7 @@ void FollowMeWindow::changeIntParameter(const std::string& name, int value)
   serverRequest.config = config;
 
   dynamic_reconfigure::ReconfigureResponse serverResponse;
-  ros::service::call("cvm_follow_me/set_parameters", serverRequest, serverResponse);
+  ros::service::call(m_prefix + "/cvm_follow_me/set_parameters", serverRequest, serverResponse);
 }
 
 void FollowMeWindow::parameterUpdates(const dynamic_reconfigure::ConfigConstPtr& config)
