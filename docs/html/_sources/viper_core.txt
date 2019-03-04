@@ -8,6 +8,8 @@ VIPER Core is the base functionality that comes with each instance. `ROS API`_ i
 
 VIPER Core consists of the following features.
 
+.. note:: All topics are provided without a namespace. When you are using your VIPER, please take its namespace into account.
+
 RGB Image Streaming
 ===============================
 VIPER has a set of two cameras. Images come in several formats:

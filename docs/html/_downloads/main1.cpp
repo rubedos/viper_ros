@@ -1,21 +1,29 @@
-#include <ros/ros.h>
-#include <sensor_msgs/LaserScan.h>
+/*******************************************************************************
+* Copyright (c) 2019 by Rubedos
+* Kaunas, Lithuania, www.rubedos.com
+* All rights reserved.
+*******************************************************************************/
 
-void laserScanCallback(const sensor_msgs::LaserScanConstPtr& msg)
-{
-  size_t size = msg->ranges.size();
-  ROS_INFO("Distance at %1.2f rads angle is %4.3f meters.", 
-           msg->angle_min, msg->ranges[0]);
-  ROS_INFO("Distance at %1.2f rads angle is %4.3f meters.", 
-           (msg->angle_min + msg->angle_max) / 2.0f, msg->ranges[size / 2]);
-  ROS_INFO("Distance at %1.2f rads angle is %4.3f meters.",
-            msg->angle_max, msg->ranges[size - 1]); 
-}
+#include "FollowArucoWindow.h"
+#include <ros/spinner.h>
+#include <QApplication>
 
-int main(int argc, char** argv)
+using cvm_follow_aruco_sample::FollowArucoWindow;
+
+int main(int argc, char *argv[])
 {
-  ros::init(argc, argv, "laserscan_streaming");
-  ros::NodeHandle nh;
-  ros::Subscriber sub = nh.subscribe("laser_scan", 1, laserScanCallback);
-  ros::spin();
+  // Initialize ROS
+  ros::init(argc, argv, "FollowArucoSample");
+
+  // Start a spinner with 4 threads
+  ros::AsyncSpinner spinner(4);
+  spinner.start();
+
+  // Init QT application
+  QApplication a(argc, argv);
+  FollowArucoWindow w;
+  w.init("DEFAULT");  // VIPER prefix
+  w.show();
+
+  return a.exec();
 }

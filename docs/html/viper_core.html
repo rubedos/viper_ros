@@ -15,7 +15,8 @@
   <link rel="stylesheet" type="text/css" href="_static/css/bootstrap-theme.min.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-    <title>VIPER Core &mdash; VIPER SDK 1.0.0.2009 documentation</title>
+    <title>VIPER Core &mdash; VIPER SDK 1.0.0.2186
+ documentation</title>
     
     <link rel="stylesheet" href="_static/guzzle.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -23,7 +24,8 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.0.0.2009',
+        VERSION:     '1.0.0.2186
+',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -32,7 +34,8 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="VIPER SDK 1.0.0.2009 documentation" href="index.html" />
+    <link rel="top" title="VIPER SDK 1.0.0.2186
+ documentation" href="index.html" />
     <link rel="next" title="VIPER Apps" href="viper_apps.html" />
     <link rel="prev" title="Getting Started" href="getting_started.html" />
   
@@ -52,7 +55,8 @@
         <li class="right" >
           <a href="getting_started.html" title="Getting Started"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0.2009 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0.2186
+ documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="container-wrapper">
@@ -63,7 +67,8 @@
   <div id="left-column">
     <div class="sphinxsidebar">
         <a href="
-    index.html" class="text-logo">VIPER SDK 1.0.0.2009 documentation</a>
+    index.html" class="text-logo">VIPER SDK 1.0.0.2186
+ documentation</a>
         
 <div class="sidebar-block">
   <div class="sidebar-wrapper">
@@ -122,6 +127,10 @@
 <h1>VIPER Core<a class="headerlink" href="#viper-core" title="Permalink to this headline">¶</a></h1>
 <p>VIPER Core is the base functionality that comes with each instance. <a class="reference external" href="ros_api.html">ROS API</a> is used to communicate with the device.</p>
 <p>VIPER Core consists of the following features.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">All topics are provided without a namespace. When you are using your VIPER, please take its namespace into account.</p>
+</div>
 <div class="section" id="rgb-image-streaming">
 <h2>RGB Image Streaming<a class="headerlink" href="#rgb-image-streaming" title="Permalink to this headline">¶</a></h2>
 <p>VIPER has a set of two cameras. Images come in several formats:</p>
@@ -150,7 +159,7 @@ catkin init
 </pre></div>
 </div>
 <p>Then create a simple package using the following files.</p>
-<p><a class="reference download internal" href="_downloads/main2.cpp" download=""><code class="xref download docutils literal"><span class="pre">image_streaming/main.cpp</span></code></a></p>
+<p><a class="reference download internal" href="_downloads/main3.cpp" download=""><code class="xref download docutils literal"><span class="pre">image_streaming/main.cpp</span></code></a></p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;image_transport/image_transport.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;opencv2/highgui/highgui.hpp&gt;</span><span class="cp"></span>
@@ -182,7 +191,7 @@ catkin init
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><a class="reference download internal" href="_downloads/CMakeLists2.txt" download=""><code class="xref download docutils literal"><span class="pre">image_streaming/CMakeLists.txt</span></code></a></p>
+<p><a class="reference download internal" href="_downloads/CMakeLists3.txt" download=""><code class="xref download docutils literal"><span class="pre">image_streaming/CMakeLists.txt</span></code></a></p>
 <div class="highlight-cmake"><div class="highlight"><pre><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">3.5.1</span><span class="p">)</span>
 
 <span class="nb">project</span><span class="p">(</span><span class="s">image_streaming</span><span class="p">)</span>
@@ -271,7 +280,7 @@ catkin init
 </pre></div>
 </div>
 <p>Then create a simple package using the following files.</p>
-<p><a class="reference download internal" href="_downloads/main3.cpp" download=""><code class="xref download docutils literal"><span class="pre">disparity_streaming/main.cpp</span></code></a></p>
+<p><a class="reference download internal" href="_downloads/main4.cpp" download=""><code class="xref download docutils literal"><span class="pre">disparity_streaming/main.cpp</span></code></a></p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;opencv2/highgui/highgui.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;cv_bridge/cv_bridge.h&gt;</span><span class="cp"></span>
@@ -301,7 +310,7 @@ catkin init
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><a class="reference download internal" href="_downloads/CMakeLists3.txt" download=""><code class="xref download docutils literal"><span class="pre">disparity_streaming/CMakeLists.txt</span></code></a></p>
+<p><a class="reference download internal" href="_downloads/CMakeLists4.txt" download=""><code class="xref download docutils literal"><span class="pre">disparity_streaming/CMakeLists.txt</span></code></a></p>
 <div class="highlight-cmake"><div class="highlight"><pre><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">3.5.1</span><span class="p">)</span>
 
 <span class="nb">project</span><span class="p">(</span><span class="s">disparity_streaming</span><span class="p">)</span>
@@ -393,7 +402,7 @@ catkin init
 </pre></div>
 </div>
 <p>Then create a simple package using the following files.</p>
-<p><a class="reference download internal" href="_downloads/main4.cpp" download=""><code class="xref download docutils literal"><span class="pre">pointcloud_streaming/main.cpp</span></code></a></p>
+<p><a class="reference download internal" href="_downloads/main5.cpp" download=""><code class="xref download docutils literal"><span class="pre">pointcloud_streaming/main.cpp</span></code></a></p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;sensor_msgs/PointCloud2.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;pcl/point_cloud.h&gt;</span><span class="cp"></span>
@@ -464,7 +473,7 @@ catkin init
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><a class="reference download internal" href="_downloads/CMakeLists4.txt" download=""><code class="xref download docutils literal"><span class="pre">pointcloud_streaming/CMakeLists.txt</span></code></a></p>
+<p><a class="reference download internal" href="_downloads/CMakeLists5.txt" download=""><code class="xref download docutils literal"><span class="pre">pointcloud_streaming/CMakeLists.txt</span></code></a></p>
 <div class="highlight-cmake"><div class="highlight"><pre><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">3.5.1</span><span class="p">)</span>
 
 <span class="nb">project</span><span class="p">(</span><span class="s">pointcloud_streaming</span><span class="p">)</span>
@@ -563,7 +572,8 @@ Please refer to <a class="reference external" href="http://pointclouds.org/docum
         <li class="right" >
           <a href="getting_started.html" title="Getting Started"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0.2009 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0.2186
+ documentation</a> &raquo;</li> 
       </ul>
     </div>
 <script type="text/javascript">

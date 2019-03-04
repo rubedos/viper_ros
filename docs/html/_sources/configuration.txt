@@ -9,7 +9,7 @@ VIPER can be configured in two ways:
 - ROS dynamic reconfigure;
 - VIPER Web panel.
 
-ROS dynamic reconfigure
+ROS Dynamic Reconfigure
 =========================================
 
 Since VIPER is based on ROS, all the nodes are configurable via `dynamic_reconfigure`_.
@@ -21,7 +21,7 @@ VIPER Core Configuration
 
 VIPER Core has the following nodes and parameters.
 
-cvm_description
+cvm_description/parent_link
 ----------------------------------------
 When the camera is attached to a robot it might be necessary to take it into account by describing the setup.
 
@@ -29,22 +29,46 @@ parent_link
   Robot link to which camera is attached. If empty, transform is not published. Empty is default.
 
 rotation_r
-  Roll relative to the parent link's reference frame in radians. Default: 0.0. Range: [-3.14; 3.14].
+  Roll relative to the parent link's reference frame in degrees. Default: 0.0. Range: [-180.0; 180.0].
 
 rotation_p
-  Pitch relative to the parent link's reference frame in radians. Default: 0.0. Range: [-3.14; 3.14].
+  Pitch relative to the parent link's reference frame in degrees. Default: 0.0. Range: [-180.0; 180.0].
 
 rotation_y
-  Yaw relative to the parent link's reference frame in radians. Default: 0.0. Range: [-3.14; 3.14].
+  Yaw relative to the parent link's reference frame in degrees. Default: 0.0. Range: [-180.0; 180.0].
 
 position_x
-  X translation relative to the parent link's reference frame in meters. Default: 0.0. Range: [-10.0; 10.0].
+  X translation relative to the parent link's reference frame in meters. Default: 0.0. Range: [-100.0; 100.0].
 
 position_y
-  Y translation relative to the parent link's reference frame in meters. Default: 0.0. Range: [-10.0; 10.0].
+  Y translation relative to the parent link's reference frame in meters. Default: 0.0. Range: [-100.0; 100.0].
 
 position_z
-  Z translation relative to the parent link's reference frame in meters. Default: 0.0. Range: [-10.0; 10.0].
+  Z translation relative to the parent link's reference frame in meters. Default: 0.0. Range: [-100.0; 100.0].
+
+cvm_description/cvm_ground_link
+----------------------------------------
+The ground is described relatively to VIPER's center (``cvm_base_link``), using the following parameters. The transform can be used by the Obstacle Detector App
+to adjust the detection of obstacles when the ground is not parallel to, or is located at VIPER's center.
+
+rotation_r
+  Roll relative to the cvm base link's reference frame in degrees. Default: 0.0. Range: [-180.0; 180.0].
+
+rotation_p
+  Pitch relative to the cvm base link's reference frame in degrees. Default: 0.0. Range: [-180.0; 180.0].
+
+rotation_y
+  Yaw relative to the cvm base link's reference frame in degrees. Default: 0.0. Range: [-180.0; 180.0].
+
+position_x
+  X translation relative to the cvm base link's reference frame in meters. Default: 0.0. Range: [-100.0; 100.0].
+
+position_y
+  Y translation relative to the cvm base link's reference frame in meters. Default: 0.0. Range: [-100.0; 100.0].
+
+position_z
+  Z translation relative to the cvm base link's reference frame in meters. Default: 0.0. Range: [-100.0; 100.0].
+
 
 cvm_v4l2_camera
 ----------------------------------------
@@ -86,6 +110,20 @@ similarity_threshold
 history_queue
   Queue size for storing visual data. If 0 then visual data is not compared. Default: 15. Range: [0; 100].
 
+
+------------------------------
+FollowAruco App Configuration
+------------------------------
+
+cvm_follow_aruco
+----------------------------------------
+
+marker_size
+  Size of the Aruco marker in meters. Default: 0.15. Range: [0.0; 2.0].
+
+marker_id
+  ID of the `marker`_ that will be considered as a target. Default: 4. Range: [0; 1000].
+
 cvm_follow_me/cvm_object_detector
 ----------------------------------------
 
@@ -108,26 +146,26 @@ cvm_laserscan
 ----------------------------------------
 
 target_frame
-  If provided, transforms the pointcloud into this frame before converting to a laser scan. If the target frame is set to the robot base link or another part that is parallel to the ground, laser scan will also be parallel to the ground.
-  Empty is default.
+  If provided, transforms the point cloud into this frame before converting to a laser scan. If the target frame is set to the ``cvm_ground_link`` or another part that is parallel to the ground, laser scan will also be parallel to the ground.
+  Empty is default, which means that by default laser scans are produced in ``left_camera_link``.
 
 min_height
-  The minimum height to sample in the point cloud in meters. Default: -1.0. Range: [-10.0; 10.0].
+  The minimum height to sample in the point cloud in meters. Default: -1.0. Range: [-100.0; 100.0].
 
 max_height
-  The maximum height to sample in the point cloud in meters. Default: 1.0. Range: [-10.0; 10.0].
+  The maximum height to sample in the point cloud in meters. Default: 1.0. Range: [-100.0; 100.0].
 
 min_angle
-  The minimum scan angle in radians. Default: -0.77. Range: [-3.14; 3.14].
+  The minimum scan angle in degrees. Default: -30.0. Range: [-180.0; 180.0].
 
 max_angle
-  The maximum scan angle in radians. Default: 0.77. Range: [-3.14; 3.14].
+  The maximum scan angle in degrees. Default: 30.0. Range: [-180.0; 180.0].
 
 angle_increment
-  Resolution of laser scan in radians per ray. Default: 0.01. Range: [-3.14; 3.14].
+  Resolution of laser scan in degrees per ray. Default: 0.6. Range: [-180.0; 180.0].
 
 scan_time
-  The scan rate in seconds. Default: 0.33. Range: [0.0; 1.0].
+  The rate at which laser scan is produced in seconds. This information does not change the output of the Obstacle Detector App. Some navigation planners take it into account. Default: 0.1. Range: [0.0; 1.0].
 
 min_range
   The minimum ranges to return in meters. Default: 1.0. Range: [0.0; 50.0].
@@ -152,7 +190,7 @@ In the picture below you can see what sections are available in VIPER web panel.
 
 The following sections are available:
 
-- CVM Versions
+- CVM Version
 - Robot config
 - Applications
 - System actions
@@ -178,7 +216,8 @@ If newer CVM version is available - update action will be presented to the user.
 
 .. image:: web_panel_img/web_panel_1-versions-800.png
 
-Version update, depending on internet connection speed, can take up to 30 minutes. Reload page after some time to verify if update has completed.
+.. note:: Version update, depending on internet connection speed, can take up to 30 minutes. Reload page after some time to verify if update has completed.
+
 
 
 ----------------------------------------
@@ -190,7 +229,9 @@ This section is collapsed by default - mouse click on the heading and section wi
 
 .. image:: web_panel_img/web_panel_2-robot_config-800.png
 
-If VIPER is being used on the robot, these parameters should be adjusted acordingly.
+If VIPER is being used on the robot, these parameters should be adjusted accordingly.
+
+.. note:: Viper prefix should contain value without spaces in the middle, also it cannot start with number.
 
 .. note:: If any value changes in this section - applications should be restarted i.e. deactivate and activate every application that you use.
 
@@ -216,15 +257,15 @@ For every application additional information is shown:
 
 In the picture below you can see what information and actions are available for license handling.
 
-When you have new VIPER then most likely applications (some or all) will have no license installed. In this case, you have to send license request to the email address 'licensing@rubedos.com'. In the body of license request email you have to include VIPER information (as shown in the picture - copy and paste from the web panel). Also, in the license request you have to include information about yourself and your organization.
+When you have new VIPER then most likely applications (some or all) will have no license installed. In this case, you have to send license request to the email address licensing@rubedos.com . In the body of license request email you have to include VIPER information (as shown in the picture - copy and paste from the web panel). Also, in the license request you have to include information about yourself and your organization.
 
 .. image:: web_panel_img/web_panel_3-apps-1-licenses-800.png
 
-After your license request is fulfilled, you should receive license files (one file or multiple files). Then you should upload these files into VIPER web panel by pressing **install license** then **Choose file**. After you execute this action, page will reload and application module license status will be updated.
+After your license request is fulfilled, you will receive license files (one file or multiple files). Then you should upload these files into VIPER web panel by pressing **install license** then **Choose file**. After you execute this action, page will reload and application module license status will be updated.
 
 .. note:: At any time do not forget to reload page to get the most current information about application status!
 
-.. note:: If you are using robot setup i.e. camera is mounted on some kind of robot with its own computer running with ROS, and you activate application with external ROS, VIPER periodically (every 2 minutes) will check if external ROS is *alive*, and, if it is alive i.e. responding, then VIPER activates application (which previously was activated with external ROS). If VIPER detects that external ROS is not responding, then it deactivates application until next check is performed. Also, you can deactivate or activate application at any time by yourself.
+.. note:: If you are using robot setup i.e. camera is mounted on some kind of robot with its own computer running with ROS, and you activate application with external ROS, VIPER periodically (every 2 minutes) will check if external ROS is *alive*, and, if it is alive i.e. responding, then VIPER activates application (which previously was activated with external ROS). If VIPER detects that external ROS is not responding, then it deactivates application until next check is performed. Also, you can manually deactivate or activate application at any time by yourself.
 
 
 ----------------------------------------
@@ -233,6 +274,7 @@ System Actions
 
 Available system actions:
 
+- Reset nodes: reset all nodes to its factorey default parameter values
 - Shutdown
 - Reboot
 
@@ -280,3 +322,4 @@ In this section various VIPER system information is shown. Reload page to get th
 
 .. _dynamic_reconfigure: http://wiki.ros.org/dynamic_reconfigure
 .. _rqt: http://wiki.ros.org/rqt
+.. _marker: http://chev.me/arucogen/
