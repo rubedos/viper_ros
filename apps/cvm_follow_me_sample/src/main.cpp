@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
   // Init QT application
   QApplication a(argc, argv);
   FollowMeWindow w;
+  w.init("DEFAULT");  // VIPER prefix
   w.show();
 
   return a.exec();
