@@ -10,10 +10,11 @@
 #include <QMainWindow>
 #include <std_msgs/String.h>
 #include <sensor_msgs/Image.h>
-#include <geometry_msgs/Point.h>
+#include <geometry_msgs/PointStamped.h>
 #include <cvm_msgs/BoundingBoxes.h>
 #include <message_filters/subscriber.h>
 #include <dynamic_reconfigure/Config.h>
+#include <string>
 
 namespace Ui
 {
@@ -97,7 +98,7 @@ private:
    * @brief Method that is called when position of the target is received
    * @param point Position (x, y, z) of the target
    */
-  void targetPositionCb(const geometry_msgs::PointConstPtr& point);
+  void targetPositionCb(const geometry_msgs::PointStampedConstPtr& point);
   /**
    * @brief Method that changes visiblity of GUI which displays distance information
    * @param status Status indicating to set visibility on or off
@@ -142,6 +143,7 @@ private:
   // Members indicating status
   bool m_showingBoundingBoxes;
   bool m_trackingOn;
+  std::string m_prefix;
 };
 
 }  // namespace cvm_follow_me_sample
