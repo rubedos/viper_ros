@@ -21,6 +21,25 @@ VIPER Core Configuration
 
 VIPER Core has the following nodes and parameters.
 
+cvm_configurator
+----------------------------------------
+
+This node should be used to switch between different resolutions. It has several
+presets that are optimized for each resolution.
+
+preset
+  A set of parameters for certain resolutions
+  
+  **none** No parameters are set by the node. Default.
+
+  **preset1** resolution: 320x90, camera_rate: 60, read_framerate: 60, stereo_algorithm: StereoSGBM_VW, max_disparity: 64.
+
+  **preset2** resolution: 640x180, camera_rate: 60, read_framerate: 60, stereo_algorithm: StereoSGBM_VW, max_disparity: 128.
+
+  **preset3** resolution: 1280x360, camera_rate: 60, read_framerate: 20, stereo_algorithm: StereoSGBM_VW, max_disparity: 128.
+
+  **preset4** resolution: 2560x720, camera_rate: 30, read_framerate: 8, stereo_algorithm: StereoSGBM_VW, max_disparity: 128.
+
 cvm_description/parent_link
 ----------------------------------------
 When the camera is attached to a robot it might be necessary to take it into account by describing the setup.
@@ -76,6 +95,10 @@ cvm_v4l2_camera
 resolution
   Camera resolution can be changed to the following values:
 
+  **320x90** Resized from nHD.
+
+  **640x180** Resized from nHD.
+
   **1280x360** Original nHD from camera driver. Default.
 
   **2560x720** Original HD from camera driver.
@@ -111,19 +134,6 @@ history_queue
   Queue size for storing visual data. If 0 then visual data is not compared. Default: 15. Range: [0; 100].
 
 
-------------------------------
-FollowAruco App Configuration
-------------------------------
-
-cvm_follow_aruco
-----------------------------------------
-
-marker_size
-  Size of the Aruco marker in meters. Default: 0.15. Range: [0.0; 2.0].
-
-marker_id
-  ID of the `marker`_ that will be considered as a target. Default: 4. Range: [0; 1000].
-
 cvm_follow_me/cvm_object_detector
 ----------------------------------------
 
@@ -136,6 +146,20 @@ camera_rotation
   **1** CW_90. Camera is rotated 90 degrees clock wise.
 
   **2** CCW_90. Camera is rotated 90 degrees counter clock wise.
+
+
+------------------------------
+FollowAruco App Configuration
+------------------------------
+
+cvm_follow_aruco
+----------------------------------------
+
+marker_size
+  Size of the Aruco marker in meters. Default: 0.15. Range: [0.0; 2.0].
+
+marker_id
+  ID of the `marker`_ that will be considered as a target. Default: 4. Range: [0; 1000].
 
 
 ----------------------------------------
@@ -274,7 +298,7 @@ System Actions
 
 Available system actions:
 
-- Reset nodes: reset all nodes to its factorey default parameter values
+- Reset nodes: reset all nodes to its factory default parameter values
 - Shutdown
 - Reboot
 
@@ -289,7 +313,7 @@ Network Config
 
 In network configuration section you can adjust network parameters to match your network setup.
 
-.. warning:: Be very careful when changing network configuration - in case of mistake you can loose access to your VIPER device!
+.. warning:: Be very careful when changing network configuration - in case of mistake you can lose access to your VIPER device!
 
 .. note:: Changes take effect only after VIPER reboot.
 

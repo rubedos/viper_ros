@@ -15,7 +15,7 @@ FollowMe is a VIPER application that tracks bounding box of the given human betw
 
 Here we provide a simple GUI program (using `QT`_) that visualizes all detected humans in the left camera image. When one particular bounding box is
 selected by clicking on it, it is sent to the FollowMe App as a target and from that moment - being tracked. Distance to the target is
-also displayed. It can be used to tell the robot where the target is.
+also displayed. It can be used to tell the robot where the target is. For FollowMe app please use **preset3** or similar VIPER configuration.
 
 Code Sample
 ------------------
@@ -133,7 +133,7 @@ Build and run the sample:
     export ROS_IP=<HOST_IP>
     rosrun cvm_follow_aruco_sample cvm_follow_aruco_sample
 
-Enable the FollowAruco app and and select the ID of the Aruco marker you want to track. The selected marker will be be marked with a red bounding box and distance will be displayed on the left panel.
+Enable the FollowAruco app and select the ID of the Aruco marker you want to track. The selected marker will be marked with a red bounding box and distance will be displayed on the left panel.
 
 .. note:: Make sure the ``ROS_IP`` you set is the IP of the host machine that is connected to your VIPER, otherwise you will not be able to enable the FollowAruco App while using the sample above. For more information about networking please refer to `ROS Network Setup`_.
 
@@ -198,6 +198,7 @@ Build and run the sample:
 
 .. _QT: https://wiki.qt.io/Qt_for_Beginners
 .. _rviz: http://wiki.ros.org/rviz
+.. _Obstacle Detector configuration: configuration.html#obstacle-detector-app-configuration
 .. _Obstacle Detector configuration: configuration.html#obstacle-detector-app-configuration
 .. _ROS Network Setup: http://wiki.ros.org/ROS/NetworkSetup
 .. _Aruco markers: http://chev.me/arucogen/

@@ -56,6 +56,9 @@ points2 (`sensor_msgs/PointCloud2`_)
   `Point cloud`_ is a 3D data structure that contains x, y, z coordinates (in meters) for each pixel in
   left rectified image, and describes a 3D scene.
 
+imu (`sensor_msgs/Imu`_)
+  This is a message to hold data from an IMU (Inertial Measurement Unit).
+
 
 Subscribed Topics
 -----------------
@@ -174,6 +177,7 @@ laser_scan (`sensor_msgs/LaserScan`_)
   .. _sensor_msgs/PointCloud2: http://docs.ros.org/api/sensor_msgs/html/msg/PointCloud2.html
   .. _sensor_msgs/LaserScan: http://docs.ros.org/api/sensor_msgs/html/msg/LaserScan.html
   .. _sensor_msgs::image_encodings::RGB8: http://docs.ros.org/kinetic/api/sensor_msgs/html/namespacesensor__msgs_1_1image__encodings.html#ab6e2cec975df0a802ca02ce56674b279
+  .. _sensor_msgs/Imu: http://docs.ros.org/kinetic/api/sensor_msgs/html/msg/Imu.html
   .. _rectified image: https://en.wikipedia.org/wiki/Image_rectification
   .. _stereo_msgs/DisparityImage: http://docs.ros.org/api/stereo_msgs/html/msg/DisparityImage.html
   .. _Disparity image: https://en.wikipedia.org/wiki/Binocular_disparity

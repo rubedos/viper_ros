@@ -77,7 +77,7 @@ Disparity Map Streaming
 ===============================
 
 `Disparity image`_ is an image that contains a shift value for each pixel in the left `rectified image`_
-with respect to the right `rectified image`_ of the same scene, while both images have been taken
+with respect to the right `rectified image`_ of the same scene, while both images have been
 taken at the same time.
 
 Using ROS Tools

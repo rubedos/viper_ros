@@ -15,7 +15,7 @@
   <link rel="stylesheet" type="text/css" href="_static/css/bootstrap-theme.min.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-    <title>VIPER Configuration &mdash; VIPER SDK 1.0.0.2186
+    <title>VIPER Configuration &mdash; VIPER SDK 1.0.0.2418M
  documentation</title>
     
     <link rel="stylesheet" href="_static/guzzle.css" type="text/css" />
@@ -24,7 +24,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.0.0.2186
+        VERSION:     '1.0.0.2418M
 ',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -34,7 +34,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="VIPER SDK 1.0.0.2186
+    <link rel="top" title="VIPER SDK 1.0.0.2418M
  documentation" href="index.html" />
     <link rel="next" title="Frequently Asked Questions" href="faq.html" />
     <link rel="prev" title="VIPER ROS API" href="ros_api.html" />
@@ -55,7 +55,7 @@
         <li class="right" >
           <a href="ros_api.html" title="VIPER ROS API"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0.2186
+        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0.2418M
  documentation</a> &raquo;</li> 
       </ul>
     </div>
@@ -67,7 +67,7 @@
   <div id="left-column">
     <div class="sphinxsidebar">
         <a href="
-    index.html" class="text-logo">VIPER SDK 1.0.0.2186
+    index.html" class="text-logo">VIPER SDK 1.0.0.2418M
  documentation</a>
         
 <div class="sidebar-block">
@@ -136,6 +136,21 @@ All parameters can be accessed via <a class="reference external" href="http://wi
 <div class="section" id="viper-core-configuration">
 <h3>VIPER Core Configuration<a class="headerlink" href="#viper-core-configuration" title="Permalink to this headline">¶</a></h3>
 <p>VIPER Core has the following nodes and parameters.</p>
+<div class="section" id="cvm-configurator">
+<h4>cvm_configurator<a class="headerlink" href="#cvm-configurator" title="Permalink to this headline">¶</a></h4>
+<p>This node should be used to switch between different resolutions. It has several
+presets that are optimized for each resolution.</p>
+<dl class="docutils">
+<dt>preset</dt>
+<dd><p class="first">A set of parameters for certain resolutions</p>
+<p><strong>none</strong> No parameters are set by the node. Default.</p>
+<p><strong>preset1</strong> resolution: 320x90, camera_rate: 60, read_framerate: 60, stereo_algorithm: StereoSGBM_VW, max_disparity: 64.</p>
+<p><strong>preset2</strong> resolution: 640x180, camera_rate: 60, read_framerate: 60, stereo_algorithm: StereoSGBM_VW, max_disparity: 128.</p>
+<p><strong>preset3</strong> resolution: 1280x360, camera_rate: 60, read_framerate: 20, stereo_algorithm: StereoSGBM_VW, max_disparity: 128.</p>
+<p class="last"><strong>preset4</strong> resolution: 2560x720, camera_rate: 30, read_framerate: 8, stereo_algorithm: StereoSGBM_VW, max_disparity: 128.</p>
+</dd>
+</dl>
+</div>
 <div class="section" id="cvm-description-parent-link">
 <h4>cvm_description/parent_link<a class="headerlink" href="#cvm-description-parent-link" title="Permalink to this headline">¶</a></h4>
 <p>When the camera is attached to a robot it might be necessary to take it into account by describing the setup.</p>
@@ -180,6 +195,8 @@ to adjust the detection of obstacles when the ground is not parallel to, or is l
 <dl class="docutils">
 <dt>resolution</dt>
 <dd><p class="first">Camera resolution can be changed to the following values:</p>
+<p><strong>320x90</strong> Resized from nHD.</p>
+<p><strong>640x180</strong> Resized from nHD.</p>
 <p><strong>1280x360</strong> Original nHD from camera driver. Default.</p>
 <p class="last"><strong>2560x720</strong> Original HD from camera driver.</p>
 </dd>
@@ -211,18 +228,6 @@ to adjust the detection of obstacles when the ground is not parallel to, or is l
 <dd>Queue size for storing visual data. If 0 then visual data is not compared. Default: 15. Range: [0; 100].</dd>
 </dl>
 </div>
-</div>
-<div class="section" id="followaruco-app-configuration">
-<h3>FollowAruco App Configuration<a class="headerlink" href="#followaruco-app-configuration" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="cvm-follow-aruco">
-<h4>cvm_follow_aruco<a class="headerlink" href="#cvm-follow-aruco" title="Permalink to this headline">¶</a></h4>
-<dl class="docutils">
-<dt>marker_size</dt>
-<dd>Size of the Aruco marker in meters. Default: 0.15. Range: [0.0; 2.0].</dd>
-<dt>marker_id</dt>
-<dd>ID of the <a class="reference external" href="http://chev.me/arucogen/">marker</a> that will be considered as a target. Default: 4. Range: [0; 1000].</dd>
-</dl>
-</div>
 <div class="section" id="cvm-follow-me-cvm-object-detector">
 <h4>cvm_follow_me/cvm_object_detector<a class="headerlink" href="#cvm-follow-me-cvm-object-detector" title="Permalink to this headline">¶</a></h4>
 <dl class="docutils">
@@ -233,6 +238,18 @@ Camera rotation types:</p>
 <p><strong>1</strong> CW_90. Camera is rotated 90 degrees clock wise.</p>
 <p class="last"><strong>2</strong> CCW_90. Camera is rotated 90 degrees counter clock wise.</p>
 </dd>
+</dl>
+</div>
+</div>
+<div class="section" id="followaruco-app-configuration">
+<h3>FollowAruco App Configuration<a class="headerlink" href="#followaruco-app-configuration" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="cvm-follow-aruco">
+<h4>cvm_follow_aruco<a class="headerlink" href="#cvm-follow-aruco" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
+<dt>marker_size</dt>
+<dd>Size of the Aruco marker in meters. Default: 0.15. Range: [0.0; 2.0].</dd>
+<dt>marker_id</dt>
+<dd>ID of the <a class="reference external" href="http://chev.me/arucogen/">marker</a> that will be considered as a target. Default: 4. Range: [0; 1000].</dd>
 </dl>
 </div>
 </div>
@@ -349,7 +366,7 @@ This section is collapsed by default - mouse click on the heading and section wi
 <h3>System Actions<a class="headerlink" href="#system-actions" title="Permalink to this headline">¶</a></h3>
 <p>Available system actions:</p>
 <ul class="simple">
-<li>Reset nodes: reset all nodes to its factorey default parameter values</li>
+<li>Reset nodes: reset all nodes to its factory default parameter values</li>
 <li>Shutdown</li>
 <li>Reboot</li>
 </ul>
@@ -364,7 +381,7 @@ This section is collapsed by default - mouse click on the heading and section wi
 <p>In network configuration section you can adjust network parameters to match your network setup.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">Be very careful when changing network configuration - in case of mistake you can loose access to your VIPER device!</p>
+<p class="last">Be very careful when changing network configuration - in case of mistake you can lose access to your VIPER device!</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -421,7 +438,7 @@ This section is collapsed by default - mouse click on the heading and section wi
         <li class="right" >
           <a href="ros_api.html" title="VIPER ROS API"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0.2186
+        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0.2418M
  documentation</a> &raquo;</li> 
       </ul>
     </div>
