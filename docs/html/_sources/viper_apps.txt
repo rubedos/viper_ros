@@ -15,7 +15,7 @@ FollowMe is a VIPER application that tracks bounding box of the given human betw
 
 Here we provide a simple GUI program (using `QT`_) that visualizes all detected humans in the left camera image. When one particular bounding box is
 selected by clicking on it, it is sent to the FollowMe App as a target and from that moment - being tracked. Distance to the target is
-also displayed. It can be used to tell the robot where the target is. For FollowMe app please use **preset3** or similar VIPER configuration.
+also displayed. It can be used to tell the robot where the target is.
 
 Code Sample
 ------------------
@@ -198,7 +198,6 @@ Build and run the sample:
 
 .. _QT: https://wiki.qt.io/Qt_for_Beginners
 .. _rviz: http://wiki.ros.org/rviz
-.. _Obstacle Detector configuration: configuration.html#obstacle-detector-app-configuration
 .. _Obstacle Detector configuration: configuration.html#obstacle-detector-app-configuration
 .. _ROS Network Setup: http://wiki.ros.org/ROS/NetworkSetup
 .. _Aruco markers: http://chev.me/arucogen/
