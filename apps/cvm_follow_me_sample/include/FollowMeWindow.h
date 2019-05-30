@@ -37,6 +37,7 @@ public:
    * @brief Destructor
    */
   virtual ~FollowMeWindow();
+  void init(const std::string& prefix = "DEFAULT");
 private Q_SLOTS:
   /**
    * @brief Method that is invoked when an even occurs in the given QObject
