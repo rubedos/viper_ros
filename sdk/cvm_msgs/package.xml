@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>cvm_msgs</name>
+  <version>1.0.0</version>
+  <description>CVM messages</description>
+
+  <maintainer email="arnas.ivanavicius@rubedo.lt">Arnas Ivanavicius</maintainer>
+  <author email="arnas.ivanavicius@rubedo.lt">Arnas Ivanavicius</author>
+  <license>Proprietary</license>
+  <url type="website">http://www.rubedos.com</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>cvm_base</exec_depend>
+
+  <depend>sensor_msgs</depend>
+  <depend>message_generation</depend>
+  <depend>message_runtime</depend>zz
+  <depend>std_msgs</depend>
+</package>

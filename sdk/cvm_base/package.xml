@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>cvm_base</name>
+  <version>1.0.0</version>
+  <description>The host base package that contains the setup files</description>
+
+  <maintainer email="arnas.ivanavicius@rubedos.com">Arnas Ivanavicius</maintainer>
+  <author email="arnas.ivanavicius@rubedos.com">Arnas Ivanavicius</author>
+  <license>Proprietary</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roslint</build_depend>
+  <exec_depend>python-lxml</exec_depend>
+  <export>
+  </export>
+</package>
