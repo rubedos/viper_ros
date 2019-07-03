@@ -14,6 +14,7 @@
 
   <depend>sensor_msgs</depend>
   <depend>message_generation</depend>
-  <depend>message_runtime</depend>zz
+  <depend>message_runtime</depend>
   <depend>std_msgs</depend>
+  <depend>stereo_msgs</depend>
 </package>

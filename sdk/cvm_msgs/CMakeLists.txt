@@ -14,7 +14,7 @@ find_package(catkin REQUIRED
 set(CMAKE_MODULE_PATH
   ${CMAKE_MODULE_PATH}
   "${CMAKE_SOURCE_DIR}/../../_tools/cmake")
-include(Rubedo)
+#include(Rubedo)
 
 add_message_files(
   FILES
