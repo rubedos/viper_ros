@@ -12,7 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   pcl_conversions
 )
 
-#find_package(PCL 1.8 REQUIRED)
+find_package(PCL 1.8 REQUIRED)
 
 add_definitions(${PCL_DEFINITIONS})
 
