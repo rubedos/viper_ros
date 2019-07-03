@@ -5,11 +5,6 @@ find_package(catkin REQUIRED COMPONENTS
   roslint
 )
 
-set(CMAKE_MODULE_PATH
-  ${CMAKE_MODULE_PATH}
-  "${CMAKE_SOURCE_DIR}/../../_tools/cmake")
-#include(Rubedo)
-
 catkin_package(
   INCLUDE_DIRS
   LIBRARIES

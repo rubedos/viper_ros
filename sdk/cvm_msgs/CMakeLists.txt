@@ -11,11 +11,6 @@ find_package(catkin REQUIRED
     roslint
 )
 
-set(CMAKE_MODULE_PATH
-  ${CMAKE_MODULE_PATH}
-  "${CMAKE_SOURCE_DIR}/../../_tools/cmake")
-#include(Rubedo)
-
 add_message_files(
   FILES
     BoundingBox.msg
