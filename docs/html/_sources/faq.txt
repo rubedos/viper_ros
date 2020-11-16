@@ -4,6 +4,46 @@
 Frequently Asked Questions
 ==========================
 
+Can I upgrade VIPER using apt upgrade command?
+---------------------------------------------------------------
+
+This is **not recommended** and by doing so you may lose the warranty.
+
+Contact support if you have not found a solution to your problem in this documentation.
+
+
+
+How do I check VIPER logs?
+---------------------------------------------------------------
+
+Connect to your VIPER via ssh:
+
+.. code-block:: bash
+
+    ssh <VIPER_IP>
+
+Depending on the app/issue run one of the following.
+
+App service status:
+
+.. code-block:: bash
+
+    systemctl status cvm-webconfig
+    systemctl status cvm-stereo
+    systemctl status cvm-follow-me
+    systemctl status cvm-follow-aruco
+    systemctl status cvm-obstactle-detector
+
+App logs:
+
+.. code-block:: bash
+
+    journalctl -u cvm-webconfig
+    journalctl -u cvm-stereo
+    journalctl -u cvm-follow-me
+    journalctl -u cvm-follow-aruco
+    journalctl -u cvm-obstactle-detector
+
 
 How do I fix the "unable to communicate with master!" error?
 ---------------------------------------------------------------
@@ -30,3 +70,83 @@ How do I find VIPER IP address?
 Please refer to  `VIPER Discovery`_.
 
 .. _VIPER Discovery: getting_started.html#viper-discovery
+
+
+How do I synchronize VIPER's clock to the clock of a robot?
+---------------------------------------------------------------
+
+On your robot's PC (Ubuntu OS) install and enable Chrony:
+
+.. code-block:: bash
+
+    sudo apt-get install chrony
+    sudo systemctl start chrony
+    sudo systemctl enable chrony
+
+Set up Chrony NTP server on the robot's PC
+
+.. code-block:: bash
+
+    sudo vim /etc/chrony/chrony.conf
+
+and paste this:
+
+.. code-block:: bash
+
+    driftfile /var/lib/chrony/drift
+    local stratum 10
+    manual
+    allow 10.42.0.0/24
+
+.. note:: Change network IP (**10.42.0.0** in this example) to the IP of your network
+
+Then reboot your robot's PC or restart the Chrony service
+
+.. code-block:: bash
+
+    sudo systemctl restart chrony
+
+
+.. note:: The configuration will run automatically when you power on the PC next time. This is required only once.
+
+On the VIPER you just have to set `ROS MASTER`_ of the configured robot PC. The two computers should synchronize after reboot.
+Also, there is a possibility to force synchronization by pressing *Force sync* in **System time** on the VIPER's web page.
+
+.. _ROS MASTER: configuration.html#robot-config
+
+
+How do I fix md5sum error while running a demo application?
+---------------------------------------------------------------
+
+There is an issue with some ROS package version, therefore we need to get the newest version.
+
+Connect to your VIPER via ssh:
+
+.. code-block:: bash
+
+    ssh <VIPER_IP>
+
+and run the following commands:
+
+.. code-block:: bash
+
+    sudo cp /opt/rubedo/cvm/cvm-debs-update.bash  /home/ubuntu/cvm-debs-update_cp.bash 
+    sudo /home/ubuntu/cvm-debs-update_cp.bash 
+
+
+How do fix 'Could not load library (Poco exception = libopencv_calib3d3.so.3.3: cannot open shared object file: No such file or directory'?
+---------------------------------------------------------------
+
+Connect to your VIPER via ssh:
+
+.. code-block:: bash
+
+    ssh <VIPER_IP>
+
+and run the following commands:
+
+.. code-block:: bash
+
+    sudo apt-get install ros-kinetic-opencv3=3.3.1-0xenial
+
+

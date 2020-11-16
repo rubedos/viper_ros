@@ -15,7 +15,7 @@
   <link rel="stylesheet" type="text/css" href="_static/css/bootstrap-theme.min.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-    <title>Frequently Asked Questions &mdash; VIPER SDK 1.0.0.2418
+    <title>Frequently Asked Questions &mdash; VIPER SDK 1.0.0.2589M
  documentation</title>
     
     <link rel="stylesheet" href="_static/guzzle.css" type="text/css" />
@@ -24,7 +24,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.0.0.2418
+        VERSION:     '1.0.0.2589M
 ',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -34,7 +34,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="VIPER SDK 1.0.0.2418
+    <link rel="top" title="VIPER SDK 1.0.0.2589M
  documentation" href="index.html" />
     <link rel="prev" title="VIPER Configuration" href="configuration.html" />
   
@@ -51,7 +51,7 @@
         <li class="right" >
           <a href="configuration.html" title="VIPER Configuration"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0.2418
+        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0.2589M
  documentation</a> &raquo;</li> 
       </ul>
     </div>
@@ -63,7 +63,7 @@
   <div id="left-column">
     <div class="sphinxsidebar">
         <a href="
-    index.html" class="text-logo">VIPER SDK 1.0.0.2418
+    index.html" class="text-logo">VIPER SDK 1.0.0.2589M
  documentation</a>
         
 <div class="sidebar-block">
@@ -81,8 +81,13 @@
 <li class="toctree-l1"><a class="reference internal" href="ros_api.html">VIPER ROS API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">VIPER Configuration</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Frequently Asked Questions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#can-i-upgrade-viper-using-apt-upgrade-command">Can I upgrade VIPER using apt upgrade command?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-do-i-check-viper-logs">How do I check VIPER logs?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-do-i-fix-the-unable-to-communicate-with-master-error">How do I fix the &#8220;unable to communicate with master!&#8221; error?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-do-i-find-viper-ip-address">How do I find VIPER IP address?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-do-i-synchronize-viper-s-clock-to-the-clock-of-a-robot">How do I synchronize VIPER&#8217;s clock to the clock of a robot?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-do-i-fix-md5sum-error-while-running-a-demo-application">How do I fix md5sum error while running a demo application?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-do-fix-could-not-load-library-poco-exception-libopencv-calib3d3-so-3-3-cannot-open-shared-object-file-no-such-file-or-directory">How do fix &#8216;Could not load library (Poco exception = libopencv_calib3d3.so.3.3: cannot open shared object file: No such file or directory&#8217;?</a></li>
 </ul>
 </li>
 </ul>
@@ -120,6 +125,35 @@
             
   <div class="section" id="frequently-asked-questions">
 <h1>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="can-i-upgrade-viper-using-apt-upgrade-command">
+<h2>Can I upgrade VIPER using apt upgrade command?<a class="headerlink" href="#can-i-upgrade-viper-using-apt-upgrade-command" title="Permalink to this headline">¶</a></h2>
+<p>This is <strong>not recommended</strong> and by doing so you may lose the warranty.</p>
+<p>Contact support if you have not found a solution to your problem in this documentation.</p>
+</div>
+<div class="section" id="how-do-i-check-viper-logs">
+<h2>How do I check VIPER logs?<a class="headerlink" href="#how-do-i-check-viper-logs" title="Permalink to this headline">¶</a></h2>
+<p>Connect to your VIPER via ssh:</p>
+<div class="highlight-bash"><div class="highlight"><pre>ssh &lt;VIPER_IP&gt;
+</pre></div>
+</div>
+<p>Depending on the app/issue run one of the following.</p>
+<p>App service status:</p>
+<div class="highlight-bash"><div class="highlight"><pre>systemctl status cvm-webconfig
+systemctl status cvm-stereo
+systemctl status cvm-follow-me
+systemctl status cvm-follow-aruco
+systemctl status cvm-obstactle-detector
+</pre></div>
+</div>
+<p>App logs:</p>
+<div class="highlight-bash"><div class="highlight"><pre>journalctl -u cvm-webconfig
+journalctl -u cvm-stereo
+journalctl -u cvm-follow-me
+journalctl -u cvm-follow-aruco
+journalctl -u cvm-obstactle-detector
+</pre></div>
+</div>
+</div>
 <div class="section" id="how-do-i-fix-the-unable-to-communicate-with-master-error">
 <h2>How do I fix the &#8220;unable to communicate with master!&#8221; error?<a class="headerlink" href="#how-do-i-fix-the-unable-to-communicate-with-master-error" title="Permalink to this headline">¶</a></h2>
 <p>Solution:</p>
@@ -137,6 +171,64 @@ ping: unknown host &lt;VIPER_IP&gt;
 <div class="section" id="how-do-i-find-viper-ip-address">
 <h2>How do I find VIPER IP address?<a class="headerlink" href="#how-do-i-find-viper-ip-address" title="Permalink to this headline">¶</a></h2>
 <p>Please refer to  <a class="reference external" href="getting_started.html#viper-discovery">VIPER Discovery</a>.</p>
+</div>
+<div class="section" id="how-do-i-synchronize-viper-s-clock-to-the-clock-of-a-robot">
+<h2>How do I synchronize VIPER&#8217;s clock to the clock of a robot?<a class="headerlink" href="#how-do-i-synchronize-viper-s-clock-to-the-clock-of-a-robot" title="Permalink to this headline">¶</a></h2>
+<p>On your robot&#8217;s PC (Ubuntu OS) install and enable Chrony:</p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install chrony
+sudo systemctl start chrony
+sudo systemctl <span class="nb">enable</span> chrony
+</pre></div>
+</div>
+<p>Set up Chrony NTP server on the robot&#8217;s PC</p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo vim /etc/chrony/chrony.conf
+</pre></div>
+</div>
+<p>and paste this:</p>
+<div class="highlight-bash"><div class="highlight"><pre>driftfile /var/lib/chrony/drift
+<span class="nb">local</span> stratum 10
+manual
+allow 10.42.0.0/24
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Change network IP (<strong>10.42.0.0</strong> in this example) to the IP of your network</p>
+</div>
+<p>Then reboot your robot&#8217;s PC or restart the Chrony service</p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo systemctl restart chrony
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The configuration will run automatically when you power on the PC next time. This is required only once.</p>
+</div>
+<p>On the VIPER you just have to set <a class="reference external" href="configuration.html#robot-config">ROS MASTER</a> of the configured robot PC. The two computers should synchronize after reboot.
+Also, there is a possibility to force synchronization by pressing <em>Force sync</em> in <strong>System time</strong> on the VIPER&#8217;s web page.</p>
+</div>
+<div class="section" id="how-do-i-fix-md5sum-error-while-running-a-demo-application">
+<h2>How do I fix md5sum error while running a demo application?<a class="headerlink" href="#how-do-i-fix-md5sum-error-while-running-a-demo-application" title="Permalink to this headline">¶</a></h2>
+<p>There is an issue with some ROS package version, therefore we need to get the newest version.</p>
+<p>Connect to your VIPER via ssh:</p>
+<div class="highlight-bash"><div class="highlight"><pre>ssh &lt;VIPER_IP&gt;
+</pre></div>
+</div>
+<p>and run the following commands:</p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo cp /opt/rubedo/cvm/cvm-debs-update.bash  /home/ubuntu/cvm-debs-update_cp.bash
+sudo /home/ubuntu/cvm-debs-update_cp.bash
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-do-fix-could-not-load-library-poco-exception-libopencv-calib3d3-so-3-3-cannot-open-shared-object-file-no-such-file-or-directory">
+<h2>How do fix &#8216;Could not load library (Poco exception = libopencv_calib3d3.so.3.3: cannot open shared object file: No such file or directory&#8217;?<a class="headerlink" href="#how-do-fix-could-not-load-library-poco-exception-libopencv-calib3d3-so-3-3-cannot-open-shared-object-file-no-such-file-or-directory" title="Permalink to this headline">¶</a></h2>
+<p>Connect to your VIPER via ssh:</p>
+<div class="highlight-bash"><div class="highlight"><pre>ssh &lt;VIPER_IP&gt;
+</pre></div>
+</div>
+<p>and run the following commands:</p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install ros-kinetic-opencv3<span class="o">=</span>3.3.1-0xenial
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -164,7 +256,7 @@ ping: unknown host &lt;VIPER_IP&gt;
         <li class="right" >
           <a href="configuration.html" title="VIPER Configuration"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0.2418
+        <li class="nav-item nav-item-0"><a href="index.html">VIPER SDK 1.0.0.2589M
  documentation</a> &raquo;</li> 
       </ul>
     </div>

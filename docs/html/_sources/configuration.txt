@@ -29,7 +29,7 @@ presets that are optimized for each resolution.
 
 preset
   A set of parameters for certain resolutions
-  
+
   **none** No parameters are set by the node. Default.
 
   **preset1** resolution: 320x90, camera_rate: 60, read_framerate: 60, stereo_algorithm: StereoSGBM_VW, max_disparity: 64.
@@ -124,9 +124,6 @@ cvm_follow_me
 drop_time
   Time after which the target should be dropped if not seen, in seconds. Default: 5. Range: [0.2; 30].
 
-detection_prob
-  Probability threshold to assume that the correct object class has been detected. Default: 0.25. Range: [0.0; 1.0].
-
 similarity_threshold
   Visual similarity of the object in the subsequent frame. Default: 0.6. Range: [0.0; 1.0].
 
@@ -147,6 +144,32 @@ camera_rotation
 
   **2** CCW_90. Camera is rotated 90 degrees counter clock wise.
 
+object_class
+  The class to detect. Default: person.
+
+detection_prob
+  Probability threshold to assume that the correct object class has been detected. Default: 0.25. Range: [0.0; 1.0].
+
+position_estimator
+----------------------------------------
+
+full_scan
+  Scan full image. If set to false, only epipolar lines ar checked. Default: False.
+
+match_treshold
+  Matching similarity threshold. Default: 0.7. Range: [0.0; 1.0].
+
+object_width
+  Maximum object width in meters. This is used to filter out incorrect matches. Default: 1.0. Range: [0.1; 4.0].
+
+limit
+  Maximum number of objects to estimate position. Default: 0 (there is no limit). Range: [0; 40].
+
+max_disp
+  Maximum disparity. Default: 128.0. Range: [1.0; 300.0].
+
+scale
+  Downscale image before matching. Default: 1.0 (original size). Range: [0.1; 1.0].
 
 ------------------------------
 FollowAruco App Configuration
