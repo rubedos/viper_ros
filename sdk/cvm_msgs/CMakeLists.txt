@@ -9,6 +9,7 @@ find_package(catkin REQUIRED
     stereo_msgs
     message_generation
     roslint
+    geometry_msgs
 )
 
 add_message_files(
@@ -23,6 +24,7 @@ generate_messages(
     sensor_msgs
     std_msgs
     stereo_msgs
+    geometry_msgs
 )
 
 catkin_package(
